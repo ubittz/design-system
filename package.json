@@ -1,0 +1,60 @@
+{
+  "name": "design-system",
+  "version": "1.0.0",
+  "description": "Ubittz Design System Package",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ubittz/design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ubittz/design-system/issues"
+  },
+  "homepage": "https://github.com/ubittz/design-system",
+  "author": "wongil12 <judgevi52@gmail.com>",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=18.3.1",
+    "react-dom": ">=18.3.1"
+  },
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "dev:package": "tsup src/index.tsx--watch"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@swc/core": "^1.13.2",
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "@ubittz/web-config": "^1.0.1",
+    "eslint": "^9.32.0",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
