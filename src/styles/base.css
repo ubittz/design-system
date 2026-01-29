@@ -1,0 +1,129 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-kr);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-default);
+}
+
+/* Typography utilities */
+.ds-text {
+  margin: 0;
+  padding: 0;
+}
+
+.ds-text--kr {
+  font-family: var(--font-family-kr);
+}
+
+.ds-text--en {
+  font-family: var(--font-family-en);
+}
+
+/* Font weights */
+.ds-text--regular {
+  font-weight: var(--font-weight-regular);
+}
+
+.ds-text--medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.ds-text--semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.ds-text--bold {
+  font-weight: var(--font-weight-bold);
+}
+
+/* App typography */
+.ds-text--app.ds-text--heading1 {
+  font-size: var(--font-size-app-heading1);
+}
+
+.ds-text--app.ds-text--heading2 {
+  font-size: var(--font-size-app-heading2);
+}
+
+.ds-text--app.ds-text--heading3 {
+  font-size: var(--font-size-app-heading3);
+}
+
+.ds-text--app.ds-text--body1 {
+  font-size: var(--font-size-app-body1);
+}
+
+.ds-text--app.ds-text--body2 {
+  font-size: var(--font-size-app-body2);
+}
+
+.ds-text--app.ds-text--caption {
+  font-size: var(--font-size-app-caption);
+}
+
+.ds-text--app.ds-text--overline {
+  font-size: var(--font-size-app-overline);
+  text-transform: uppercase;
+}
+
+/* Web typography */
+.ds-text--web.ds-text--display {
+  font-size: var(--font-size-web-display);
+}
+
+.ds-text--web.ds-text--heading1 {
+  font-size: var(--font-size-web-heading1);
+}
+
+.ds-text--web.ds-text--heading2 {
+  font-size: var(--font-size-web-heading2);
+}
+
+.ds-text--web.ds-text--heading3 {
+  font-size: var(--font-size-web-heading3);
+}
+
+.ds-text--web.ds-text--heading4 {
+  font-size: var(--font-size-web-heading4);
+}
+
+.ds-text--web.ds-text--body1 {
+  font-size: var(--font-size-web-body1);
+}
+
+.ds-text--web.ds-text--body2 {
+  font-size: var(--font-size-web-body2);
+}
+
+.ds-text--web.ds-text--caption {
+  font-size: var(--font-size-web-caption);
+}
+
+.ds-text--web.ds-text--overline {
+  font-size: var(--font-size-web-overline);
+  text-transform: uppercase;
+}
+
+/* Line height for Korean */
+.ds-text--kr {
+  line-height: var(--line-height-kr-normal);
+  letter-spacing: var(--letter-spacing-kr-normal);
+}
+
+/* Line height for English */
+.ds-text--en {
+  line-height: var(--line-height-en-normal);
+  letter-spacing: var(--letter-spacing-en-normal);
+}
