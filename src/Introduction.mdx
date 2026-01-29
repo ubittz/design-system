@@ -1,0 +1,74 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# Ubittz Design System
+
+환영합니다! Ubittz Design System은 일관된 디자인과 개발 경험을 제공하기 위한 React 기반 디자인 시스템입니다.
+
+## 주요 특징
+
+- **Figma 연동**: Figma Variable과 완전히 동기화된 디자인 토큰
+- **플랫폼 지원**: Web과 App 플랫폼을 모두 지원
+- **다국어 지원**: 한글과 영문 타이포그래피 최적화
+- **테마 커스터마이징**: 브랜드 컬러를 프로젝트별로 쉽게 커스터마이징
+- **Tree-shaking**: 필요한 컴포넌트만 번들에 포함
+
+## 설치
+
+```bash
+npm install @ubittz/design-system
+# or
+yarn add @ubittz/design-system
+```
+
+## 빠른 시작
+
+```tsx
+import { DesignSystemProvider } from '@ubittz/design-system';
+import '@ubittz/design-system/styles';
+
+function App() {
+  return (
+    <DesignSystemProvider platform="web" defaultLang="kr">
+      <YourApp />
+    </DesignSystemProvider>
+  );
+}
+```
+
+## 브랜드 컬러 커스터마이징
+
+```tsx
+<DesignSystemProvider
+  platform="web"
+  defaultLang="kr"
+  theme={{
+    brand: {
+      primary: {
+        500: '#FF6B00',
+        600: '#CC5500',
+      },
+    },
+  }}
+>
+  <YourApp />
+</DesignSystemProvider>
+```
+
+## 구조
+
+### Design Tokens
+- **Colors**: Base Colors, Semantic Colors, Component Tokens
+- **Typography**: Platform별, 언어별 최적화된 폰트 설정
+- **Spacing**: 일관된 간격 시스템
+
+### Components
+- **Shared**: 플랫폼 공통 컴포넌트
+- **App**: 모바일 앱용 컴포넌트
+- **Web**: 웹용 컴포넌트
+
+## 더 알아보기
+
+- Design Tokens 섹션에서 컬러, 타이포그래피, 스페이싱 시스템을 확인하세요
+- Components 섹션에서 사용 가능한 컴포넌트를 탐색하세요
