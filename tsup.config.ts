@@ -10,6 +10,13 @@ export default defineConfig((options) => {
     minify: true,
     dts: true,
     legacyOutput: true,
+    external: ['react', 'react-dom'],
+    treeshake: true,
+    esbuildOptions(opts) {
+      opts.banner = {
+        js: '"use client";',
+      };
+    },
   };
 
   return [
