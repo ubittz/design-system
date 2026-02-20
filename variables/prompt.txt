@@ -1,0 +1,5 @@
+@variables/ 폴더 안에 각 생상 토큰 종류별로 json 파일을 넣어놨어.
+Base Token의 색상 값은 항상 고정이야.
+Semantic Token의 색상 값은 현재 나와있는 색상을 넣어주되, 사용하는 프로젝트에서 오버라이딩 할 수 있어야해.
+Component Token은 Target Variable의 색상을 따라가야해. 즉, `Button/Color/Primary/Background` 값이 현재 `Surface/Default/Primary` 로 링크되어있는데 `Surface/Default/Primary` 값을 사용하는 프로젝트에서 바꿨으면 `Button/Color/Primary/Background` 값도 같이 변경되어야해.
+Component Token이 다른 Token 값들을 항상 참조할 수 있도록 작업해줘.

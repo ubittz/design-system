@@ -79,9 +79,9 @@ Semantic Color (오버라이딩 가능)
 Component Token (Semantic 참조)
 ```
 
-### 3.2 Color 구조
+### 3.2 Color 구조 (Figma Variables 기반)
 
-#### Base Color
+#### Base Color (불변)
 
 ```ts
 // tokens/colors.ts
@@ -89,120 +89,164 @@ Component Token (Semantic 참조)
 export const baseColors = {
   // Gray Scale
   gray: {
-    50: '#F9FAFB',
-    100: '#F3F4F6',
-    200: '#E5E7EB',
-    300: '#D1D5DB',
-    400: '#9CA3AF',
-    500: '#6B7280',
-    600: '#4B5563',
-    700: '#374151',
-    800: '#1F2937',
-    900: '#111827',
+    0: '#FFFFFF',
+    10: '#DCDFE4',
+    50: '#F3F5F7',
+    100: '#E1E4E8',
+    200: '#CBCFD7',
+    300: '#B4BAC5',
+    400: '#9DA5B4',
+    500: '#808A9D',
+    600: '#667085',
+    700: '#4B5362',
+    800: '#31363F',
+    900: '#16181D',
   },
 
-  // Status Colors
-  red: {
-    /* ... */
-  },
-  green: {
-    /* ... */
-  },
-  yellow: {
-    /* ... */
-  },
-  blue: {
-    /* ... */
+  // Sky (Primary Base)
+  sky: {
+    50: '#EBF5FE',
+    100: '#D8EBFD',
+    // ... 200~900
+    500: '#288FF6', // main
   },
 
-  // Absolute
-  white: '#FFFFFF',
-  black: '#000000',
+  // Pistachio (Secondary Base)
+  pistachio: {
+    50: '#F3FAF0',
+    // ... 100~900
+  },
+
+  // System Colors
+  grass: { /* Success */ },
+  apple: { /* Error */ },
+  orange: { /* Warning */ },
+
+  // Additional Colors
+  coral: { /* ... */ },
+  // ... 기타 색상들
 } as const;
 ```
 
-#### Semantic Color
+#### Semantic Color (오버라이딩 가능)
 
 ```ts
-export const semanticColors = {
+export const defaultSemanticColors = {
   brand: {
-    primary: '#6366F1', // 오버라이딩 대상
-    primaryLight: '#818CF8', // 오버라이딩 대상
-    primaryDark: '#4F46E5', // 오버라이딩 대상
-    secondary: '#EC4899', // 오버라이딩 대상
-    secondaryLight: '#F472B6', // 오버라이딩 대상
-    secondaryDark: '#DB2777', // 오버라이딩 대상
+    primary: {
+      50: baseColors.sky[50],
+      100: baseColors.sky[100],
+      // ...
+      500: baseColors.sky[500], // main - 오버라이딩 가능
+      // ...
+      900: baseColors.sky[900],
+    },
+    secondary: {
+      50: baseColors.pistachio[50],
+      // ...
+      500: baseColors.pistachio[500], // 오버라이딩 가능
+      // ...
+    },
   },
 
   surface: {
-    default: baseColors.white,
-    subtle: baseColors.gray[50],
-    muted: baseColors.gray[100],
-    emphasis: baseColors.gray[900],
+    default: {
+      background: baseColors.gray[50],
+      foreground: baseColors.gray[0],
+      primary: '{brand.primary.500}', // 동적 참조 → Brand.Primary.500
+      brandSecondary: '{brand.primary.50}', // 동적 참조
+      gray: baseColors.gray[50],
+      disabled: baseColors.gray[100],
+      hover: baseColors.gray[50],
+    },
+    inverse: {
+      background: baseColors.gray[900],
+    },
   },
 
   border: {
-    default: baseColors.gray[200],
-    subtle: baseColors.gray[100],
-    emphasis: baseColors.gray[300],
+    default: {
+      default: baseColors.gray[100],
+      primary: baseColors.gray[900],
+      secondary: baseColors.gray[50],
+      brand: '{brand.primary.500}', // 동적 참조
+      hover: '{brand.primary.500}', // 동적 참조
+    },
+    // ...
   },
 
   text: {
-    primary: baseColors.gray[900],
-    secondary: baseColors.gray[600],
-    tertiary: baseColors.gray[400],
-    inverse: baseColors.white,
-    onPrimary: baseColors.white, // brand.primary 위 텍스트
-    onSecondary: baseColors.white, // brand.secondary 위 텍스트
+    default: {
+      primary: baseColors.gray[900],
+      secondary: baseColors.gray[700],
+      tertiary: baseColors.gray[600],
+      // ...
+      brandPrimary: '{brand.primary.500}', // 동적 참조
+    },
+    // ...
   },
 
   icon: {
-    default: baseColors.gray[600],
-    subtle: baseColors.gray[400],
-    emphasis: baseColors.gray[900],
-    inverse: baseColors.white,
+    default: {
+      primary: baseColors.gray[800],
+      brand: '{brand.primary.500}', // 동적 참조
+      selected: '{brand.primary.500}', // 동적 참조
+      // ...
+    },
+    // ...
   },
 
   system: {
-    success: '#10B981',
-    successLight: '#D1FAE5',
-    warning: '#F59E0B',
-    warningLight: '#FEF3C7',
-    error: '#EF4444',
-    errorLight: '#FEE2E2',
-    info: '#3B82F6',
-    infoLight: '#DBEAFE',
+    success: {
+      content: baseColors.grass[600],
+      surface: baseColors.grass[50],
+      borderPrimary: baseColors.grass[200],
+      borderSecondary: baseColors.grass[600],
+    },
+    // info, warning, error ...
   },
 } as const;
 ```
 
-#### Component Token
+#### Component Token (Semantic 참조)
 
 ```ts
 export const componentTokens = {
   button: {
     primary: {
-      bg: 'var(--color-brand-primary)',
-      bgHover: 'var(--color-brand-primary-dark)',
-      text: 'var(--color-text-on-primary)',
+      background: '{surface.default.primary}', // → Brand.Primary.500
+      label: '{text.inverse.primary}', // → White
+      icon: '{icon.inverse.primary}', // → White
     },
     secondary: {
-      bg: 'var(--color-brand-secondary)',
-      bgHover: 'var(--color-brand-secondary-dark)',
-      text: 'var(--color-text-on-secondary)',
+      background: '{surface.default.brandSecondary}', // → Brand.Primary.50
+      label: '{text.default.brandPrimary}', // → Brand.Primary.500
+      icon: '{icon.default.brand}', // → Brand.Primary.500
+    },
+    ghost: {
+      border: '{border.default.brand}', // → Brand.Primary.500
+      label: '{text.default.brandPrimary}',
+      icon: '{icon.default.brand}',
     },
     // ...
   },
   input: {
-    bg: 'var(--color-surface-default)',
-    border: 'var(--color-border-default)',
-    borderFocus: 'var(--color-brand-primary)',
-    text: 'var(--color-text-primary)',
-    placeholder: 'var(--color-text-tertiary)',
+    default: {
+      background: '{surface.default.foreground}', // → White
+      border: '{border.default.default}', // → Gray.100
+      // ...
+    },
+    focused: {
+      border: '{border.default.brand}', // → Brand.Primary.500
+      cursor: '{surface.default.primary}', // → Brand.Primary.500
+    },
+    // ...
   },
-  // ...
+  // navigation, calendar, modal, list, filter, toggle ...
 } as const;
 ```
+
+**동적 참조 시스템**: Component Token의 `{token.path}` 형식은 런타임에 실제 색상값으로 해결됩니다.
 
 ### 3.3 Typography 구조
 
@@ -292,18 +336,35 @@ export const typography = {
 export type Platform = 'app' | 'web';
 export type Lang = 'kr' | 'en';
 
+export type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
+
+export interface ColorScale {
+  50?: string;
+  100?: string;
+  200?: string;
+  // ... 300~900
+}
+
 export interface BrandColors {
-  primary?: string;
-  primaryLight?: string;
-  primaryDark?: string;
-  secondary?: string;
-  secondaryLight?: string;
-  secondaryDark?: string;
+  primary?: DeepPartial<ColorScale>;
+  secondary?: DeepPartial<ColorScale>;
+}
+
+export interface SemanticColors {
+  brand?: BrandColors;
+  surface?: DeepPartial<{...}>;
+  border?: DeepPartial<{...}>;
+  text?: DeepPartial<{...}>;
+  icon?: DeepPartial<{...}>;
+  system?: DeepPartial<{...}>;
 }
 
 export interface ThemeConfig {
-  brand?: BrandColors;
-  // 필요시 확장
+  semanticColors?: DeepPartial<SemanticColors>;
 }
 
 export interface DesignSystemConfig {
@@ -314,6 +375,7 @@ export interface DesignSystemConfig {
 
 export interface DesignSystemContextValue extends DesignSystemConfig {
   theme: Required<ThemeConfig>;
+  resolvedSemanticColors: SemanticColors;
 }
 ```
 
@@ -323,63 +385,86 @@ export interface DesignSystemContextValue extends DesignSystemConfig {
 // core/DesignSystemProvider.tsx
 
 import { createContext, useContext, useMemo } from 'react';
-import { semanticColors } from '../tokens/colors';
+import { defaultSemanticColors, componentTokens } from '../tokens/colors';
+import { resolveTokenReferences, tokensToCSSVariables } from '../tokens/resolveTokens';
 import type { DesignSystemConfig, DesignSystemContextValue } from './types';
 
 const defaultConfig: DesignSystemContextValue = {
   platform: 'web',
   defaultLang: 'kr',
   theme: {
-    brand: semanticColors.brand,
+    semanticColors: defaultSemanticColors,
   },
+  resolvedSemanticColors: defaultSemanticColors,
 };
 
 const DesignSystemContext = createContext<DesignSystemContextValue>(defaultConfig);
 
-export function DesignSystemProvider({ platform = 'web', defaultLang = 'kr', theme, children }: DesignSystemConfig & { children: React.ReactNode }) {
-  const mergedTheme = useMemo(
-    () => ({
-      brand: {
-        ...semanticColors.brand,
-        ...theme?.brand,
-      },
-    }),
-    [theme]
-  );
+export function DesignSystemProvider({
+  platform = 'web',
+  defaultLang = 'kr',
+  theme,
+  children
+}: DesignSystemConfig & { children: React.ReactNode }) {
+  const contextValue = useMemo(() => {
+    // 1. Semantic Colors 병합 (사용자 오버라이드 적용)
+    const mergedSemanticColors = theme?.semanticColors
+      ? deepMerge(defaultSemanticColors, theme.semanticColors)
+      : defaultSemanticColors;
 
-  const contextValue = useMemo(
-    () => ({
+    // 2. Semantic Colors의 참조 해결 (brand.primary.500 등)
+    const resolvedSemanticColors = resolveTokenReferences(mergedSemanticColors);
+
+    // 3. Component Tokens의 참조 해결 (semantic colors 기반)
+    const resolvedComponentTokens = resolveTokenReferences(
+      componentTokens,
+      resolvedSemanticColors
+    );
+
+    return {
       platform,
       defaultLang,
-      theme: mergedTheme,
-    }),
-    [platform, defaultLang, mergedTheme]
-  );
+      theme: {
+        semanticColors: mergedSemanticColors,
+      },
+      resolvedSemanticColors,
+      resolvedComponentTokens,
+    };
+  }, [platform, defaultLang, theme]);
+
+  // CSS Variables 생성
+  const cssVariables = useMemo(() => {
+    const semanticVars = tokensToCSSVariables(
+      contextValue.resolvedSemanticColors,
+      'semantic'
+    );
+    const componentVars = tokensToCSSVariables(
+      contextValue.resolvedComponentTokens,
+      'component'
+    );
+
+    return `:root {
+      ${semanticVars}
+
+      ${componentVars}
+    }`;
+  }, [contextValue.resolvedSemanticColors, contextValue.resolvedComponentTokens]);
 
   return (
     <DesignSystemContext.Provider value={contextValue}>
-      <style>{`
-        :root {
-          --color-brand-primary: ${mergedTheme.brand.primary};
-          --color-brand-primary-light: ${mergedTheme.brand.primaryLight};
-          --color-brand-primary-dark: ${mergedTheme.brand.primaryDark};
-          --color-brand-secondary: ${mergedTheme.brand.secondary};
-          --color-brand-secondary-light: ${mergedTheme.brand.secondaryLight};
-          --color-brand-secondary-dark: ${mergedTheme.brand.secondaryDark};
-        }
-      `}</style>
+      <style>{cssVariables}</style>
       {children}
     </DesignSystemContext.Provider>
   );
 }
 
-export function useDesignSystem() {
+export const useDesignSystem = () => {
   const context = useContext(DesignSystemContext);
   if (!context) {
     throw new Error('useDesignSystem must be used within DesignSystemProvider');
   }
   return context;
-}
+};
 ```
 
 ---
@@ -511,7 +596,7 @@ export function createIcon(path: React.ReactNode, displayName: string, defaultPr
 ```tsx
 // App.tsx (클라이언트 프로젝트)
 
-import { DesignSystemProvider } from '@corp/design-system';
+import { DesignSystemProvider } from '@ubittz/design-system';
 
 function App() {
   return (
@@ -519,11 +604,17 @@ function App() {
       platform='app'
       defaultLang='kr'
       theme={{
-        brand: {
-          primary: '#FF6B00',
-          primaryLight: '#FF8533',
-          primaryDark: '#CC5500',
-          secondary: '#00A5FF',
+        semanticColors: {
+          brand: {
+            primary: {
+              500: '#FF6B00', // Main primary color 오버라이드
+              400: '#FF8533', // Light variant
+              600: '#CC5500', // Dark variant
+            },
+            secondary: {
+              500: '#00A5FF', // Main secondary color 오버라이드
+            },
+          },
         },
       }}
     >
@@ -533,13 +624,18 @@ function App() {
 }
 ```
 
+**동작 방식:**
+- `brand.primary.500`을 `#FF6B00`으로 오버라이드하면
+- `{brand.primary.500}`을 참조하는 모든 Component Token이 자동으로 `#FF6B00`으로 변경됩니다
+- 예: `Button/Primary/Background`, `Input/Focused/Border`, `Icon/Default/Brand` 등
+
 ### 7.2 컴포넌트 사용
 
 ```tsx
 // pages/ProductDetail.tsx
 
-import { Text, Button, Card } from '@corp/design-system';
-import { Heart } from '@corp/design-system/icons/stroke';
+import { Text, Button, Card } from '@ubittz/design-system';
+import { Heart } from '@ubittz/design-system/icons/stroke';
 
 function ProductDetail() {
   return (
