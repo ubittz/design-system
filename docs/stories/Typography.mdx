@@ -1,0 +1,284 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as TypographyStories from './Typography.stories';
+
+<Meta of={TypographyStories} />
+
+# Typography
+
+Typography 컴포넌트는 일관된 텍스트 스타일링을 제공하는 핵심 컴포넌트입니다.
+플랫폼(Web/App)과 언어(한글/영문)에 따라 최적화된 타이포그래피 스타일을 자동으로 적용합니다.
+
+## 주요 특징
+
+- **플랫폼 자동 감지**: DesignSystemProvider의 platform 설정에 따라 Web/Mobile 스타일 자동 적용
+- **언어별 최적화**: 한글은 -2% 자간, 영문은 0% 자간으로 최적화
+- **다양한 Variant**: 제목, 본문, 캡션, 버튼 등 다양한 텍스트 스타일 지원
+- **유연한 커스터마이징**: color, align, className, style 등으로 자유롭게 커스터마이징
+- **시맨틱 HTML**: variant에 따라 적절한 HTML 태그 자동 선택 (h1~h4, p, span 등)
+
+## 사용법
+
+### 기본 사용
+
+```tsx
+import { Typography } from '@ubittz/design-system';
+
+function MyComponent() {
+  return (
+    <>
+      <Typography variant="h1" lang="kr">
+        디자인 시스템
+      </Typography>
+      <Typography variant="body1" lang="kr">
+        디자인 시스템은 일관된 사용자 경험을 제공하기 위한 재사용 가능한 컴포넌트 모음입니다.
+      </Typography>
+    </>
+  );
+}
+```
+
+### 언어 설정
+
+`lang` prop으로 언어를 지정하거나, DesignSystemProvider의 `defaultLang`을 사용합니다.
+
+```tsx
+// 명시적으로 언어 지정
+<Typography variant="h1" lang="en">
+  Design System
+</Typography>
+
+// Provider의 defaultLang 사용
+<DesignSystemProvider platform="web" defaultLang="kr">
+  <Typography variant="h1">
+    디자인 시스템 {/* defaultLang="kr" 자동 적용 */}
+  </Typography>
+</DesignSystemProvider>
+```
+
+### 색상 및 정렬
+
+```tsx
+<Typography variant="h2" color="#FF6B00" align="center">
+  중앙 정렬 제목
+</Typography>
+
+<Typography variant="body1" color="#667085" align="right">
+  오른쪽 정렬 본문
+</Typography>
+```
+
+### HTML 태그 커스터마이징
+
+```tsx
+// 기본: variant="h1"은 <h1> 태그로 렌더링
+<Typography variant="h1">Heading 1</Typography>
+
+// 커스텀: div 태그로 렌더링
+<Typography variant="h1" as="div">Heading 1</Typography>
+
+// 커스텀: span 태그로 렌더링
+<Typography variant="body1" as="span">Inline text</Typography>
+```
+
+### 스타일 커스터마이징
+
+```tsx
+<Typography
+  variant="h2"
+  className="custom-class"
+  style={{ marginBottom: '24px', textDecoration: 'underline' }}
+>
+  커스텀 스타일
+</Typography>
+```
+
+## Variants
+
+### Web Typography
+
+#### Title
+- **h1**: 48px/56px (Bold) - 메인 페이지 제목
+- **h2**: 36px/44px (Bold) - 섹션 제목
+- **h3**: 24px/32px (Bold) - 서브 섹션 제목
+- **h4**: 20px/28px (Bold) - 작은 제목
+- **subtitle1**: 18px/28px (SemiBold) - 부제목 1
+- **subtitle2**: 16px/24px (SemiBold) - 부제목 2
+
+#### Body
+- **body1**: 16px/24px (Regular) - 본문 텍스트
+- **body3**: 14px/20px (Regular) - 작은 본문
+- **body4**: 12px/18px (Regular) - 더 작은 본문
+- **caption**: 12px/18px (Regular) - 캡션, 보조 텍스트
+
+#### Button
+- **button1**: 18px/28px (SemiBold) - 큰 버튼
+- **button2**: 16px/24px (SemiBold) - 중간 버튼
+- **button3**: 14px/20px (SemiBold) - 작은 버튼
+
+### Mobile Typography
+
+#### Title
+- **h1**: 28px/36px (Bold) - 메인 페이지 제목
+- **h2**: 24px/32px (Bold) - 섹션 제목
+- **h3**: 20px/28px (Bold) - 서브 섹션 제목
+- **h4**: 18px/26px (Bold) - 작은 제목
+- **subtitle1**: 16px/24px (SemiBold) - 부제목 1
+- **subtitle2**: 14px/22px (SemiBold) - 부제목 2
+- **subtitle3**: 13px/20px (SemiBold) - 부제목 3
+
+#### Body
+- **body1**: 16px/24px (Regular) - 본문 텍스트
+- **body2**: 15px/22px (Regular) - 중간 본문
+- **body3**: 14px/20px (Regular) - 작은 본문
+- **caption1**: 12px/18px (Regular) - 캡션 1
+- **caption2**: 11px/16px (Regular) - 캡션 2
+
+#### Button
+- **button1**: 16px/24px (SemiBold) - 큰 버튼
+- **button2**: 15px/22px (SemiBold) - 중간 버튼
+- **button3**: 14px/20px (SemiBold) - 작은 버튼
+
+## Props
+
+<Canvas of={TypographyStories.Playground} />
+<Controls of={TypographyStories.Playground} />
+
+## 언어별 차이
+
+### 한글 (Korean)
+- **자간**: -2% (Letter Spacing: -0.02em)
+- **목적**: 한글 문자의 빽빽함을 해소하고 가독성 향상
+- **적용**: 모든 variant에 자동 적용
+
+### 영문 (English)
+- **자간**: 0% (Letter Spacing: 0em)
+- **목적**: 영문의 자연스러운 자간 유지
+- **적용**: 모든 variant에 자동 적용
+
+```tsx
+// 한글: 자간 -2% 자동 적용
+<Typography variant="body1" lang="kr">
+  디자인 시스템은 일관된 경험을 제공합니다.
+</Typography>
+
+// 영문: 자간 0% 자동 적용
+<Typography variant="body1" lang="en">
+  A design system provides consistent experience.
+</Typography>
+```
+
+## 플랫폼별 차이
+
+### Web
+- 더 큰 폰트 사이즈 (예: h1 = 48px)
+- 넓은 화면을 고려한 행간
+- 데스크톱 환경에 최적화
+
+### Mobile (App)
+- 작은 폰트 사이즈 (예: h1 = 28px)
+- 좁은 화면을 고려한 행간
+- 모바일 터치 환경에 최적화
+- subtitle3, body2, caption1, caption2 등 추가 variant 제공
+
+```tsx
+// Web 플랫폼
+<DesignSystemProvider platform="web" defaultLang="kr">
+  <Typography variant="h1">
+    디자인 시스템 {/* 48px/56px (Bold) */}
+  </Typography>
+</DesignSystemProvider>
+
+// Mobile 플랫폼
+<DesignSystemProvider platform="app" defaultLang="kr">
+  <Typography variant="h1">
+    디자인 시스템 {/* 28px/36px (Bold) */}
+  </Typography>
+</DesignSystemProvider>
+```
+
+## 접근성
+
+- **시맨틱 HTML**: variant에 따라 적절한 HTML 태그 자동 사용
+  - h1~h4: `<h1>` ~ `<h4>` 태그
+  - subtitle: `<h5>` 태그
+  - body: `<p>` 태그
+  - button, caption: `<span>` 태그
+- **색상 대비**: WCAG AA 기준을 만족하는 색상 사용 권장
+- **커스텀 태그**: `as` prop으로 필요시 태그 변경 가능
+
+## 모범 사례
+
+### ✅ 권장
+
+```tsx
+// 1. 언어에 맞는 lang 설정
+<Typography variant="h1" lang="kr">한글 제목</Typography>
+<Typography variant="h1" lang="en">English Title</Typography>
+
+// 2. 적절한 variant 사용
+<Typography variant="h1">페이지 메인 제목</Typography>
+<Typography variant="body1">본문 내용</Typography>
+<Typography variant="caption">부가 설명</Typography>
+
+// 3. 시맨틱한 구조
+<Typography variant="h1" as="h1">Main Title</Typography>
+<Typography variant="h2" as="h2">Section Title</Typography>
+```
+
+### ❌ 지양
+
+```tsx
+// 1. 잘못된 언어 설정
+<Typography variant="h1" lang="en">한글 제목</Typography> // ❌ 자간이 최적화되지 않음
+
+// 2. 부적절한 variant 사용
+<Typography variant="h1">작은 보조 텍스트</Typography> // ❌ h1은 메인 제목용
+
+// 3. 인라인 스타일 남용
+<Typography variant="body1" style={{ fontSize: '24px', fontWeight: 900 }}>
+  제목처럼 보이는 텍스트
+</Typography> // ❌ h2나 h3 variant 사용 권장
+```
+
+## 예제
+
+### 페이지 레이아웃
+
+```tsx
+<article>
+  <Typography variant="h1" lang="kr">
+    디자인 시스템 소개
+  </Typography>
+
+  <Typography variant="subtitle1" color="#667085" lang="kr">
+    일관된 디자인을 위한 컴포넌트 라이브러리
+  </Typography>
+
+  <Typography variant="body1" lang="kr" style={{ marginTop: '24px' }}>
+    디자인 시스템은 재사용 가능한 컴포넌트와 명확한 가이드라인을 통해
+    일관된 사용자 경험을 제공합니다.
+  </Typography>
+
+  <Typography variant="caption" color="#98A2B3" lang="kr">
+    마지막 업데이트: 2024년 1월
+  </Typography>
+</article>
+```
+
+### 카드 컴포넌트
+
+```tsx
+<div className="card">
+  <Typography variant="h3" lang="kr">
+    카드 제목
+  </Typography>
+
+  <Typography variant="body3" color="#667085" lang="kr">
+    카드 설명 텍스트입니다. 이 영역에는 카드의 상세 내용이 들어갑니다.
+  </Typography>
+
+  <Typography variant="button2" color="#FF6B00" as="span" lang="kr">
+    자세히 보기
+  </Typography>
+</div>
+```
