@@ -1,58 +1,60 @@
 import { createContext, useContext, useMemo } from 'react';
 
 import type { DesignSystemConfig, DesignSystemContextValue } from './types';
-import { semanticColors } from '../tokens/colors';
+import { defaultSemanticColors, componentTokens } from '../tokens/colors';
+import { resolveTokenReferences, tokensToCSSVariables } from '../tokens/resolveTokens';
 
 const defaultConfig: DesignSystemContextValue = {
   platform: 'web',
   defaultLang: 'kr',
   theme: {
-    brand: semanticColors.brand,
+    semanticColors: defaultSemanticColors,
   },
+  resolvedSemanticColors: defaultSemanticColors,
 };
 
 const DesignSystemContext = createContext<DesignSystemContextValue>(defaultConfig);
 
-export function DesignSystemProvider({ platform = 'web', defaultLang = 'kr', theme, children }: DesignSystemConfig & { children: React.ReactNode }) {
-  const mergedTheme = useMemo(
-    () => ({
-      brand: {
-        primary: {
-          ...semanticColors.brand.primary,
-          ...theme?.brand?.primary,
-        },
-        secondary: {
-          ...semanticColors.brand.secondary,
-          ...theme?.brand?.secondary,
-        },
-      },
-    }),
-    [theme]
-  );
+export function DesignSystemProvider({
+  platform = 'web',
+  defaultLang = 'kr',
+  theme,
+  children,
+}: DesignSystemConfig & { children: React.ReactNode }) {
+  const contextValue = useMemo(() => {
+    // 1. Semantic Colors 병합 (사용자 오버라이드 적용)
+    const mergedSemanticColors = theme?.semanticColors
+      ? deepMerge(defaultSemanticColors, theme.semanticColors)
+      : defaultSemanticColors;
 
-  const contextValue = useMemo(
-    () => ({
+    // 2. Semantic Colors의 참조 해결 (brand.primary.500 등)
+    const resolvedSemanticColors = resolveTokenReferences(mergedSemanticColors);
+
+    // 3. Component Tokens의 참조 해결 (semantic colors 기반)
+    const resolvedComponentTokens = resolveTokenReferences(componentTokens, resolvedSemanticColors);
+
+    return {
       platform,
       defaultLang,
-      theme: mergedTheme,
-    }),
-    [platform, defaultLang, mergedTheme]
-  );
+      theme: {
+        semanticColors: mergedSemanticColors,
+      },
+      resolvedSemanticColors,
+      resolvedComponentTokens,
+    };
+  }, [platform, defaultLang, theme]);
 
-  const generateColorScaleVars = (prefix: string, colors: Record<string, string>) => {
-    return Object.entries(colors)
-      .map(([key, value]) => `--color-brand-${prefix}-${key}: ${value};`)
-      .join('\n          ');
-  };
+  // CSS Variables 생성
+  const cssVariables = useMemo(() => {
+    const semanticVars = tokensToCSSVariables(contextValue.resolvedSemanticColors, 'semantic');
+    const componentVars = tokensToCSSVariables(contextValue.resolvedComponentTokens, 'component');
+
+    return `:root {\n          ${semanticVars}\n\n          ${componentVars}\n        }`;
+  }, [contextValue.resolvedSemanticColors, contextValue.resolvedComponentTokens]);
 
   return (
     <DesignSystemContext.Provider value={contextValue}>
-      <style>{`
-        :root {
-          ${generateColorScaleVars('primary', mergedTheme.brand.primary)}
-          ${generateColorScaleVars('secondary', mergedTheme.brand.secondary)}
-        }
-      `}</style>
+      <style>{cssVariables}</style>
       {children}
     </DesignSystemContext.Provider>
   );
@@ -65,3 +67,32 @@ export const useDesignSystem = () => {
   }
   return context;
 };
+
+/**
+ * 깊은 병합 (Deep Merge)
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function deepMerge<T extends Record<string, any>>(target: T, source: any): any {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const result: any = { ...target };
+
+  for (const key in source) {
+    const sourceValue = source[key];
+    const targetValue = result[key];
+
+    if (
+      sourceValue &&
+      typeof sourceValue === 'object' &&
+      !Array.isArray(sourceValue) &&
+      targetValue &&
+      typeof targetValue === 'object' &&
+      !Array.isArray(targetValue)
+    ) {
+      result[key] = deepMerge(targetValue, sourceValue);
+    } else if (sourceValue !== undefined) {
+      result[key] = sourceValue;
+    }
+  }
+
+  return result;
+}
