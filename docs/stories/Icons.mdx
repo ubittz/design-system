@@ -1,0 +1,245 @@
+import { Meta } from '@storybook/blocks';
+import * as IconStories from './Icons.stories';
+
+<Meta of={IconStories} />
+
+# Icons
+
+디자인 시스템에서 제공하는 아이콘 컴포넌트입니다.
+4개 카테고리, 총 358개의 아이콘이 제공되며, `createIcon` 팩토리를 통해 프로젝트별 커스텀 아이콘을 추가할 수 있습니다.
+
+## 카테고리
+
+| 카테고리 | 설명 | 수량 |
+|---------|------|------|
+| **Round / Stroke** | 라운드 스타일 + 선 아이콘 | 124개 |
+| **Round / Solid** | 라운드 스타일 + 채움 아이콘 | 93개 |
+| **Default / Stroke** | 기본 스타일 + 선 아이콘 | 80개 |
+| **Default / Solid** | 기본 스타일 + 채움 아이콘 | 61개 |
+
+## 사용법
+
+### 기본 사용
+
+```tsx
+import { RoundStroke, RoundSolid, DefaultStroke, DefaultSolid } from '@ubittz/design-system';
+
+function MyComponent() {
+  return (
+    <>
+      <RoundStroke.Home />
+      <RoundSolid.Heart />
+      <DefaultStroke.Search />
+      <DefaultSolid.Star />
+    </>
+  );
+}
+```
+
+### 사이즈 변경
+
+`size` prop으로 아이콘 크기를 조절합니다. 기본값은 `24`입니다.
+내부 viewBox는 24x24로 고정되어 있어 어떤 크기에서도 선명하게 렌더링됩니다.
+
+```tsx
+<RoundStroke.Home size={16} />  {/* 16px */}
+<RoundStroke.Home size={24} />  {/* 24px (기본) */}
+<RoundStroke.Home size={32} />  {/* 32px */}
+<RoundStroke.Home size={40} />  {/* 40px */}
+<RoundStroke.Home size="2rem" /> {/* CSS 값도 가능 */}
+```
+
+### 색상 변경
+
+`color` prop으로 아이콘 색상을 지정합니다. 지정하지 않으면 부모 요소의 CSS `color`를 상속합니다.
+
+```tsx
+{/* 명시적 색상 지정 */}
+<RoundStroke.Heart color="#D05858" />
+<RoundSolid.Star color="#F5A623" />
+
+{/* 부모 color 상속 (currentColor) */}
+<div style={{ color: '#288FF6' }}>
+  <RoundStroke.Home />  {/* 파란색으로 렌더링 */}
+</div>
+```
+
+### SVG 속성 전달
+
+`IconProps`는 `React.SVGProps<SVGSVGElement>`를 확장하므로, 모든 표준 SVG 속성을 사용할 수 있습니다.
+
+```tsx
+<RoundStroke.Home
+  size={24}
+  color="#1D1D1D"
+  className="icon-home"
+  style={{ marginRight: '8px' }}
+  onClick={() => console.log('clicked')}
+  aria-label="홈"
+/>
+```
+
+## 커스텀 아이콘 만들기
+
+`createIcon` 팩토리를 사용해 프로젝트별 커스텀 아이콘을 선언할 수 있습니다.
+디자인 시스템에 없는 아이콘이 필요할 때 동일한 API로 사용할 수 있습니다.
+
+### 기본 패턴
+
+```tsx
+import { createIcon } from '@ubittz/design-system';
+
+// Stroke 스타일 아이콘
+export const MyCustomIcon = createIcon(
+  <path
+    d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />,
+  'MyCustomIcon',
+);
+```
+
+### Solid 스타일
+
+```tsx
+import { createIcon } from '@ubittz/design-system';
+
+export const MyFilledIcon = createIcon(
+  <path
+    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+       2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
+       C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
+       c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+    fill="currentColor"
+  />,
+  'MyFilledIcon',
+);
+```
+
+### 여러 요소가 있는 아이콘
+
+SVG 내부에 path, circle, rect 등 여러 요소가 있는 경우 React Fragment로 감쌉니다.
+
+```tsx
+import { createIcon } from '@ubittz/design-system';
+
+export const MyComplexIcon = createIcon(
+  <>
+    <circle cx="12" cy="12" r="10" stroke="currentColor" />
+    <path d="M8 12l2 2 4-4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+  </>,
+  'MyComplexIcon',
+);
+```
+
+### 프로젝트에서 아이콘 모듈 구성
+
+```tsx
+// src/icons/custom.ts
+import { createIcon } from '@ubittz/design-system';
+
+export const KakaoLogin = createIcon(
+  <path d="M12 3C6.48 3 2 6.58 2 10.94..." fill="currentColor" />,
+  'KakaoLogin',
+);
+
+export const NaverLogin = createIcon(
+  <path d="M16.27 10.35L7.99 2H4v20h3.73V13.65L16.01 22H20V2h-3.73z" fill="currentColor" />,
+  'NaverLogin',
+);
+
+// 사용
+import { KakaoLogin, NaverLogin } from '@/icons/custom';
+
+<KakaoLogin size={20} color="#3C1E1E" />
+<NaverLogin size={20} color="#03C75A" />
+```
+
+### SVG 변환 규칙
+
+외부 SVG 파일을 `createIcon`용으로 변환할 때 다음 규칙을 따릅니다:
+
+1. **`<svg>` 래퍼 제거** - `createIcon`이 자동으로 생성합니다
+2. **HTML 속성을 JSX로 변환**
+   - `stroke-linecap` -> `strokeLinecap`
+   - `stroke-linejoin` -> `strokeLinejoin`
+   - `stroke-width` -> `strokeWidth`
+   - `fill-rule` -> `fillRule`
+   - `clip-rule` -> `clipRule`
+3. **색상을 `currentColor`로 치환**
+   - Stroke 아이콘: `stroke="black"` -> `stroke="currentColor"`
+   - Solid 아이콘: `fill="black"` -> `fill="currentColor"`, `stroke="black"` -> `stroke="currentColor"`
+   - `stroke="white"`, `fill="white"`는 유지 (네거티브 스페이스)
+
+## Props
+
+```ts
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  /** px 단위 숫자 또는 CSS 값 문자열 (기본: 24) */
+  size?: number | string;
+  /** 아이콘 색상 (기본: 'currentColor') */
+  color?: string;
+}
+```
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `size` | `number \| string` | `24` | 아이콘 크기 (px 또는 CSS 값) |
+| `color` | `string` | `currentColor` | 아이콘 색상 |
+| `className` | `string` | - | CSS 클래스 |
+| `style` | `CSSProperties` | - | 인라인 스타일 |
+| `...props` | `SVGProps` | - | 모든 표준 SVG 속성 |
+
+## 활용 예시
+
+### 버튼과 함께 사용
+
+```tsx
+import { RoundStroke } from '@ubittz/design-system';
+
+<button style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+  <RoundStroke.Cart size={20} />
+  장바구니 담기
+</button>
+```
+
+### 네비게이션 바
+
+```tsx
+import { RoundStroke, RoundSolid } from '@ubittz/design-system';
+
+function NavItem({ icon: Icon, activeIcon: ActiveIcon, label, isActive }) {
+  const IconComponent = isActive ? ActiveIcon : Icon;
+  return (
+    <div style={{ color: isActive ? '#288FF6' : '#808A9D' }}>
+      <IconComponent size={24} />
+      <span>{label}</span>
+    </div>
+  );
+}
+
+<NavItem icon={RoundStroke.Home} activeIcon={RoundSolid.Home} label="홈" isActive />
+<NavItem icon={RoundStroke.Search} activeIcon={RoundSolid.Search} label="검색" isActive={false} />
+<NavItem icon={RoundStroke.My} activeIcon={RoundSolid.My} label="마이" isActive={false} />
+```
+
+### 아이콘 목록 동적 렌더링
+
+```tsx
+import { RoundStroke } from '@ubittz/design-system';
+
+const menuItems = [
+  { icon: RoundStroke.Home, label: '홈' },
+  { icon: RoundStroke.Cart, label: '장바구니' },
+  { icon: RoundStroke.Heart, label: '찜 목록' },
+  { icon: RoundStroke.My, label: '마이페이지' },
+];
+
+{menuItems.map(({ icon: Icon, label }) => (
+  <li key={label}>
+    <Icon size={20} /> {label}
+  </li>
+))}
+```
