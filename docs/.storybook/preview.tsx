@@ -15,7 +15,7 @@ const preview: Preview = {
         order: [
           'Introduction',
           'Design Tokens',
-          ['Colors', 'Typography', 'Spacing'],
+          ['Colors', 'Typography', 'Icons', 'Spacing'],
           'Components',
           ['Shared', 'App', 'Web'],
         ],
