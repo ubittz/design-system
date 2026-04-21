@@ -1,0 +1,261 @@
+import { Meta } from '@storybook/blocks';
+import * as ColorStories from './Colors.stories';
+
+<Meta of={ColorStories} />
+
+# Colors
+
+디자인 시스템의 컬러 토큰은 3단계 계층 구조로 관리됩니다.
+
+```
+Base Colors → Semantic Colors → Component Tokens
+(고정값)       (오버라이딩 가능)   (Semantic 참조)
+```
+
+## 구조 개요
+
+| 계층 | 설명 | 변경 가능 |
+|------|------|-----------|
+| **Base Colors** | 17개 컬러 팔레트 (gray, sky, coral 등), 각 50~900 스케일 | 불가 |
+| **Semantic Colors** | 의미가 부여된 컬러 (brand, surface, text, icon 등) | 테마로 오버라이드 |
+| **Component Tokens** | 컴포넌트별 컬러 (button, input, navigation 등) | Semantic 참조로 자동 반영 |
+
+## Base Colors
+
+고정된 컬러 팔레트입니다. 직접 사용하기보다는 Semantic Colors를 통해 참조합니다.
+
+```tsx
+import { baseColors } from '@ubittz/design-system';
+
+baseColors.gray[500]   // '#808A9D'
+baseColors.sky[500]    // '#288FF6' (Primary 기본)
+baseColors.pistachio[500] // '#68BC43' (Secondary 기본)
+baseColors.apple[600]  // '#B81428' (Error)
+baseColors.orange[500] // '#F98F24' (Warning)
+baseColors.grass[600]  // '#8CB319' (Success)
+```
+
+### 전체 팔레트
+
+| 팔레트 | 용도 | 메인 컬러 (500) |
+|--------|------|-----------------|
+| **gray** | 텍스트, 배경, 보더 | `#808A9D` |
+| **sky** | Primary 브랜드 | `#288FF6` |
+| **pistachio** | Secondary 브랜드 | `#68BC43` |
+| **coral** | 강조 | `#D05858` |
+| **apple** | Error | `#E51931` |
+| **orange** | Warning | `#F98F24` |
+| **grass** | Success | `#B0DF20` |
+| **carrot** | - | `#DD6440` |
+| **mustard** | - | `#FFB200` |
+| **lemon** | - | `#FFDA0A` |
+| **coffee** | - | `#AF8560` |
+| **sage** | - | `#8CA86C` |
+| **blueberry** | - | `#4364EA` |
+| **violet** | - | `#5B40E2` |
+| **plum** | - | `#AF3AE9` |
+| **purple** | - | `#D83AE9` |
+| **wine** | - | `#E82B8A` |
+
+## Semantic Colors
+
+의미 기반 컬러입니다. `DesignSystemProvider`의 `theme` prop으로 오버라이드할 수 있습니다.
+
+### Brand
+
+프로젝트별로 커스터마이징하는 핵심 컬러입니다.
+
+```tsx
+import { defaultSemanticColors } from '@ubittz/design-system';
+
+defaultSemanticColors.brand.primary[500]   // '#288FF6' (sky)
+defaultSemanticColors.brand.secondary[500] // '#68BC43' (pistachio)
+```
+
+### Surface
+
+배경 및 표면 컬러입니다.
+
+| 토큰 | 값 | 용도 |
+|------|-----|------|
+| `surface.default.background` | Gray 50 | 페이지 배경 |
+| `surface.default.foreground` | White | 카드, 모달 배경 |
+| `surface.default.primary` | `{brand.primary.500}` | 브랜드 강조 배경 |
+| `surface.default.brandSecondary` | `{brand.primary.50}` | 브랜드 연한 배경 |
+| `surface.default.gray` | Gray 50 | 회색 배경 |
+| `surface.default.disabled` | Gray 100 | 비활성 배경 |
+| `surface.inverse.background` | Gray 900 | 다크 배경 |
+
+### Text
+
+텍스트 컬러입니다.
+
+| 토큰 | 값 | 용도 |
+|------|-----|------|
+| `text.default.primary` | Gray 900 | 주요 텍스트 |
+| `text.default.secondary` | Gray 700 | 보조 텍스트 |
+| `text.default.tertiary` | Gray 600 | 세 번째 텍스트 |
+| `text.default.quaternary` | Gray 400 | 네 번째 텍스트 |
+| `text.default.label` | Gray 600 | 라벨 |
+| `text.default.placeholder` | Gray 300 | 플레이스홀더 |
+| `text.default.disabled` | Gray 200 | 비활성 텍스트 |
+| `text.default.brandPrimary` | `{brand.primary.500}` | 브랜드 컬러 텍스트 |
+| `text.default.discount` | Coral 600 | 할인 텍스트 |
+| `text.inverse.primary` | White | 다크 배경 위 텍스트 |
+
+### Icon
+
+아이콘 컬러입니다.
+
+| 토큰 | 값 | 용도 |
+|------|-----|------|
+| `icon.default.primary` | Gray 800 | 주요 아이콘 |
+| `icon.default.secondary` | Gray 700 | 보조 아이콘 |
+| `icon.default.tertiary` | Gray 600 | 세 번째 아이콘 |
+| `icon.default.quaternary` | Gray 400 | 네 번째 아이콘 |
+| `icon.default.brand` | `{brand.primary.500}` | 브랜드 컬러 아이콘 |
+| `icon.default.disabled` | Gray 200 | 비활성 아이콘 |
+| `icon.default.selected` | `{brand.primary.500}` | 선택된 아이콘 |
+| `icon.inverse.primary` | White | 다크 배경 위 아이콘 |
+
+### Border
+
+보더 컬러입니다.
+
+| 토큰 | 값 | 용도 |
+|------|-----|------|
+| `border.default.default` | Gray 100 | 기본 보더 |
+| `border.default.primary` | Gray 900 | 강조 보더 |
+| `border.default.brand` | `{brand.primary.500}` | 브랜드 보더 |
+
+### System
+
+시스템 상태 컬러입니다.
+
+| 상태 | content | surface | borderPrimary | borderSecondary |
+|------|---------|---------|---------------|-----------------|
+| **Success** | Grass 600 | Grass 50 | Grass 200 | Grass 600 |
+| **Info** | Sky 600 | Sky 50 | Sky 200 | Sky 600 |
+| **Warning** | Orange 500 | Orange 50 | Orange 200 | Orange 500 |
+| **Error** | Apple 600 | Apple 50 | Apple 200 | Apple 600 |
+
+## Component Tokens
+
+컴포넌트별 컬러 토큰입니다. Semantic Colors를 `{참조}` 문법으로 참조합니다.
+
+```tsx
+import { componentTokens } from '@ubittz/design-system';
+
+// Button Primary
+componentTokens.button.primary.background // '{surface.default.primary}' → brand.primary.500
+componentTokens.button.primary.label      // '{text.inverse.primary}' → White
+componentTokens.button.primary.icon       // '{icon.inverse.primary}' → White
+```
+
+### 토큰 참조 해석
+
+`resolveTokenReferences`로 참조를 실제 값으로 변환할 수 있습니다.
+
+```tsx
+import { componentTokens, defaultSemanticColors } from '@ubittz/design-system';
+import { resolveTokenReferences } from '@ubittz/design-system';
+
+const resolved = resolveTokenReferences(componentTokens, defaultSemanticColors);
+
+resolved.button.primary.background // '#288FF6' (실제 hex 값)
+```
+
+## 브랜드 컬러 커스터마이징
+
+`DesignSystemProvider`의 `theme` prop으로 브랜드 컬러를 변경하면,
+`{brand.primary.500}`을 참조하는 모든 Semantic/Component 토큰이 자동으로 업데이트됩니다.
+
+```tsx
+import { DesignSystemProvider } from '@ubittz/design-system';
+
+// 기본: Sky 팔레트 (#288FF6)
+<DesignSystemProvider platform="web" defaultLang="kr">
+  <App />
+</DesignSystemProvider>
+
+// 커스텀: 오렌지 브랜드
+<DesignSystemProvider
+  platform="web"
+  defaultLang="kr"
+  theme={{
+    brand: {
+      primary: {
+        50: '#FFF7F0',
+        100: '#FEEBD7',
+        200: '#FDDBB9',
+        300: '#FCC288',
+        400: '#FBA856',
+        500: '#F98F24',
+        600: '#E57506',
+        700: '#B35C05',
+        800: '#814203',
+        900: '#502902',
+      },
+    },
+  }}
+>
+  <App />  {/* 모든 브랜드 컬러가 오렌지로 변경됨 */}
+</DesignSystemProvider>
+```
+
+### 영향 범위
+
+브랜드 Primary를 변경하면 다음이 자동 업데이트됩니다:
+- `surface.default.primary` - 브랜드 배경
+- `surface.default.brandSecondary` - 브랜드 연한 배경
+- `border.default.brand` - 브랜드 보더
+- `text.default.brandPrimary` - 브랜드 텍스트
+- `icon.default.brand` / `icon.default.selected` - 브랜드 아이콘
+- **모든 Component Tokens** (button.primary, button.secondary, button.ghost 등)
+
+## 사용 예시
+
+### 텍스트 컬러 적용
+
+```tsx
+import { defaultSemanticColors } from '@ubittz/design-system';
+
+<h1 style={{ color: defaultSemanticColors.text.default.primary }}>
+  메인 제목
+</h1>
+<p style={{ color: defaultSemanticColors.text.default.secondary }}>
+  보조 설명 텍스트
+</p>
+<span style={{ color: defaultSemanticColors.text.default.placeholder }}>
+  입력해주세요
+</span>
+```
+
+### 아이콘 + 컬러 토큰 조합
+
+```tsx
+import { RoundStroke, defaultSemanticColors } from '@ubittz/design-system';
+
+{/* Semantic 토큰으로 아이콘 색상 지정 */}
+<RoundStroke.Home color={defaultSemanticColors.icon.default.primary} />
+<RoundStroke.Heart color={defaultSemanticColors.system.error.content} />
+<RoundStroke.Check color={defaultSemanticColors.system.success.content} />
+```
+
+### 시스템 상태 메시지
+
+```tsx
+import { defaultSemanticColors } from '@ubittz/design-system';
+
+const { system } = defaultSemanticColors;
+
+<div style={{
+  backgroundColor: system.error.surface,
+  border: `1px solid ${system.error.borderPrimary}`,
+  color: system.error.content,
+  padding: '12px 16px',
+  borderRadius: '8px',
+}}>
+  결제에 실패했습니다. 다시 시도해주세요.
+</div>
+```
