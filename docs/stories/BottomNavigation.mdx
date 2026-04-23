@@ -10,6 +10,7 @@ import * as BottomNavigationStories from './BottomNavigation.stories';
 
 ## 주요 특징
 
+- **라우트 기반 활성 판단**: 각 아이템의 `value`와 현재 `value`를 비교하여 활성 상태 결정
 - **아이콘 + 라벨**: 각 탭은 아이콘(32px)과 라벨(12px)로 구성
 - **활성/비활성 아이콘 분리**: `icon`과 `activeIcon`으로 상태별 다른 아이콘 적용 가능 (Stroke/Solid 전환)
 - **균등 분배**: 각 탭이 동일한 너비로 자동 분배 (flex: 1)
@@ -17,58 +18,54 @@ import * as BottomNavigationStories from './BottomNavigation.stories';
 
 ## 사용법
 
-### 기본 사용
+### 기본 사용 (라우트 연동)
 
 ```tsx
 import { BottomNavigation } from '@ubittz/design-system';
 import { RoundStroke, RoundSolid } from '@ubittz/design-system';
+import { useRouter, usePathname } from 'next/navigation';
 
-function App() {
-  const [activeTab, setActiveTab] = useState(0);
+const items = [
+  { value: '/home',      icon: <RoundStroke.Home size={24} />,  activeIcon: <RoundSolid.Home size={24} />,  label: '홈' },
+  { value: '/favorites',  icon: <RoundStroke.Heart size={24} />, activeIcon: <RoundSolid.Heart size={24} />, label: '찜' },
+  { value: '/cart',       icon: <RoundStroke.Cart size={24} />,  activeIcon: <RoundSolid.Cart size={24} />,  label: '장바구니' },
+  { value: '/my',         icon: <RoundStroke.My size={24} />,    activeIcon: <RoundSolid.My size={24} />,    label: '마이' },
+];
 
-  const items = [
-    {
-      icon: <RoundStroke.Home size={24} />,
-      activeIcon: <RoundSolid.Home size={24} />,
-      label: '홈',
-    },
-    {
-      icon: <RoundStroke.Heart size={24} />,
-      activeIcon: <RoundSolid.Heart size={24} />,
-      label: '찜',
-    },
-    {
-      icon: <RoundStroke.Cart size={24} />,
-      activeIcon: <RoundSolid.Cart size={24} />,
-      label: '장바구니',
-    },
-    {
-      icon: <RoundStroke.My size={24} />,
-      activeIcon: <RoundSolid.My size={24} />,
-      label: '마이',
-    },
-  ];
+function AppLayout({ children }) {
+  const router = useRouter();
+  const pathname = usePathname();
 
   return (
-    <BottomNavigation
-      items={items}
-      activeIndex={activeTab}
-      onChange={setActiveTab}
-    />
+    <>
+      <main>{children}</main>
+      <BottomNavigation
+        items={items}
+        value={pathname}
+        onChange={(path) => router.push(path)}
+      />
+    </>
   );
 }
 ```
 
-### 3탭 구성
+### React Router 연동
 
 ```tsx
-const items = [
-  { icon: <RoundStroke.Home size={24} />, activeIcon: <RoundSolid.Home size={24} />, label: '홈' },
-  { icon: <RoundStroke.Heart size={24} />, activeIcon: <RoundSolid.Heart size={24} />, label: '찜' },
-  { icon: <RoundStroke.My size={24} />, activeIcon: <RoundSolid.My size={24} />, label: '마이' },
-];
+import { useLocation, useNavigate } from 'react-router-dom';
 
-<BottomNavigation items={items} activeIndex={activeTab} onChange={setActiveTab} />
+function AppLayout() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  return (
+    <BottomNavigation
+      items={items}
+      value={pathname}
+      onChange={(path) => navigate(path)}
+    />
+  );
+}
 ```
 
 ## Playground
@@ -91,8 +88,8 @@ const items = [
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `items` | `BottomNavigationItem[]` | (필수) | 네비게이션 탭 아이템 배열 |
-| `activeIndex` | `number` | (필수) | 현재 활성화된 탭 인덱스 |
-| `onChange` | `(index: number) => void` | - | 탭 변경 시 호출되는 콜백 |
+| `value` | `string` | (필수) | 현재 활성 값 (라우트 경로 등, `item.value`와 매칭) |
+| `onChange` | `(value: string) => void` | - | 탭 선택 시 호출, 선택된 아이템의 `value` 전달 |
 | `className` | `string` | - | 추가 CSS 클래스 |
 | `style` | `React.CSSProperties` | - | 추가 인라인 스타일 |
 
@@ -100,6 +97,7 @@ const items = [
 
 | Prop | Type | Description |
 |------|------|-------------|
+| `value` | `string` | 고유 식별 값 (라우트 경로 등, e.g. `'/home'`) |
 | `icon` | `React.ReactNode` | 비활성 상태 아이콘 |
 | `activeIcon` | `React.ReactNode` | 활성 상태 아이콘 |
 | `label` | `string` | 탭 라벨 텍스트 |
@@ -120,6 +118,7 @@ const items = [
 - 3~5개 탭 사용 (너무 많으면 가독성 저하)
 - Stroke/Solid 아이콘 쌍으로 활성 상태 구분
 - 짧고 명확한 라벨 사용
+- `value`에 실제 라우트 경로를 사용하여 URL과 1:1 매핑
 
 ### 지양
 

@@ -3,6 +3,8 @@
 import React from 'react';
 
 export interface BottomNavigationItem {
+  /** Unique value for route matching (e.g., '/home', '/search') */
+  value: string;
   /** Icon for inactive state */
   icon: React.ReactNode;
   /** Icon for active state */
@@ -14,23 +16,17 @@ export interface BottomNavigationItem {
 export interface BottomNavigationProps {
   /** Navigation items */
   items: BottomNavigationItem[];
-  /** Active tab index */
-  activeIndex: number;
-  /** Change handler */
-  onChange?: (index: number) => void;
+  /** Currently active value (matched against item.value) */
+  value: string;
+  /** Change handler, receives the selected item's value */
+  onChange?: (value: string) => void;
   /** Additional className */
   className?: string;
   /** Additional styles */
   style?: React.CSSProperties;
 }
 
-export const BottomNavigation: React.FC<BottomNavigationProps> = ({
-  items,
-  activeIndex,
-  onChange,
-  className,
-  style,
-}) => {
+export function BottomNavigation({ items, value, onChange, className, style }: BottomNavigationProps): React.JSX.Element {
   return (
     <nav
       className={className}
@@ -43,13 +39,14 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
         ...style,
       }}
     >
-      {items.map((item, index) => {
-        const isActive = index === activeIndex;
+      {items.map((item) => {
+        const isActive = item.value === value;
+
         return (
           <button
-            key={index}
-            type="button"
-            onClick={() => onChange?.(index)}
+            key={item.value}
+            type='button'
+            onClick={() => onChange?.(item.value)}
             style={{
               flex: 1,
               display: 'flex',
@@ -61,9 +58,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
               border: 'none',
               background: 'transparent',
               cursor: 'pointer',
-              color: isActive
-                ? 'var(--component-navigation-selected-text)'
-                : 'var(--component-navigation-default-text)',
+              color: isActive ? 'var(--component-navigation-selected-text)' : 'var(--component-navigation-default-text)',
             }}
           >
             <div style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -84,6 +79,4 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
       })}
     </nav>
   );
-};
-
-BottomNavigation.displayName = 'BottomNavigation';
+}
