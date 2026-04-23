@@ -6,16 +6,25 @@ import * as IconStories from './Icons.stories';
 # Icons
 
 디자인 시스템에서 제공하는 아이콘 컴포넌트입니다.
-4개 카테고리, 총 358개의 아이콘이 제공되며, `createIcon` 팩토리를 통해 프로젝트별 커스텀 아이콘을 추가할 수 있습니다.
+4개 카테고리, 총 358개의 아이콘이 제공되며, createIcon 팩토리를 통해 프로젝트별 커스텀 아이콘을 추가할 수 있습니다.
 
 ## 카테고리
 
-| 카테고리 | 설명 | 수량 |
-|---------|------|------|
-| **Round / Stroke** | 라운드 스타일 + 선 아이콘 | 124개 |
-| **Round / Solid** | 라운드 스타일 + 채움 아이콘 | 93개 |
-| **Default / Stroke** | 기본 스타일 + 선 아이콘 | 80개 |
-| **Default / Solid** | 기본 스타일 + 채움 아이콘 | 61개 |
+<table>
+  <thead>
+    <tr>
+      <th>카테고리</th>
+      <th>설명</th>
+      <th>수량</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Round / Stroke</strong></td><td>라운드 스타일 + 선 아이콘</td><td>124개</td></tr>
+    <tr><td><strong>Round / Solid</strong></td><td>라운드 스타일 + 채움 아이콘</td><td>93개</td></tr>
+    <tr><td><strong>Default / Stroke</strong></td><td>기본 스타일 + 선 아이콘</td><td>80개</td></tr>
+    <tr><td><strong>Default / Solid</strong></td><td>기본 스타일 + 채움 아이콘</td><td>61개</td></tr>
+  </tbody>
+</table>
 
 ## 사용법
 
@@ -38,7 +47,7 @@ function MyComponent() {
 
 ### 사이즈 변경
 
-`size` prop으로 아이콘 크기를 조절합니다. 기본값은 `24`입니다.
+size prop으로 아이콘 크기를 조절합니다. 기본값은 24입니다.
 내부 viewBox는 24x24로 고정되어 있어 어떤 크기에서도 선명하게 렌더링됩니다.
 
 ```tsx
@@ -51,7 +60,7 @@ function MyComponent() {
 
 ### 색상 변경
 
-`color` prop으로 아이콘 색상을 지정합니다. 지정하지 않으면 부모 요소의 CSS `color`를 상속합니다.
+color prop으로 아이콘 색상을 지정합니다. 지정하지 않으면 부모 요소의 CSS color를 상속합니다.
 
 ```tsx
 {/* 명시적 색상 지정 */}
@@ -66,7 +75,7 @@ function MyComponent() {
 
 ### SVG 속성 전달
 
-`IconProps`는 `React.SVGProps<SVGSVGElement>`를 확장하므로, 모든 표준 SVG 속성을 사용할 수 있습니다.
+IconProps는 React.SVGProps를 확장하므로, 모든 표준 SVG 속성을 사용할 수 있습니다.
 
 ```tsx
 <RoundStroke.Home
@@ -81,7 +90,7 @@ function MyComponent() {
 
 ## 커스텀 아이콘 만들기
 
-`createIcon` 팩토리를 사용해 프로젝트별 커스텀 아이콘을 선언할 수 있습니다.
+createIcon 팩토리를 사용해 프로젝트별 커스텀 아이콘을 선언할 수 있습니다.
 디자인 시스템에 없는 아이콘이 필요할 때 동일한 API로 사용할 수 있습니다.
 
 ### 기본 패턴
@@ -159,19 +168,19 @@ import { KakaoLogin, NaverLogin } from '@/icons/custom';
 
 ### SVG 변환 규칙
 
-외부 SVG 파일을 `createIcon`용으로 변환할 때 다음 규칙을 따릅니다:
+외부 SVG 파일을 createIcon용으로 변환할 때 다음 규칙을 따릅니다:
 
-1. **`<svg>` 래퍼 제거** - `createIcon`이 자동으로 생성합니다
+1. **svg 래퍼 제거** - createIcon이 자동으로 생성합니다
 2. **HTML 속성을 JSX로 변환**
-   - `stroke-linecap` -> `strokeLinecap`
-   - `stroke-linejoin` -> `strokeLinejoin`
-   - `stroke-width` -> `strokeWidth`
-   - `fill-rule` -> `fillRule`
-   - `clip-rule` -> `clipRule`
-3. **색상을 `currentColor`로 치환**
-   - Stroke 아이콘: `stroke="black"` -> `stroke="currentColor"`
-   - Solid 아이콘: `fill="black"` -> `fill="currentColor"`, `stroke="black"` -> `stroke="currentColor"`
-   - `stroke="white"`, `fill="white"`는 유지 (네거티브 스페이스)
+   - stroke-linecap → strokeLinecap
+   - stroke-linejoin → strokeLinejoin
+   - stroke-width → strokeWidth
+   - fill-rule → fillRule
+   - clip-rule → clipRule
+3. **색상을 currentColor로 치환**
+   - Stroke 아이콘: stroke="black" → stroke="currentColor"
+   - Solid 아이콘: fill="black" → fill="currentColor", stroke="black" → stroke="currentColor"
+   - stroke="white", fill="white"는 유지 (네거티브 스페이스)
 
 ## Props
 
@@ -184,13 +193,23 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
 }
 ```
 
-| Prop | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `size` | `number \| string` | `24` | 아이콘 크기 (px 또는 CSS 값) |
-| `color` | `string` | `currentColor` | 아이콘 색상 |
-| `className` | `string` | - | CSS 클래스 |
-| `style` | `CSSProperties` | - | 인라인 스타일 |
-| `...props` | `SVGProps` | - | 모든 표준 SVG 속성 |
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>타입</th>
+      <th>기본값</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>size</td><td>number or string</td><td>24</td><td>아이콘 크기 (px 또는 CSS 값)</td></tr>
+    <tr><td>color</td><td>string</td><td>currentColor</td><td>아이콘 색상</td></tr>
+    <tr><td>className</td><td>string</td><td>-</td><td>CSS 클래스</td></tr>
+    <tr><td>style</td><td>CSSProperties</td><td>-</td><td>인라인 스타일</td></tr>
+    <tr><td>...props</td><td>SVGProps</td><td>-</td><td>모든 표준 SVG 속성</td></tr>
+  </tbody>
+</table>
 
 ## 활용 예시
 

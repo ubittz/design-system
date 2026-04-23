@@ -14,11 +14,32 @@ Base Colors → Semantic Colors → Component Tokens
 
 ## 구조 개요
 
-| 계층 | 설명 | 변경 가능 |
-|------|------|-----------|
-| **Base Colors** | 17개 컬러 팔레트 (gray, sky, coral 등), 각 50~900 스케일 | 불가 |
-| **Semantic Colors** | 의미가 부여된 컬러 (brand, surface, text, icon 등) | 테마로 오버라이드 |
-| **Component Tokens** | 컴포넌트별 컬러 (button, input, navigation 등) | Semantic 참조로 자동 반영 |
+<table>
+  <thead>
+    <tr>
+      <th>계층</th>
+      <th>설명</th>
+      <th>변경 가능</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Base Colors</strong></td>
+      <td>17개 컬러 팔레트 (gray, sky, coral 등), 각 50~900 스케일</td>
+      <td>불가</td>
+    </tr>
+    <tr>
+      <td><strong>Semantic Colors</strong></td>
+      <td>의미가 부여된 컬러 (brand, surface, text, icon 등)</td>
+      <td>테마로 오버라이드</td>
+    </tr>
+    <tr>
+      <td><strong>Component Tokens</strong></td>
+      <td>컴포넌트별 컬러 (button, input, navigation 등)</td>
+      <td>Semantic 참조로 자동 반영</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Base Colors
 
@@ -37,29 +58,38 @@ baseColors.grass[600]  // '#8CB319' (Success)
 
 ### 전체 팔레트
 
-| 팔레트 | 용도 | 메인 컬러 (500) |
-|--------|------|-----------------|
-| **gray** | 텍스트, 배경, 보더 | `#808A9D` |
-| **sky** | Primary 브랜드 | `#288FF6` |
-| **pistachio** | Secondary 브랜드 | `#68BC43` |
-| **coral** | 강조 | `#D05858` |
-| **apple** | Error | `#E51931` |
-| **orange** | Warning | `#F98F24` |
-| **grass** | Success | `#B0DF20` |
-| **carrot** | - | `#DD6440` |
-| **mustard** | - | `#FFB200` |
-| **lemon** | - | `#FFDA0A` |
-| **coffee** | - | `#AF8560` |
-| **sage** | - | `#8CA86C` |
-| **blueberry** | - | `#4364EA` |
-| **violet** | - | `#5B40E2` |
-| **plum** | - | `#AF3AE9` |
-| **purple** | - | `#D83AE9` |
-| **wine** | - | `#E82B8A` |
+<table>
+  <thead>
+    <tr>
+      <th>팔레트</th>
+      <th>용도</th>
+      <th>메인 컬러 (500)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>gray</strong></td><td>텍스트, 배경, 보더</td><td><code>#808A9D</code></td></tr>
+    <tr><td><strong>sky</strong></td><td>Primary 브랜드</td><td><code>#288FF6</code></td></tr>
+    <tr><td><strong>pistachio</strong></td><td>Secondary 브랜드</td><td><code>#68BC43</code></td></tr>
+    <tr><td><strong>coral</strong></td><td>강조</td><td><code>#D05858</code></td></tr>
+    <tr><td><strong>apple</strong></td><td>Error</td><td><code>#E51931</code></td></tr>
+    <tr><td><strong>orange</strong></td><td>Warning</td><td><code>#F98F24</code></td></tr>
+    <tr><td><strong>grass</strong></td><td>Success</td><td><code>#B0DF20</code></td></tr>
+    <tr><td><strong>carrot</strong></td><td>-</td><td><code>#DD6440</code></td></tr>
+    <tr><td><strong>mustard</strong></td><td>-</td><td><code>#FFB200</code></td></tr>
+    <tr><td><strong>lemon</strong></td><td>-</td><td><code>#FFDA0A</code></td></tr>
+    <tr><td><strong>coffee</strong></td><td>-</td><td><code>#AF8560</code></td></tr>
+    <tr><td><strong>sage</strong></td><td>-</td><td><code>#8CA86C</code></td></tr>
+    <tr><td><strong>blueberry</strong></td><td>-</td><td><code>#4364EA</code></td></tr>
+    <tr><td><strong>violet</strong></td><td>-</td><td><code>#5B40E2</code></td></tr>
+    <tr><td><strong>plum</strong></td><td>-</td><td><code>#AF3AE9</code></td></tr>
+    <tr><td><strong>purple</strong></td><td>-</td><td><code>#D83AE9</code></td></tr>
+    <tr><td><strong>wine</strong></td><td>-</td><td><code>#E82B8A</code></td></tr>
+  </tbody>
+</table>
 
 ## Semantic Colors
 
-의미 기반 컬러입니다. `DesignSystemProvider`의 `theme` prop으로 오버라이드할 수 있습니다.
+의미 기반 컬러입니다. DesignSystemProvider의 theme prop으로 오버라이드할 수 있습니다.
 
 ### Brand
 
@@ -76,72 +106,119 @@ defaultSemanticColors.brand.secondary[500] // '#68BC43' (pistachio)
 
 배경 및 표면 컬러입니다.
 
-| 토큰 | 값 | 용도 |
-|------|-----|------|
-| `surface.default.background` | Gray 50 | 페이지 배경 |
-| `surface.default.foreground` | White | 카드, 모달 배경 |
-| `surface.default.primary` | `{brand.primary.500}` | 브랜드 강조 배경 |
-| `surface.default.brandSecondary` | `{brand.primary.50}` | 브랜드 연한 배경 |
-| `surface.default.gray` | Gray 50 | 회색 배경 |
-| `surface.default.disabled` | Gray 100 | 비활성 배경 |
-| `surface.inverse.background` | Gray 900 | 다크 배경 |
+<table>
+  <thead>
+    <tr>
+      <th>토큰</th>
+      <th>값</th>
+      <th>용도</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>surface.default.background</td><td>Gray 50</td><td>페이지 배경</td></tr>
+    <tr><td>surface.default.foreground</td><td>White</td><td>카드, 모달 배경</td></tr>
+    <tr><td>surface.default.primary</td><td>brand.primary.500</td><td>브랜드 강조 배경</td></tr>
+    <tr><td>surface.default.brandSecondary</td><td>brand.primary.50</td><td>브랜드 연한 배경</td></tr>
+    <tr><td>surface.default.gray</td><td>Gray 50</td><td>회색 배경</td></tr>
+    <tr><td>surface.default.disabled</td><td>Gray 100</td><td>비활성 배경</td></tr>
+    <tr><td>surface.inverse.background</td><td>Gray 900</td><td>다크 배경</td></tr>
+  </tbody>
+</table>
 
 ### Text
 
 텍스트 컬러입니다.
 
-| 토큰 | 값 | 용도 |
-|------|-----|------|
-| `text.default.primary` | Gray 900 | 주요 텍스트 |
-| `text.default.secondary` | Gray 700 | 보조 텍스트 |
-| `text.default.tertiary` | Gray 600 | 세 번째 텍스트 |
-| `text.default.quaternary` | Gray 400 | 네 번째 텍스트 |
-| `text.default.label` | Gray 600 | 라벨 |
-| `text.default.placeholder` | Gray 300 | 플레이스홀더 |
-| `text.default.disabled` | Gray 200 | 비활성 텍스트 |
-| `text.default.brandPrimary` | `{brand.primary.500}` | 브랜드 컬러 텍스트 |
-| `text.default.discount` | Coral 600 | 할인 텍스트 |
-| `text.inverse.primary` | White | 다크 배경 위 텍스트 |
+<table>
+  <thead>
+    <tr>
+      <th>토큰</th>
+      <th>값</th>
+      <th>용도</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>text.default.primary</td><td>Gray 900</td><td>주요 텍스트</td></tr>
+    <tr><td>text.default.secondary</td><td>Gray 700</td><td>보조 텍스트</td></tr>
+    <tr><td>text.default.tertiary</td><td>Gray 600</td><td>세 번째 텍스트</td></tr>
+    <tr><td>text.default.quaternary</td><td>Gray 400</td><td>네 번째 텍스트</td></tr>
+    <tr><td>text.default.label</td><td>Gray 600</td><td>라벨</td></tr>
+    <tr><td>text.default.placeholder</td><td>Gray 300</td><td>플레이스홀더</td></tr>
+    <tr><td>text.default.disabled</td><td>Gray 200</td><td>비활성 텍스트</td></tr>
+    <tr><td>text.default.brandPrimary</td><td>brand.primary.500</td><td>브랜드 컬러 텍스트</td></tr>
+    <tr><td>text.default.discount</td><td>Coral 600</td><td>할인 텍스트</td></tr>
+    <tr><td>text.inverse.primary</td><td>White</td><td>다크 배경 위 텍스트</td></tr>
+  </tbody>
+</table>
 
 ### Icon
 
 아이콘 컬러입니다.
 
-| 토큰 | 값 | 용도 |
-|------|-----|------|
-| `icon.default.primary` | Gray 800 | 주요 아이콘 |
-| `icon.default.secondary` | Gray 700 | 보조 아이콘 |
-| `icon.default.tertiary` | Gray 600 | 세 번째 아이콘 |
-| `icon.default.quaternary` | Gray 400 | 네 번째 아이콘 |
-| `icon.default.brand` | `{brand.primary.500}` | 브랜드 컬러 아이콘 |
-| `icon.default.disabled` | Gray 200 | 비활성 아이콘 |
-| `icon.default.selected` | `{brand.primary.500}` | 선택된 아이콘 |
-| `icon.inverse.primary` | White | 다크 배경 위 아이콘 |
+<table>
+  <thead>
+    <tr>
+      <th>토큰</th>
+      <th>값</th>
+      <th>용도</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>icon.default.primary</td><td>Gray 800</td><td>주요 아이콘</td></tr>
+    <tr><td>icon.default.secondary</td><td>Gray 700</td><td>보조 아이콘</td></tr>
+    <tr><td>icon.default.tertiary</td><td>Gray 600</td><td>세 번째 아이콘</td></tr>
+    <tr><td>icon.default.quaternary</td><td>Gray 400</td><td>네 번째 아이콘</td></tr>
+    <tr><td>icon.default.brand</td><td>brand.primary.500</td><td>브랜드 컬러 아이콘</td></tr>
+    <tr><td>icon.default.disabled</td><td>Gray 200</td><td>비활성 아이콘</td></tr>
+    <tr><td>icon.default.selected</td><td>brand.primary.500</td><td>선택된 아이콘</td></tr>
+    <tr><td>icon.inverse.primary</td><td>White</td><td>다크 배경 위 아이콘</td></tr>
+  </tbody>
+</table>
 
 ### Border
 
 보더 컬러입니다.
 
-| 토큰 | 값 | 용도 |
-|------|-----|------|
-| `border.default.default` | Gray 100 | 기본 보더 |
-| `border.default.primary` | Gray 900 | 강조 보더 |
-| `border.default.brand` | `{brand.primary.500}` | 브랜드 보더 |
+<table>
+  <thead>
+    <tr>
+      <th>토큰</th>
+      <th>값</th>
+      <th>용도</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>border.default.default</td><td>Gray 100</td><td>기본 보더</td></tr>
+    <tr><td>border.default.primary</td><td>Gray 900</td><td>강조 보더</td></tr>
+    <tr><td>border.default.brand</td><td>brand.primary.500</td><td>브랜드 보더</td></tr>
+  </tbody>
+</table>
 
 ### System
 
 시스템 상태 컬러입니다.
 
-| 상태 | content | surface | borderPrimary | borderSecondary |
-|------|---------|---------|---------------|-----------------|
-| **Success** | Grass 600 | Grass 50 | Grass 200 | Grass 600 |
-| **Info** | Sky 600 | Sky 50 | Sky 200 | Sky 600 |
-| **Warning** | Orange 500 | Orange 50 | Orange 200 | Orange 500 |
-| **Error** | Apple 600 | Apple 50 | Apple 200 | Apple 600 |
+<table>
+  <thead>
+    <tr>
+      <th>상태</th>
+      <th>content</th>
+      <th>surface</th>
+      <th>borderPrimary</th>
+      <th>borderSecondary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Success</strong></td><td>Grass 600</td><td>Grass 50</td><td>Grass 200</td><td>Grass 600</td></tr>
+    <tr><td><strong>Info</strong></td><td>Sky 600</td><td>Sky 50</td><td>Sky 200</td><td>Sky 600</td></tr>
+    <tr><td><strong>Warning</strong></td><td>Orange 500</td><td>Orange 50</td><td>Orange 200</td><td>Orange 500</td></tr>
+    <tr><td><strong>Error</strong></td><td>Apple 600</td><td>Apple 50</td><td>Apple 200</td><td>Apple 600</td></tr>
+  </tbody>
+</table>
 
 ## Component Tokens
 
-컴포넌트별 컬러 토큰입니다. Semantic Colors를 `{참조}` 문법으로 참조합니다.
+컴포넌트별 컬러 토큰입니다. Semantic Colors를 참조 문법으로 참조합니다.
 
 ```tsx
 import { componentTokens } from '@ubittz/design-system';
@@ -154,7 +231,7 @@ componentTokens.button.primary.icon       // '{icon.inverse.primary}' → White
 
 ### 토큰 참조 해석
 
-`resolveTokenReferences`로 참조를 실제 값으로 변환할 수 있습니다.
+resolveTokenReferences로 참조를 실제 값으로 변환할 수 있습니다.
 
 ```tsx
 import { componentTokens, defaultSemanticColors } from '@ubittz/design-system';
@@ -167,8 +244,8 @@ resolved.button.primary.background // '#288FF6' (실제 hex 값)
 
 ## 브랜드 컬러 커스터마이징
 
-`DesignSystemProvider`의 `theme` prop으로 브랜드 컬러를 변경하면,
-`{brand.primary.500}`을 참조하는 모든 Semantic/Component 토큰이 자동으로 업데이트됩니다.
+DesignSystemProvider의 theme prop으로 브랜드 컬러를 변경하면,
+brand.primary.500을 참조하는 모든 Semantic/Component 토큰이 자동으로 업데이트됩니다.
 
 ```tsx
 import { DesignSystemProvider } from '@ubittz/design-system';
@@ -206,12 +283,13 @@ import { DesignSystemProvider } from '@ubittz/design-system';
 ### 영향 범위
 
 브랜드 Primary를 변경하면 다음이 자동 업데이트됩니다:
-- `surface.default.primary` - 브랜드 배경
-- `surface.default.brandSecondary` - 브랜드 연한 배경
-- `border.default.brand` - 브랜드 보더
-- `text.default.brandPrimary` - 브랜드 텍스트
-- `icon.default.brand` / `icon.default.selected` - 브랜드 아이콘
-- **모든 Component Tokens** (button.primary, button.secondary, button.ghost 등)
+
+- surface.default.primary - 브랜드 배경
+- surface.default.brandSecondary - 브랜드 연한 배경
+- border.default.brand - 브랜드 보더
+- text.default.brandPrimary - 브랜드 텍스트
+- icon.default.brand / icon.default.selected - 브랜드 아이콘
+- 모든 Component Tokens (button.primary, button.secondary, button.ghost 등)
 
 ## 사용 예시
 
