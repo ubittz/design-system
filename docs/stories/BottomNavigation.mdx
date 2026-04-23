@@ -85,31 +85,116 @@ function AppLayout() {
 
 ### BottomNavigationProps
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `BottomNavigationItem[]` | (필수) | 네비게이션 탭 아이템 배열 |
-| `value` | `string` | (필수) | 현재 활성 값 (라우트 경로 등, `item.value`와 매칭) |
-| `onChange` | `(value: string) => void` | - | 탭 선택 시 호출, 선택된 아이템의 `value` 전달 |
-| `className` | `string` | - | 추가 CSS 클래스 |
-| `style` | `React.CSSProperties` | - | 추가 인라인 스타일 |
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>items</code></td>
+      <td><code>BottomNavigationItem[]</code></td>
+      <td>(필수)</td>
+      <td>네비게이션 탭 아이템 배열</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string</code></td>
+      <td>(필수)</td>
+      <td>현재 활성 값 (라우트 경로 등, <code>item.value</code>와 매칭)</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>{'(value: string) => void'}</code></td>
+      <td>-</td>
+      <td>탭 선택 시 호출, 선택된 아이템의 <code>value</code> 전달</td>
+    </tr>
+    <tr>
+      <td><code>className</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>추가 CSS 클래스</td>
+    </tr>
+    <tr>
+      <td><code>style</code></td>
+      <td><code>React.CSSProperties</code></td>
+      <td>-</td>
+      <td>추가 인라인 스타일</td>
+    </tr>
+  </tbody>
+</table>
 
 ### BottomNavigationItem
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `value` | `string` | 고유 식별 값 (라우트 경로 등, e.g. `'/home'`) |
-| `icon` | `React.ReactNode` | 비활성 상태 아이콘 |
-| `activeIcon` | `React.ReactNode` | 활성 상태 아이콘 |
-| `label` | `string` | 탭 라벨 텍스트 |
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string</code></td>
+      <td>고유 식별 값 (라우트 경로 등, e.g. <code>'/home'</code>)</td>
+    </tr>
+    <tr>
+      <td><code>icon</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>비활성 상태 아이콘</td>
+    </tr>
+    <tr>
+      <td><code>activeIcon</code></td>
+      <td><code>React.ReactNode</code></td>
+      <td>활성 상태 아이콘</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>string</code></td>
+      <td>탭 라벨 텍스트</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 디자인 토큰
 
-| 토큰 | CSS 변수 | 설명 |
-|------|----------|------|
-| 배경 | `--component-navigation-default-background` | 탭 바 배경색 (White) |
-| 상단 보더 | `--component-navigation-default-borderPrimary` | 상단 구분선 (Gray.100) |
-| 비활성 텍스트 | `--component-navigation-default-text` | 비활성 탭 색상 (Gray.600) |
-| 활성 텍스트 | `--component-navigation-selected-text` | 활성 탭 색상 (Brand.Primary.500) |
+<table>
+  <thead>
+    <tr>
+      <th>토큰</th>
+      <th>CSS 변수</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>배경</td>
+      <td><code>--component-navigation-default-background</code></td>
+      <td>탭 바 배경색 (White)</td>
+    </tr>
+    <tr>
+      <td>상단 보더</td>
+      <td><code>--component-navigation-default-borderPrimary</code></td>
+      <td>상단 구분선 (Gray.100)</td>
+    </tr>
+    <tr>
+      <td>비활성 텍스트</td>
+      <td><code>--component-navigation-default-text</code></td>
+      <td>비활성 탭 색상 (Gray.600)</td>
+    </tr>
+    <tr>
+      <td>활성 텍스트</td>
+      <td><code>--component-navigation-selected-text</code></td>
+      <td>활성 탭 색상 (Brand.Primary.500)</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 모범 사례
 
