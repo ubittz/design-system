@@ -17,14 +17,14 @@ export interface TabMenuProps {
   style?: React.CSSProperties;
 }
 
-export const TabMenu: React.FC<TabMenuProps> = ({
+export function TabMenu({
   items,
   activeIndex,
   onChange,
   variant = 'line',
   className,
   style,
-}) => {
+}: TabMenuProps): React.JSX.Element {
   if (variant === 'box') {
     return (
       <div
@@ -119,6 +119,4 @@ export const TabMenu: React.FC<TabMenuProps> = ({
       })}
     </div>
   );
-};
-
-TabMenu.displayName = 'TabMenu';
+}

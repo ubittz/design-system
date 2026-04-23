@@ -1,7 +1,12 @@
 import type { IconProps } from './types';
 
-export function createIcon(svgContent: React.ReactNode, displayName: string): React.FC<IconProps> {
-  const Icon: React.FC<IconProps> = ({ size = 24, color, className, style, children: _, ...props }) => (
+export type IconComponent = {
+  (props: IconProps): React.JSX.Element;
+  displayName?: string;
+};
+
+export function createIcon(svgContent: React.ReactNode, displayName: string): IconComponent {
+  const Icon: IconComponent = ({ size = 24, color, className, style, children: _, ...props }) => (
     <svg
       width={size}
       height={size}

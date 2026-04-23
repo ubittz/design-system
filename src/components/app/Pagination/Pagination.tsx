@@ -39,14 +39,14 @@ const getVisiblePages = (current: number, total: number, maxVisible: number): nu
   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 };
 
-export const Pagination: React.FC<PaginationProps> = ({
+export function Pagination({
   current,
   total,
   onChange,
   maxVisible = 5,
   className,
   style,
-}) => {
+}: PaginationProps): React.JSX.Element {
   const pages = getVisiblePages(current, total, maxVisible);
 
   const arrowButtonStyle: React.CSSProperties = {
@@ -136,6 +136,4 @@ export const Pagination: React.FC<PaginationProps> = ({
       </button>
     </nav>
   );
-};
-
-Pagination.displayName = 'Pagination';
+}

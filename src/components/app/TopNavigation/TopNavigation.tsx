@@ -15,7 +15,7 @@ export interface TopNavigationProps {
   style?: React.CSSProperties;
 }
 
-export const TopNavigation: React.FC<TopNavigationProps> = ({ left, title, right, className, style }) => {
+export function TopNavigation({ left, title, right, className, style }: TopNavigationProps): React.JSX.Element {
   return (
     <header
       className={className}
@@ -54,6 +54,4 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({ left, title, right
       <div style={{ display: 'flex', alignItems: 'center', zIndex: 1 }}>{right}</div>
     </header>
   );
-};
-
-TopNavigation.displayName = 'TopNavigation';
+}
