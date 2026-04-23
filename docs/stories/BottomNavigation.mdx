@@ -1,0 +1,128 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as BottomNavigationStories from './BottomNavigation.stories';
+
+<Meta of={BottomNavigationStories} />
+
+# BottomNavigation
+
+모바일 앱 하단에 위치하는 탭 바 컴포넌트입니다.
+아이콘과 라벨로 구성된 탭을 통해 주요 화면 간 전환을 제공합니다.
+
+## 주요 특징
+
+- **아이콘 + 라벨**: 각 탭은 아이콘(32px)과 라벨(12px)로 구성
+- **활성/비활성 아이콘 분리**: `icon`과 `activeIcon`으로 상태별 다른 아이콘 적용 가능 (Stroke/Solid 전환)
+- **균등 분배**: 각 탭이 동일한 너비로 자동 분배 (flex: 1)
+- **디자인 토큰 연동**: 활성 탭은 Brand Primary, 비활성 탭은 Gray 톤 자동 적용
+
+## 사용법
+
+### 기본 사용
+
+```tsx
+import { BottomNavigation } from '@ubittz/design-system';
+import { RoundStroke, RoundSolid } from '@ubittz/design-system';
+
+function App() {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const items = [
+    {
+      icon: <RoundStroke.Home size={24} />,
+      activeIcon: <RoundSolid.Home size={24} />,
+      label: '홈',
+    },
+    {
+      icon: <RoundStroke.Heart size={24} />,
+      activeIcon: <RoundSolid.Heart size={24} />,
+      label: '찜',
+    },
+    {
+      icon: <RoundStroke.Cart size={24} />,
+      activeIcon: <RoundSolid.Cart size={24} />,
+      label: '장바구니',
+    },
+    {
+      icon: <RoundStroke.My size={24} />,
+      activeIcon: <RoundSolid.My size={24} />,
+      label: '마이',
+    },
+  ];
+
+  return (
+    <BottomNavigation
+      items={items}
+      activeIndex={activeTab}
+      onChange={setActiveTab}
+    />
+  );
+}
+```
+
+### 3탭 구성
+
+```tsx
+const items = [
+  { icon: <RoundStroke.Home size={24} />, activeIcon: <RoundSolid.Home size={24} />, label: '홈' },
+  { icon: <RoundStroke.Heart size={24} />, activeIcon: <RoundSolid.Heart size={24} />, label: '찜' },
+  { icon: <RoundStroke.My size={24} />, activeIcon: <RoundSolid.My size={24} />, label: '마이' },
+];
+
+<BottomNavigation items={items} activeIndex={activeTab} onChange={setActiveTab} />
+```
+
+## Playground
+
+<Canvas of={BottomNavigationStories.Playground} />
+<Controls of={BottomNavigationStories.Playground} />
+
+## 인터랙션 데모
+
+<Canvas of={BottomNavigationStories.Default} />
+
+## 활성 상태 비교
+
+<Canvas of={BottomNavigationStories.ActiveStates} />
+
+## Props
+
+### BottomNavigationProps
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `BottomNavigationItem[]` | (필수) | 네비게이션 탭 아이템 배열 |
+| `activeIndex` | `number` | (필수) | 현재 활성화된 탭 인덱스 |
+| `onChange` | `(index: number) => void` | - | 탭 변경 시 호출되는 콜백 |
+| `className` | `string` | - | 추가 CSS 클래스 |
+| `style` | `React.CSSProperties` | - | 추가 인라인 스타일 |
+
+### BottomNavigationItem
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `icon` | `React.ReactNode` | 비활성 상태 아이콘 |
+| `activeIcon` | `React.ReactNode` | 활성 상태 아이콘 |
+| `label` | `string` | 탭 라벨 텍스트 |
+
+## 디자인 토큰
+
+| 토큰 | CSS 변수 | 설명 |
+|------|----------|------|
+| 배경 | `--component-navigation-default-background` | 탭 바 배경색 (White) |
+| 상단 보더 | `--component-navigation-default-borderPrimary` | 상단 구분선 (Gray.100) |
+| 비활성 텍스트 | `--component-navigation-default-text` | 비활성 탭 색상 (Gray.600) |
+| 활성 텍스트 | `--component-navigation-selected-text` | 활성 탭 색상 (Brand.Primary.500) |
+
+## 모범 사례
+
+### 권장
+
+- 3~5개 탭 사용 (너무 많으면 가독성 저하)
+- Stroke/Solid 아이콘 쌍으로 활성 상태 구분
+- 짧고 명확한 라벨 사용
+
+### 지양
+
+- 6개 이상 탭 사용
+- 아이콘 없이 라벨만 사용
+- 긴 라벨 텍스트 (2글자~4글자 권장)

@@ -1,0 +1,140 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as TabMenuStories from './TabMenu.stories';
+
+<Meta of={TabMenuStories} />
+
+# TabMenu
+
+콘텐츠 영역 내에서 탭 전환을 제공하는 52px 높이의 탭 메뉴 컴포넌트입니다.
+`line`과 `box` 두 가지 스타일을 지원합니다.
+
+## 주요 특징
+
+- **2가지 스타일**: `line` (언더라인)과 `box` (채워진 배경) 변형 지원
+- **균등 분배**: 모든 탭이 동일한 너비로 자동 분배
+- **문자열 기반**: `items`에 문자열 배열만 전달하면 되는 심플한 API
+- **디자인 토큰 연동**: 활성/비활성 상태의 색상이 테마에 맞게 자동 적용
+
+## 사용법
+
+### Line 스타일 (기본)
+
+활성 탭 하단에 2px 보더가 표시되며, Brand Primary 색상의 텍스트가 적용됩니다.
+
+```tsx
+import { TabMenu } from '@ubittz/design-system';
+
+function ProductList() {
+  const [activeTab, setActiveTab] = useState(0);
+
+  return (
+    <>
+      <TabMenu
+        items={['전체', '인기', '신상품', '할인']}
+        activeIndex={activeTab}
+        onChange={setActiveTab}
+      />
+      {/* 탭에 따른 콘텐츠 렌더링 */}
+    </>
+  );
+}
+```
+
+### Box 스타일
+
+활성 탭에 Brand Primary 배경이 적용되며, 흰색 텍스트가 표시됩니다.
+
+```tsx
+<TabMenu
+  items={['전체', '인기', '신상품', '할인']}
+  activeIndex={activeTab}
+  onChange={setActiveTab}
+  variant="box"
+/>
+```
+
+### 2탭 구성
+
+```tsx
+<TabMenu
+  items={['상품 정보', '리뷰']}
+  activeIndex={activeTab}
+  onChange={setActiveTab}
+/>
+```
+
+## Playground
+
+<Canvas of={TabMenuStories.Playground} />
+<Controls of={TabMenuStories.Playground} />
+
+## Line vs Box 비교
+
+<Canvas of={TabMenuStories.Comparison} />
+
+## 2탭 구성
+
+<Canvas of={TabMenuStories.TwoTabs} />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `string[]` | (필수) | 탭 라벨 문자열 배열 |
+| `activeIndex` | `number` | (필수) | 현재 활성화된 탭 인덱스 |
+| `onChange` | `(index: number) => void` | - | 탭 변경 시 호출되는 콜백 |
+| `variant` | `'line' \| 'box'` | `'line'` | 탭 메뉴 스타일 |
+| `className` | `string` | - | 추가 CSS 클래스 |
+| `style` | `React.CSSProperties` | - | 추가 인라인 스타일 |
+
+## 디자인 토큰
+
+### Line 스타일
+
+| 토큰 | CSS 변수 | 설명 |
+|------|----------|------|
+| 배경 | `--component-navigation-default-background` | 탭 메뉴 배경색 (White) |
+| 하단 보더 | `--component-navigation-default-borderSecondary` | 전체 하단 구분선 (Gray.50) |
+| 활성 보더 | `--component-navigation-selected-border` | 활성 탭 하단 보더 (Brand.Primary.500) |
+| 활성 텍스트 | `--component-navigation-selected-text` | 활성 탭 텍스트 (Brand.Primary.500) |
+| 비활성 텍스트 | `--component-navigation-default-text` | 비활성 탭 텍스트 (Gray.600) |
+
+### Box 스타일
+
+| 토큰 | CSS 변수 | 설명 |
+|------|----------|------|
+| 활성 배경 | `--component-navigation-selected-background` | 활성 탭 배경 (Brand.Primary.500) |
+| 활성 텍스트 | `--component-navigation-selected-inverseText` | 활성 탭 텍스트 (White) |
+| 비활성 배경 | `--component-navigation-default-background` | 비활성 탭 배경 (White) |
+| 비활성 텍스트 | `--component-navigation-default-text` | 비활성 탭 텍스트 (Gray.600) |
+
+## 사용 가이드
+
+### Line vs Box 선택 기준
+
+<table>
+  <thead>
+    <tr>
+      <th>기준</th>
+      <th>Line</th>
+      <th>Box</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>시각적 무게</td>
+      <td>가벼움 (언더라인만)</td>
+      <td>무거움 (배경 채움)</td>
+    </tr>
+    <tr>
+      <td>적합한 위치</td>
+      <td>콘텐츠 영역 상단, 상세 페이지</td>
+      <td>카테고리 필터, 강조가 필요한 섹션</td>
+    </tr>
+    <tr>
+      <td>탭 수</td>
+      <td>2~5개</td>
+      <td>2~4개 (배경 대비 때문에 적은 수 권장)</td>
+    </tr>
+  </tbody>
+</table>
