@@ -78,35 +78,129 @@ function ProductList() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `string[]` | (필수) | 탭 라벨 문자열 배열 |
-| `activeIndex` | `number` | (필수) | 현재 활성화된 탭 인덱스 |
-| `onChange` | `(index: number) => void` | - | 탭 변경 시 호출되는 콜백 |
-| `variant` | `'line' \| 'box'` | `'line'` | 탭 메뉴 스타일 |
-| `className` | `string` | - | 추가 CSS 클래스 |
-| `style` | `React.CSSProperties` | - | 추가 인라인 스타일 |
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>items</code></td>
+      <td><code>string[]</code></td>
+      <td>(필수)</td>
+      <td>탭 라벨 문자열 배열</td>
+    </tr>
+    <tr>
+      <td><code>activeIndex</code></td>
+      <td><code>number</code></td>
+      <td>(필수)</td>
+      <td>현재 활성화된 탭 인덱스</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>{'(index: number) => void'}</code></td>
+      <td>-</td>
+      <td>탭 변경 시 호출되는 콜백</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>'line' | 'box'</code></td>
+      <td><code>'line'</code></td>
+      <td>탭 메뉴 스타일</td>
+    </tr>
+    <tr>
+      <td><code>className</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>추가 CSS 클래스</td>
+    </tr>
+    <tr>
+      <td><code>style</code></td>
+      <td><code>React.CSSProperties</code></td>
+      <td>-</td>
+      <td>추가 인라인 스타일</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 디자인 토큰
 
 ### Line 스타일
 
-| 토큰 | CSS 변수 | 설명 |
-|------|----------|------|
-| 배경 | `--component-navigation-default-background` | 탭 메뉴 배경색 (White) |
-| 하단 보더 | `--component-navigation-default-borderSecondary` | 전체 하단 구분선 (Gray.50) |
-| 활성 보더 | `--component-navigation-selected-border` | 활성 탭 하단 보더 (Brand.Primary.500) |
-| 활성 텍스트 | `--component-navigation-selected-text` | 활성 탭 텍스트 (Brand.Primary.500) |
-| 비활성 텍스트 | `--component-navigation-default-text` | 비활성 탭 텍스트 (Gray.600) |
+<table>
+  <thead>
+    <tr>
+      <th>토큰</th>
+      <th>CSS 변수</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>배경</td>
+      <td><code>--component-navigation-default-background</code></td>
+      <td>탭 메뉴 배경색 (White)</td>
+    </tr>
+    <tr>
+      <td>하단 보더</td>
+      <td><code>--component-navigation-default-borderSecondary</code></td>
+      <td>전체 하단 구분선 (Gray.50)</td>
+    </tr>
+    <tr>
+      <td>활성 보더</td>
+      <td><code>--component-navigation-selected-border</code></td>
+      <td>활성 탭 하단 보더 (Brand.Primary.500)</td>
+    </tr>
+    <tr>
+      <td>활성 텍스트</td>
+      <td><code>--component-navigation-selected-text</code></td>
+      <td>활성 탭 텍스트 (Brand.Primary.500)</td>
+    </tr>
+    <tr>
+      <td>비활성 텍스트</td>
+      <td><code>--component-navigation-default-text</code></td>
+      <td>비활성 탭 텍스트 (Gray.600)</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Box 스타일
 
-| 토큰 | CSS 변수 | 설명 |
-|------|----------|------|
-| 활성 배경 | `--component-navigation-selected-background` | 활성 탭 배경 (Brand.Primary.500) |
-| 활성 텍스트 | `--component-navigation-selected-inverseText` | 활성 탭 텍스트 (White) |
-| 비활성 배경 | `--component-navigation-default-background` | 비활성 탭 배경 (White) |
-| 비활성 텍스트 | `--component-navigation-default-text` | 비활성 탭 텍스트 (Gray.600) |
+<table>
+  <thead>
+    <tr>
+      <th>토큰</th>
+      <th>CSS 변수</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>활성 배경</td>
+      <td><code>--component-navigation-selected-background</code></td>
+      <td>활성 탭 배경 (Brand.Primary.500)</td>
+    </tr>
+    <tr>
+      <td>활성 텍스트</td>
+      <td><code>--component-navigation-selected-inverseText</code></td>
+      <td>활성 탭 텍스트 (White)</td>
+    </tr>
+    <tr>
+      <td>비활성 배경</td>
+      <td><code>--component-navigation-default-background</code></td>
+      <td>비활성 탭 배경 (White)</td>
+    </tr>
+    <tr>
+      <td>비활성 텍스트</td>
+      <td><code>--component-navigation-default-text</code></td>
+      <td>비활성 탭 텍스트 (Gray.600)</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 사용 가이드
 
