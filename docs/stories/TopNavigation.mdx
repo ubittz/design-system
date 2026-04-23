@@ -1,0 +1,115 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as TopNavigationStories from './TopNavigation.stories';
+
+<Meta of={TopNavigationStories} />
+
+# TopNavigation
+
+모바일 앱 상단에 위치하는 56px 높이의 네비게이션 바입니다.
+왼쪽(뒤로가기, 메뉴), 중앙(타이틀), 오른쪽(액션 버튼) 3개 슬롯으로 구성됩니다.
+
+## 주요 특징
+
+- **56px 고정 높이**: 모바일 앱 표준 네비게이션 바 높이
+- **3-슬롯 레이아웃**: `left`, `title`, `right`로 자유로운 구성
+- **Absolute 중앙 타이틀**: 좌우 슬롯 크기에 관계없이 항상 정중앙에 위치
+- **디자인 토큰 연동**: `--component-navigation-*` CSS 변수로 테마 자동 반영
+
+## 사용법
+
+### 기본 사용
+
+```tsx
+import { TopNavigation } from '@ubittz/design-system';
+import { RoundStroke } from '@ubittz/design-system';
+
+function DetailPage() {
+  return (
+    <TopNavigation
+      left={
+        <button onClick={() => router.back()}>
+          <RoundStroke.Left size={24} />
+        </button>
+      }
+      title="상품 상세"
+    />
+  );
+}
+```
+
+### 뒤로가기 + 타이틀 + 우측 액션
+
+```tsx
+<TopNavigation
+  left={
+    <button onClick={() => router.back()}>
+      <RoundStroke.Left size={24} />
+    </button>
+  }
+  title="상품 상세"
+  right={
+    <div style={{ display: 'flex', gap: 16 }}>
+      <button><RoundStroke.Cart size={24} /></button>
+      <button><RoundStroke.Share size={24} /></button>
+    </div>
+  }
+/>
+```
+
+### 햄버거 메뉴 + 검색/장바구니 (홈)
+
+```tsx
+<TopNavigation
+  left={
+    <button><RoundStroke.Hamburger size={24} /></button>
+  }
+  right={
+    <div style={{ display: 'flex', gap: 16 }}>
+      <button><RoundStroke.Search size={24} /></button>
+      <button><RoundStroke.Cart size={24} /></button>
+    </div>
+  }
+/>
+```
+
+### 모달/바텀시트 닫기
+
+```tsx
+<TopNavigation
+  title="필터"
+  right={
+    <button onClick={onClose}>
+      <RoundStroke.Cancel size={24} />
+    </button>
+  }
+/>
+```
+
+## Playground
+
+<Canvas of={TopNavigationStories.Playground} />
+<Controls of={TopNavigationStories.Playground} />
+
+## 모든 변형
+
+<Canvas of={TopNavigationStories.AllVariants} />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `left` | `React.ReactNode` | - | 왼쪽 슬롯 (뒤로가기, 햄버거 메뉴 등) |
+| `title` | `string` | - | 중앙 타이틀 텍스트 (absolute 중앙 배치) |
+| `right` | `React.ReactNode` | - | 오른쪽 슬롯 (장바구니, 공유, 닫기 등) |
+| `className` | `string` | - | 추가 CSS 클래스 |
+| `style` | `React.CSSProperties` | - | 추가 인라인 스타일 |
+
+## 디자인 토큰
+
+| 토큰 | CSS 변수 | 설명 |
+|------|----------|------|
+| 배경 | `--component-navigation-default-background` | 네비게이션 바 배경색 (White) |
+| 하단 보더 | `--component-navigation-default-borderPrimary` | 하단 구분선 (Gray.100) |
+| 타이틀 색상 | `--component-navigation-default-title` | 타이틀 텍스트 (Gray.900) |
+| 아이콘 기본 | `--component-navigation-default-iconDefault` | 비활성 아이콘 (Gray.400) |
+| 아이콘 강조 | `--component-navigation-default-iconPrimary` | 활성 아이콘 (Gray.800) |
