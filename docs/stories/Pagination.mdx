@@ -1,0 +1,122 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as PaginationStories from './Pagination.stories';
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+페이지 목록을 탐색하기 위한 페이지네이션 컴포넌트입니다.
+좌우 화살표와 페이지 번호 버튼으로 구성됩니다.
+
+## 주요 특징
+
+- **슬라이딩 윈도우**: `maxVisible` 설정에 따라 현재 페이지 주변의 번호만 표시
+- **화살표 네비게이션**: 좌우 화살표로 이전/다음 페이지 이동 (첫/마지막 페이지에서 비활성화)
+- **활성 페이지 강조**: Brand Primary 배경 + 흰색 텍스트로 현재 페이지 표시
+- **접근성 지원**: `aria-label`, `aria-current` 속성 자동 적용
+
+## 사용법
+
+### 기본 사용
+
+```tsx
+import { Pagination } from '@ubittz/design-system';
+
+function ProductList() {
+  const [page, setPage] = useState(1);
+
+  return (
+    <>
+      {/* 상품 목록 렌더링 */}
+      <Pagination
+        current={page}
+        total={10}
+        onChange={setPage}
+      />
+    </>
+  );
+}
+```
+
+### 표시 개수 조절
+
+`maxVisible`로 한 번에 표시할 페이지 번호 수를 조절합니다.
+
+```tsx
+{/* 기본: 5개 표시 */}
+<Pagination current={page} total={20} onChange={setPage} />
+
+{/* 7개 표시 */}
+<Pagination current={page} total={20} onChange={setPage} maxVisible={7} />
+
+{/* 3개 표시 */}
+<Pagination current={page} total={20} onChange={setPage} maxVisible={3} />
+```
+
+### API 연동
+
+```tsx
+function ProductList() {
+  const [page, setPage] = useState(1);
+  const { data, totalPages } = useProducts({ page, limit: 20 });
+
+  return (
+    <>
+      <ul>
+        {data.map(product => (
+          <li key={product.id}>{product.name}</li>
+        ))}
+      </ul>
+      <Pagination
+        current={page}
+        total={totalPages}
+        onChange={(newPage) => {
+          setPage(newPage);
+          window.scrollTo(0, 0);
+        }}
+      />
+    </>
+  );
+}
+```
+
+## Playground
+
+<Canvas of={PaginationStories.Playground} />
+<Controls of={PaginationStories.Playground} />
+
+## 인터랙션 데모
+
+<Canvas of={PaginationStories.Default} />
+
+## 다양한 상태
+
+<Canvas of={PaginationStories.States} />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `current` | `number` | (필수) | 현재 활성 페이지 (1-based) |
+| `total` | `number` | (필수) | 전체 페이지 수 |
+| `onChange` | `(page: number) => void` | - | 페이지 변경 시 호출되는 콜백 |
+| `maxVisible` | `number` | `5` | 한 번에 표시할 최대 페이지 번호 수 |
+| `className` | `string` | - | 추가 CSS 클래스 |
+| `style` | `React.CSSProperties` | - | 추가 인라인 스타일 |
+
+## 디자인 토큰
+
+| 토큰 | CSS 변수 | 설명 |
+|------|----------|------|
+| 활성 배경 | `--component-navigation-selected-background` | 활성 페이지 배경 (Brand.Primary.500) |
+| 활성 텍스트 | `--component-navigation-selected-inverseText` | 활성 페이지 텍스트 (White) |
+| 비활성 텍스트 | `--component-navigation-default-text` | 비활성 페이지 텍스트 (Gray.600) |
+| 화살표 아이콘 | `--component-navigation-default-iconDefault` | 화살표 색상 (Gray.400) |
+
+## 레이아웃 스펙
+
+- 화살표 아이콘: 24x24px (`RoundStroke.Left` / `RoundStroke.Right`)
+- 페이지 번호 버튼: 36x28px, border-radius 4px
+- 번호 간 간격: 12px
+- 화살표-번호 간격: 16px
+- 폰트: 14px Regular
