@@ -95,23 +95,88 @@ function ProductList() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `current` | `number` | (필수) | 현재 활성 페이지 (1-based) |
-| `total` | `number` | (필수) | 전체 페이지 수 |
-| `onChange` | `(page: number) => void` | - | 페이지 변경 시 호출되는 콜백 |
-| `maxVisible` | `number` | `5` | 한 번에 표시할 최대 페이지 번호 수 |
-| `className` | `string` | - | 추가 CSS 클래스 |
-| `style` | `React.CSSProperties` | - | 추가 인라인 스타일 |
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>current</code></td>
+      <td><code>number</code></td>
+      <td>(필수)</td>
+      <td>현재 활성 페이지 (1-based)</td>
+    </tr>
+    <tr>
+      <td><code>total</code></td>
+      <td><code>number</code></td>
+      <td>(필수)</td>
+      <td>전체 페이지 수</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>{'(page: number) => void'}</code></td>
+      <td>-</td>
+      <td>페이지 변경 시 호출되는 콜백</td>
+    </tr>
+    <tr>
+      <td><code>maxVisible</code></td>
+      <td><code>number</code></td>
+      <td><code>5</code></td>
+      <td>한 번에 표시할 최대 페이지 번호 수</td>
+    </tr>
+    <tr>
+      <td><code>className</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>추가 CSS 클래스</td>
+    </tr>
+    <tr>
+      <td><code>style</code></td>
+      <td><code>React.CSSProperties</code></td>
+      <td>-</td>
+      <td>추가 인라인 스타일</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 디자인 토큰
 
-| 토큰 | CSS 변수 | 설명 |
-|------|----------|------|
-| 활성 배경 | `--component-navigation-selected-background` | 활성 페이지 배경 (Brand.Primary.500) |
-| 활성 텍스트 | `--component-navigation-selected-inverseText` | 활성 페이지 텍스트 (White) |
-| 비활성 텍스트 | `--component-navigation-default-text` | 비활성 페이지 텍스트 (Gray.600) |
-| 화살표 아이콘 | `--component-navigation-default-iconDefault` | 화살표 색상 (Gray.400) |
+<table>
+  <thead>
+    <tr>
+      <th>토큰</th>
+      <th>CSS 변수</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>활성 배경</td>
+      <td><code>--component-navigation-selected-background</code></td>
+      <td>활성 페이지 배경 (Brand.Primary.500)</td>
+    </tr>
+    <tr>
+      <td>활성 텍스트</td>
+      <td><code>--component-navigation-selected-inverseText</code></td>
+      <td>활성 페이지 텍스트 (White)</td>
+    </tr>
+    <tr>
+      <td>비활성 텍스트</td>
+      <td><code>--component-navigation-default-text</code></td>
+      <td>비활성 페이지 텍스트 (Gray.600)</td>
+    </tr>
+    <tr>
+      <td>화살표 아이콘</td>
+      <td><code>--component-navigation-default-iconDefault</code></td>
+      <td>화살표 색상 (Gray.400)</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 레이아웃 스펙
 
