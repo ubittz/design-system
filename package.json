@@ -1,6 +1,6 @@
 {
   "name": "@ubittz/design-system",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Ubittz Design System Package",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/ubittz/design-system/issues"
   },
-  "homepage": "https://github.com/ubittz/design-system",
+  "homepage": "https://ubittz.github.io/design-system/",
   "author": "wongil12 <judgevi52@gmail.com>",
   "publishConfig": {
     "access": "public"
