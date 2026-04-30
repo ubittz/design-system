@@ -15,4 +15,5 @@ export * from './Toggle';
 export * from './RadioButton';
 export * from './Checkbox';
 export * from './Popup';
+export * from './BottomSheet';
 export * from './Pagination';
