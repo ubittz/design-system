@@ -1,0 +1,96 @@
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as ImageUploaderStories from './ImageUploader.stories';
+
+<Meta of={ImageUploaderStories} />
+
+# ImageUploader
+
+이미지 파일을 업로드하고 미리보기를 제공하는 컴포넌트입니다.
+
+## Usage
+
+```tsx
+import { ImageUploader, ImageFile } from '@ubittz/design-system';
+
+function Example() {
+  const [files, setFiles] = useState<ImageFile[]>([]);
+
+  return <ImageUploader value={files} onChange={setFiles} />;
+}
+```
+
+## Default
+
+<Canvas of={ImageUploaderStories.Default} />
+
+## Max Count
+
+`maxCount`로 최대 업로드 수를 제한합니다.
+
+<Canvas of={ImageUploaderStories.MaxCount} />
+
+## Disabled
+
+<Canvas of={ImageUploaderStories.Disabled} />
+
+## Pre-filled
+
+서버에서 가져온 기존 이미지를 초기값으로 설정할 수 있습니다.
+
+<Canvas of={ImageUploaderStories.PreFilled} />
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>ImageFile[]</code></td>
+      <td><code>[]</code></td>
+      <td>업로드된 이미지 목록</td>
+    </tr>
+    <tr>
+      <td><code>maxCount</code></td>
+      <td><code>number</code></td>
+      <td><code>10</code></td>
+      <td>최대 업로드 수</td>
+    </tr>
+    <tr>
+      <td><code>accept</code></td>
+      <td><code>string</code></td>
+      <td><code>'image/*'</code></td>
+      <td>허용 파일 타입</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>비활성화</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>{'(files: ImageFile[]) => void'}</code></td>
+      <td>-</td>
+      <td>파일 변경 콜백</td>
+    </tr>
+  </tbody>
+</table>
+
+## ImageFile Type
+
+```tsx
+type ImageFile = {
+  id: string;      // 고유 식별자
+  file?: File;     // 업로드된 File 객체 (서버 이미지는 없을 수 있음)
+  url: string;     // 미리보기 URL (blob 또는 서버 URL)
+  name: string;    // 파일명
+};
+```

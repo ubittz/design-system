@@ -1,0 +1,131 @@
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+체크박스 컴포넌트입니다. 약관 동의, 옵션 선택 등에 사용됩니다.
+
+## Usage
+
+```tsx
+import { Checkbox } from '@ubittz/design-system';
+
+function Example() {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <Checkbox
+      label="동의합니다"
+      checked={checked}
+      onChange={setChecked}
+    />
+  );
+}
+```
+
+## Default
+
+기본 체크박스입니다.
+
+<Canvas of={CheckboxStories.Default} />
+
+## Selected
+
+선택된 상태의 체크박스입니다.
+
+<Canvas of={CheckboxStories.Selected} />
+
+## With Caption
+
+캡션이 포함된 체크박스입니다. 캡션은 브랜드 색상으로 대괄호와 함께 표시됩니다.
+
+<Canvas of={CheckboxStories.WithCaption} />
+
+## With Arrow
+
+우측에 화살표 아이콘이 표시되는 체크박스입니다. 약관 상세보기 등에 활용됩니다.
+
+<Canvas of={CheckboxStories.WithArrow} />
+
+## Square Shape
+
+사각형 모양의 체크박스입니다.
+
+<Canvas of={CheckboxStories.SquareShape} />
+
+## Size M
+
+큰 사이즈(M)의 체크박스입니다.
+
+<Canvas of={CheckboxStories.SizeM} />
+
+## Disabled
+
+비활성화 상태의 체크박스입니다.
+
+<Canvas of={CheckboxStories.Disabled} />
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>checked</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>체크 여부</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>{'\'S\' | \'M\''}</code></td>
+      <td><code>'S'</code></td>
+      <td>체크박스 크기</td>
+    </tr>
+    <tr>
+      <td><code>shape</code></td>
+      <td><code>{'\'default\' | \'square\''}</code></td>
+      <td><code>'default'</code></td>
+      <td>아이콘 모양 (라운드 / 사각형)</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>라벨 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>caption</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>캡션 텍스트 (대괄호로 감싸서 표시)</td>
+    </tr>
+    <tr>
+      <td><code>arrow</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>우측 화살표 아이콘 표시 여부</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>비활성화 여부</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>{'(checked: boolean) => void'}</code></td>
+      <td>-</td>
+      <td>체크 상태 변경 콜백</td>
+    </tr>
+  </tbody>
+</table>
