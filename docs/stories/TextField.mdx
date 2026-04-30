@@ -1,0 +1,404 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as TextFieldStories from './TextField.stories';
+
+<Meta of={TextFieldStories} />
+
+# TextField
+
+텍스트 입력 필드 컴포넌트입니다.
+`FormGroup`을 기반으로 라벨, 캡션, 에러 메시지, 버튼, 타이머 등을 지원합니다.
+
+## 구성
+
+<table>
+  <thead>
+    <tr>
+      <th>컴포넌트</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>FormGroup</code></td>
+      <td>Label, Caption, Error, Button, Timer를 감싸는 래퍼. TextField 외에 다른 입력 컴포넌트에서도 재사용 가능</td>
+    </tr>
+    <tr>
+      <td><code>TextField</code></td>
+      <td>FormGroup 기반의 텍스트 입력 필드. Default/Line shape, unit 지원</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## TextField
+
+### 사용법
+
+```tsx
+import { TextField } from '@ubittz/design-system';
+
+<TextField placeholder="입력해주세요." />
+<TextField label="이메일" placeholder="이메일을 입력해주세요." required />
+<TextField label="금액" value="10,000" unit="원" />
+<TextField shape="line" label="이름" placeholder="이름을 입력해주세요." />
+<TextField label="휴대폰 번호" placeholder="010-0000-0000" format="ddd-dddd-dddd" />
+```
+
+### 기본
+
+<Canvas of={TextFieldStories.Default} />
+
+### With Label
+
+<Canvas of={TextFieldStories.WithLabel} />
+
+### States
+
+<Canvas of={TextFieldStories.States} />
+
+### Shapes
+
+<Canvas of={TextFieldStories.Shapes} />
+
+### Format
+
+`format` prop을 사용하면 숫자 입력 시 자동으로 포맷팅됩니다.
+포맷 문자열에서 `d`는 숫자 자리를, 그 외 문자는 리터럴 구분자로 사용됩니다.
+
+- `ddd-dddd-dddd` → `010-1234-1234`
+- `ddd-dd-ddddd` → `123-45-67890`
+
+<Canvas of={TextFieldStories.Format} />
+
+### With Unit
+
+<Canvas of={TextFieldStories.WithUnit} />
+
+### With Button
+
+<Canvas of={TextFieldStories.WithButton} />
+
+### With Timer
+
+<Canvas of={TextFieldStories.WithTimer} />
+
+### Complex
+
+<Canvas of={TextFieldStories.ComplexExample} />
+
+### Playground
+
+<Canvas of={TextFieldStories.Playground} />
+<Controls of={TextFieldStories.Playground} />
+
+### TextField Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>shape</code></td>
+      <td><code>'default' | 'line'</code></td>
+      <td><code>'default'</code></td>
+      <td>입력 필드 형태 (box / underline)</td>
+    </tr>
+    <tr>
+      <td><code>unit</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>입력 필드 우측 단위 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>format</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>입력 포맷 (예: <code>'ddd-dddd-dddd'</code>). <code>d</code>는 숫자, 나머지는 구분자. 설정 시 <code>inputMode="numeric"</code> 자동 적용</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>라벨 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>required</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>필수 표시 (라벨 옆 빨간 *)</td>
+    </tr>
+    <tr>
+      <td><code>caption</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>안내 문구 (에러 시 숨김)</td>
+    </tr>
+    <tr>
+      <td><code>errorMessage</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>에러 문구 (표시 시 border도 에러 색상으로 변경)</td>
+    </tr>
+    <tr>
+      <td><code>buttonProps</code></td>
+      <td><code>ButtonProps</code></td>
+      <td>-</td>
+      <td>입력 필드 옆에 표시할 버튼 props</td>
+    </tr>
+    <tr>
+      <td><code>timerContent</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>입력 필드 내부 우측 타이머 콘텐츠</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>비활성 상태</td>
+    </tr>
+    <tr>
+      <td colspan="4">+ 모든 <code>{'InputHTMLAttributes<HTMLInputElement>'}</code> props 지원</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## FormGroup
+
+`FormGroup`은 입력 컴포넌트의 공통 래퍼입니다.
+Label, Caption, Error Message, Button, Timer를 관리합니다.
+TextField뿐 아니라 TextArea, Select 등에서도 재사용됩니다.
+
+### 사용법
+
+```tsx
+import { FormGroup } from '@ubittz/design-system';
+
+<FormGroup label="커스텀 입력" required caption="안내 문구">
+  <MyCustomInput />
+</FormGroup>
+```
+
+### 커스텀 입력과 함께 사용
+
+<Canvas of={TextFieldStories.FormGroupStandalone} />
+
+### useFormGroupProps Hook
+
+`useFormGroupProps`는 FormGroup props와 나머지 props를 분리하는 유틸 훅입니다.
+커스텀 입력 컴포넌트를 만들 때 사용합니다.
+
+```tsx
+import { FormGroup, useFormGroupProps } from '@ubittz/design-system';
+import type { FormGroupProps } from '@ubittz/design-system';
+
+type MyInputProps = React.InputHTMLAttributes<HTMLInputElement> & FormGroupProps;
+
+function MyInput(props: MyInputProps) {
+  const { formGroupProps, ...inputProps } = useFormGroupProps(props);
+
+  return (
+    <FormGroup {...formGroupProps}>
+      <input {...inputProps} />
+    </FormGroup>
+  );
+}
+```
+
+### FormGroup Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>라벨 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>required</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>필수 표시 (*)</td>
+    </tr>
+    <tr>
+      <td><code>caption</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>안내 문구</td>
+    </tr>
+    <tr>
+      <td><code>errorMessage</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>에러 문구</td>
+    </tr>
+    <tr>
+      <td><code>buttonProps</code></td>
+      <td><code>ButtonProps</code></td>
+      <td>-</td>
+      <td>입력 옆 버튼</td>
+    </tr>
+    <tr>
+      <td><code>timerContent</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>타이머 콘텐츠 (입력 내부 우측 오버레이)</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>(필수)</td>
+      <td>입력 요소</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 실전 예시: 회원가입 폼
+
+<Canvas of={TextFieldStories.SignUpExample} />
+
+---
+
+## 디자인 토큰
+
+<table>
+  <thead>
+    <tr>
+      <th>상태</th>
+      <th>CSS 변수</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>배경</td>
+      <td><code>--component-input-default-background</code></td>
+      <td>입력 필드 배경 (White)</td>
+    </tr>
+    <tr>
+      <td>보더</td>
+      <td><code>--component-input-default-border</code></td>
+      <td>기본 보더 (Gray.100)</td>
+    </tr>
+    <tr>
+      <td>텍스트</td>
+      <td><code>--component-input-default-text</code></td>
+      <td>입력 텍스트 (Gray.700)</td>
+    </tr>
+    <tr>
+      <td>플레이스홀더</td>
+      <td><code>--component-input-default-placeholder</code></td>
+      <td>플레이스홀더 (Gray.300)</td>
+    </tr>
+    <tr>
+      <td>라벨</td>
+      <td><code>--component-input-default-label</code></td>
+      <td>라벨 텍스트 (Gray.600)</td>
+    </tr>
+    <tr>
+      <td>캡션</td>
+      <td><code>--component-input-default-caption</code></td>
+      <td>안내 문구 (Gray.600)</td>
+    </tr>
+    <tr>
+      <td>포커스 보더</td>
+      <td><code>--component-input-focused-border</code></td>
+      <td>포커스 보더 (Brand.Primary.500)</td>
+    </tr>
+    <tr>
+      <td>에러 보더</td>
+      <td><code>--component-input-error-border</code></td>
+      <td>에러 보더 (Apple.600)</td>
+    </tr>
+    <tr>
+      <td>에러 캡션</td>
+      <td><code>--component-input-error-caption</code></td>
+      <td>에러 문구 (Apple.600)</td>
+    </tr>
+    <tr>
+      <td>비활성 배경</td>
+      <td><code>--component-input-disabled-background</code></td>
+      <td>비활성 배경 (Gray.100)</td>
+    </tr>
+    <tr>
+      <td>비활성 텍스트</td>
+      <td><code>--component-input-disabled-text</code></td>
+      <td>비활성 텍스트 (Gray.200)</td>
+    </tr>
+  </tbody>
+</table>
+
+### 레이아웃 스펙
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Default shape</th>
+      <th>Line shape</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>높이</td>
+      <td>40px</td>
+      <td>40px</td>
+    </tr>
+    <tr>
+      <td>패딩</td>
+      <td>0 12px</td>
+      <td>8px</td>
+    </tr>
+    <tr>
+      <td>보더</td>
+      <td>1px solid (전체)</td>
+      <td>1px solid (하단만)</td>
+    </tr>
+    <tr>
+      <td>Border Radius</td>
+      <td>4px</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>배경</td>
+      <td>White</td>
+      <td>transparent</td>
+    </tr>
+    <tr>
+      <td>폰트</td>
+      <td colspan="2">14px / 22px Regular, letter-spacing -0.02em</td>
+    </tr>
+    <tr>
+      <td>라벨 폰트</td>
+      <td colspan="2">14px / 22px Regular</td>
+    </tr>
+    <tr>
+      <td>캡션/에러 폰트</td>
+      <td colspan="2">12px / 20px Regular</td>
+    </tr>
+    <tr>
+      <td>요소 간 간격</td>
+      <td colspan="2">8px</td>
+    </tr>
+  </tbody>
+</table>
