@@ -127,3 +127,12 @@ body {
   line-height: var(--line-height-en-normal);
   letter-spacing: var(--letter-spacing-en-normal);
 }
+
+/* TextField */
+.ds-textfield::placeholder {
+  color: var(--component-input-default-placeholder);
+}
+
+.ds-textfield:disabled::placeholder {
+  color: var(--component-input-disabled-text);
+}
