@@ -1,6 +1,6 @@
 {
   "name": "@ubittz/design-system",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Ubittz Design System Package",
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "tsup",
+    "build": "cp src/styles/tokens.css tailwind/tokens.css && tsup",
     "dev": "tsup --watch",
     "storybook": "cd docs && yarn storybook",
     "build-storybook": "cd docs && yarn build-storybook"
@@ -36,13 +36,20 @@
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
       }
-    }
+    },
+    "./tailwind-preset": {
+      "import": "./tailwind/preset.mjs",
+      "require": "./tailwind/preset.cjs"
+    },
+    "./tailwind-theme.css": "./tailwind/theme.css",
+    "./tokens.css": "./tailwind/tokens.css"
   },
   "main": "./dist/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "tailwind"
   ],
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.14",
