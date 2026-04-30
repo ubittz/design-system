@@ -1,0 +1,164 @@
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as BottomSheetStories from './BottomSheet.stories';
+
+<Meta of={BottomSheetStories} />
+
+# BottomSheet
+
+하단에서 올라오는 시트 컴포넌트입니다. 다양한 컨텐츠를 `children`으로 전달합니다.
+
+## Usage (컴포넌트 방식)
+
+```tsx
+import { BottomSheet } from '@ubittz/design-system';
+
+function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>열기</button>
+      <BottomSheet
+        open={open}
+        title="옵션 선택"
+        showClose
+        button={{ label: '확인', onClick: () => setOpen(false) }}
+        onClose={() => setOpen(false)}
+      >
+        <div>커스텀 컨텐츠</div>
+      </BottomSheet>
+    </>
+  );
+}
+```
+
+## Usage (Hook 방식)
+
+```tsx
+import { BottomSheetProvider, useBottomSheet } from '@ubittz/design-system';
+
+function App() {
+  return (
+    <BottomSheetProvider>
+      <MyPage />
+    </BottomSheetProvider>
+  );
+}
+
+function MyPage() {
+  const sheet = useBottomSheet();
+
+  const handleOpen = () => {
+    sheet.open({
+      title: '옵션 선택',
+      showClose: true,
+      content: <OptionList />,
+      button: {
+        label: '확인',
+        onClick: () => handleConfirm(),
+      },
+    });
+  };
+
+  return <button onClick={handleOpen}>열기</button>;
+}
+```
+
+## Default
+
+<Canvas of={BottomSheetStories.Default} />
+
+## With Close
+
+`showClose`를 전달하면 헤더에 닫기(X) 버튼이 표시됩니다.
+
+<Canvas of={BottomSheetStories.WithClose} />
+
+## With Button
+
+`button`을 전달하면 하단에 전체 너비 버튼이 표시됩니다.
+
+<Canvas of={BottomSheetStories.WithButton} />
+
+## useBottomSheet Hook
+
+`BottomSheetProvider`로 감싼 후 `useBottomSheet` 훅으로 호출합니다. `content`로 컨텐츠를 전달합니다.
+
+<Canvas of={BottomSheetStories.WithHook} />
+
+## Props
+
+### BottomSheetProps
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>open</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>시트 표시 여부</td>
+    </tr>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>헤더 타이틀</td>
+    </tr>
+    <tr>
+      <td><code>showClose</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>닫기 버튼 표시</td>
+    </tr>
+    <tr>
+      <td><code>button</code></td>
+      <td><code>BottomSheetButtonProps</code></td>
+      <td>-</td>
+      <td>하단 버튼 props</td>
+    </tr>
+    <tr>
+      <td><code>onClose</code></td>
+      <td><code>{'() => void'}</code></td>
+      <td>-</td>
+      <td>닫기 / 배경 클릭 콜백</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>시트 컨텐츠</td>
+    </tr>
+  </tbody>
+</table>
+
+### useBottomSheet
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>open</code></td>
+      <td><code>{'(options: BottomSheetOptions) => void'}</code></td>
+      <td>시트 열기 (버튼 클릭 시 자동 닫힘)</td>
+    </tr>
+    <tr>
+      <td><code>close</code></td>
+      <td><code>{'() => void'}</code></td>
+      <td>시트 닫기</td>
+    </tr>
+  </tbody>
+</table>
