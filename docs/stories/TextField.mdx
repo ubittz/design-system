@@ -19,11 +19,15 @@ import * as TextFieldStories from './TextField.stories';
   </thead>
   <tbody>
     <tr>
-      <td><code>FormGroup</code></td>
+      <td>
+        <code>FormGroup</code>
+      </td>
       <td>Label, Caption, Error, Button, Timer를 감싸는 래퍼. TextField 외에 다른 입력 컴포넌트에서도 재사용 가능</td>
     </tr>
     <tr>
-      <td><code>TextField</code></td>
+      <td>
+        <code>TextField</code>
+      </td>
       <td>FormGroup 기반의 텍스트 입력 필드. Default/Line shape, unit 지원</td>
     </tr>
   </tbody>
@@ -83,10 +87,6 @@ import { TextField } from '@ubittz/design-system';
 
 <Canvas of={TextFieldStories.WithTimer} />
 
-### Complex
-
-<Canvas of={TextFieldStories.ComplexExample} />
-
 ### Playground
 
 <Canvas of={TextFieldStories.Playground} />
@@ -105,67 +105,117 @@ import { TextField } from '@ubittz/design-system';
   </thead>
   <tbody>
     <tr>
-      <td><code>shape</code></td>
-      <td><code>'default' | 'line'</code></td>
-      <td><code>'default'</code></td>
+      <td>
+        <code>shape</code>
+      </td>
+      <td>
+        <code>'default' | 'line'</code>
+      </td>
+      <td>
+        <code>'default'</code>
+      </td>
       <td>입력 필드 형태 (box / underline)</td>
     </tr>
     <tr>
-      <td><code>unit</code></td>
-      <td><code>string</code></td>
+      <td>
+        <code>unit</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
       <td>-</td>
       <td>입력 필드 우측 단위 텍스트</td>
     </tr>
     <tr>
-      <td><code>format</code></td>
-      <td><code>string</code></td>
+      <td>
+        <code>format</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
       <td>-</td>
-      <td>입력 포맷 (예: <code>'ddd-dddd-dddd'</code>). <code>d</code>는 숫자, 나머지는 구분자. 설정 시 <code>inputMode="numeric"</code> 자동 적용</td>
+      <td>
+        입력 포맷 (예: <code>'ddd-dddd-dddd'</code>). <code>d</code>는 숫자, 나머지는 구분자. 설정 시 <code>inputMode="numeric"</code> 자동 적용
+      </td>
     </tr>
     <tr>
-      <td><code>label</code></td>
-      <td><code>ReactNode</code></td>
+      <td>
+        <code>label</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
       <td>-</td>
       <td>라벨 텍스트</td>
     </tr>
     <tr>
-      <td><code>required</code></td>
-      <td><code>boolean</code></td>
-      <td><code>false</code></td>
+      <td>
+        <code>required</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
       <td>필수 표시 (라벨 옆 빨간 *)</td>
     </tr>
     <tr>
-      <td><code>caption</code></td>
-      <td><code>ReactNode</code></td>
+      <td>
+        <code>caption</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
       <td>-</td>
       <td>안내 문구 (에러 시 숨김)</td>
     </tr>
     <tr>
-      <td><code>errorMessage</code></td>
-      <td><code>ReactNode</code></td>
+      <td>
+        <code>errorMessage</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
       <td>-</td>
       <td>에러 문구 (표시 시 border도 에러 색상으로 변경)</td>
     </tr>
     <tr>
-      <td><code>buttonProps</code></td>
-      <td><code>ButtonProps</code></td>
+      <td>
+        <code>buttonProps</code>
+      </td>
+      <td>
+        <code>ButtonProps</code>
+      </td>
       <td>-</td>
       <td>입력 필드 옆에 표시할 버튼 props</td>
     </tr>
     <tr>
-      <td><code>timerContent</code></td>
-      <td><code>ReactNode</code></td>
+      <td>
+        <code>timerContent</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
       <td>-</td>
       <td>입력 필드 내부 우측 타이머 콘텐츠</td>
     </tr>
     <tr>
-      <td><code>disabled</code></td>
-      <td><code>boolean</code></td>
-      <td><code>false</code></td>
+      <td>
+        <code>disabled</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
       <td>비활성 상태</td>
     </tr>
     <tr>
-      <td colspan="4">+ 모든 <code>{'InputHTMLAttributes<HTMLInputElement>'}</code> props 지원</td>
+      <td colspan='4'>
+        + 모든 <code>{'InputHTMLAttributes<HTMLInputElement>'}</code> props 지원
+      </td>
     </tr>
   </tbody>
 </table>
@@ -183,9 +233,9 @@ TextField뿐 아니라 TextArea, Select 등에서도 재사용됩니다.
 ```tsx
 import { FormGroup } from '@ubittz/design-system';
 
-<FormGroup label="커스텀 입력" required caption="안내 문구">
+<FormGroup label='커스텀 입력' required caption='안내 문구'>
   <MyCustomInput />
-</FormGroup>
+</FormGroup>;
 ```
 
 ### 커스텀 입력과 함께 사용
@@ -227,44 +277,74 @@ function MyInput(props: MyInputProps) {
   </thead>
   <tbody>
     <tr>
-      <td><code>label</code></td>
-      <td><code>ReactNode</code></td>
+      <td>
+        <code>label</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
       <td>-</td>
       <td>라벨 텍스트</td>
     </tr>
     <tr>
-      <td><code>required</code></td>
-      <td><code>boolean</code></td>
-      <td><code>false</code></td>
+      <td>
+        <code>required</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
       <td>필수 표시 (*)</td>
     </tr>
     <tr>
-      <td><code>caption</code></td>
-      <td><code>ReactNode</code></td>
+      <td>
+        <code>caption</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
       <td>-</td>
       <td>안내 문구</td>
     </tr>
     <tr>
-      <td><code>errorMessage</code></td>
-      <td><code>ReactNode</code></td>
+      <td>
+        <code>errorMessage</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
       <td>-</td>
       <td>에러 문구</td>
     </tr>
     <tr>
-      <td><code>buttonProps</code></td>
-      <td><code>ButtonProps</code></td>
+      <td>
+        <code>buttonProps</code>
+      </td>
+      <td>
+        <code>ButtonProps</code>
+      </td>
       <td>-</td>
       <td>입력 옆 버튼</td>
     </tr>
     <tr>
-      <td><code>timerContent</code></td>
-      <td><code>ReactNode</code></td>
+      <td>
+        <code>timerContent</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
       <td>-</td>
       <td>타이머 콘텐츠 (입력 내부 우측 오버레이)</td>
     </tr>
     <tr>
-      <td><code>children</code></td>
-      <td><code>ReactNode</code></td>
+      <td>
+        <code>children</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
       <td>(필수)</td>
       <td>입력 요소</td>
     </tr>
@@ -292,57 +372,79 @@ function MyInput(props: MyInputProps) {
   <tbody>
     <tr>
       <td>배경</td>
-      <td><code>--component-input-default-background</code></td>
+      <td>
+        <code>--component-input-default-background</code>
+      </td>
       <td>입력 필드 배경 (White)</td>
     </tr>
     <tr>
       <td>보더</td>
-      <td><code>--component-input-default-border</code></td>
+      <td>
+        <code>--component-input-default-border</code>
+      </td>
       <td>기본 보더 (Gray.100)</td>
     </tr>
     <tr>
       <td>텍스트</td>
-      <td><code>--component-input-default-text</code></td>
+      <td>
+        <code>--component-input-default-text</code>
+      </td>
       <td>입력 텍스트 (Gray.700)</td>
     </tr>
     <tr>
       <td>플레이스홀더</td>
-      <td><code>--component-input-default-placeholder</code></td>
+      <td>
+        <code>--component-input-default-placeholder</code>
+      </td>
       <td>플레이스홀더 (Gray.300)</td>
     </tr>
     <tr>
       <td>라벨</td>
-      <td><code>--component-input-default-label</code></td>
+      <td>
+        <code>--component-input-default-label</code>
+      </td>
       <td>라벨 텍스트 (Gray.600)</td>
     </tr>
     <tr>
       <td>캡션</td>
-      <td><code>--component-input-default-caption</code></td>
+      <td>
+        <code>--component-input-default-caption</code>
+      </td>
       <td>안내 문구 (Gray.600)</td>
     </tr>
     <tr>
       <td>포커스 보더</td>
-      <td><code>--component-input-focused-border</code></td>
+      <td>
+        <code>--component-input-focused-border</code>
+      </td>
       <td>포커스 보더 (Brand.Primary.500)</td>
     </tr>
     <tr>
       <td>에러 보더</td>
-      <td><code>--component-input-error-border</code></td>
+      <td>
+        <code>--component-input-error-border</code>
+      </td>
       <td>에러 보더 (Apple.600)</td>
     </tr>
     <tr>
       <td>에러 캡션</td>
-      <td><code>--component-input-error-caption</code></td>
+      <td>
+        <code>--component-input-error-caption</code>
+      </td>
       <td>에러 문구 (Apple.600)</td>
     </tr>
     <tr>
       <td>비활성 배경</td>
-      <td><code>--component-input-disabled-background</code></td>
+      <td>
+        <code>--component-input-disabled-background</code>
+      </td>
       <td>비활성 배경 (Gray.100)</td>
     </tr>
     <tr>
       <td>비활성 텍스트</td>
-      <td><code>--component-input-disabled-text</code></td>
+      <td>
+        <code>--component-input-disabled-text</code>
+      </td>
       <td>비활성 텍스트 (Gray.200)</td>
     </tr>
   </tbody>
@@ -386,19 +488,19 @@ function MyInput(props: MyInputProps) {
     </tr>
     <tr>
       <td>폰트</td>
-      <td colspan="2">14px / 22px Regular, letter-spacing -0.02em</td>
+      <td colspan='2'>14px / 22px Regular, letter-spacing -0.02em</td>
     </tr>
     <tr>
       <td>라벨 폰트</td>
-      <td colspan="2">14px / 22px Regular</td>
+      <td colspan='2'>14px / 22px Regular</td>
     </tr>
     <tr>
       <td>캡션/에러 폰트</td>
-      <td colspan="2">12px / 20px Regular</td>
+      <td colspan='2'>12px / 20px Regular</td>
     </tr>
     <tr>
       <td>요소 간 간격</td>
-      <td colspan="2">8px</td>
+      <td colspan='2'>8px</td>
     </tr>
   </tbody>
 </table>
