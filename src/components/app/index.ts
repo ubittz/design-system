@@ -12,4 +12,6 @@ export * from './TopNavigation';
 export * from './BottomNavigation';
 export * from './TabMenu';
 export * from './Toggle';
+export * from './RadioButton';
+export * from './Checkbox';
 export * from './Pagination';
