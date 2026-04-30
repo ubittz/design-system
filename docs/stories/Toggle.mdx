@@ -1,0 +1,75 @@
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as ToggleStories from './Toggle.stories';
+
+<Meta of={ToggleStories} />
+
+# Toggle
+
+세그먼트 형태의 토글 컴포넌트입니다. 여러 옵션 중 하나를 선택할 수 있습니다.
+
+## Usage
+
+```tsx
+import { Toggle } from '@ubittz/design-system';
+
+function Example() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <Toggle
+      items={['옵션 A', '옵션 B']}
+      activeIndex={activeIndex}
+      onChange={setActiveIndex}
+    />
+  );
+}
+```
+
+## Default
+
+<Canvas of={ToggleStories.Default} />
+
+## Three Options
+
+3개 이상의 옵션도 지원합니다.
+
+<Canvas of={ToggleStories.ThreeOptions} />
+
+## Full Width
+
+부모 컨테이너의 너비에 맞게 확장됩니다.
+
+<Canvas of={ToggleStories.FullWidth} />
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>items</code></td>
+      <td><code>string[]</code></td>
+      <td>-</td>
+      <td>토글 옵션 라벨 배열</td>
+    </tr>
+    <tr>
+      <td><code>activeIndex</code></td>
+      <td><code>number</code></td>
+      <td>-</td>
+      <td>현재 선택된 옵션 인덱스</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>{'(index: number) => void'}</code></td>
+      <td>-</td>
+      <td>옵션 변경 콜백</td>
+    </tr>
+  </tbody>
+</table>
