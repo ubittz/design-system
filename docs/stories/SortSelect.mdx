@@ -1,0 +1,98 @@
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as SortSelectStories from './SortSelect.stories';
+
+<Meta of={SortSelectStories} />
+
+# SortSelect
+
+정렬 기준을 선택할 수 있는 드롭다운 컴포넌트입니다. 현재 선택된 정렬 라벨과 화살표 아이콘을 표시하며, 클릭 시 정렬 옵션 목록이 나타납니다.
+
+## Usage
+
+```tsx
+import { SortSelect } from '@ubittz/design-system';
+
+const options = [
+  { label: '최신순', value: 'latest' },
+  { label: '인기순', value: 'popular' },
+  { label: '가격 낮은순', value: 'price_asc' },
+];
+
+function Example() {
+  const [value, setValue] = useState<string>('latest');
+
+  return (
+    <SortSelect
+      options={options}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}
+```
+
+## Default
+
+값이 설정되지 않은 경우, 첫 번째 옵션의 라벨이 기본으로 표시됩니다.
+
+<Canvas of={SortSelectStories.Default} />
+
+## WithValue
+
+초기값이 설정된 상태의 SortSelect입니다.
+
+<Canvas of={SortSelectStories.WithValue} />
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>options</code></td>
+      <td><code>{'SortSelectOption[]'}</code></td>
+      <td><code>[]</code></td>
+      <td>정렬 옵션 목록</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>현재 선택된 옵션 값</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>{'(value: string) => void'}</code></td>
+      <td>-</td>
+      <td>옵션 변경 시 호출되는 콜백</td>
+    </tr>
+    <tr>
+      <td><code>className</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>루트 요소 클래스</td>
+    </tr>
+    <tr>
+      <td><code>style</code></td>
+      <td><code>React.CSSProperties</code></td>
+      <td>-</td>
+      <td>루트 요소 인라인 스타일</td>
+    </tr>
+  </tbody>
+</table>
+
+## SortSelectOption
+
+```tsx
+type SortSelectOption = {
+  label: string; // 표시 텍스트
+  value: string; // 옵션 값
+};
+```
