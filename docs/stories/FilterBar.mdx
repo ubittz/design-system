@@ -1,0 +1,113 @@
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as FilterBarStories from './FilterBar.stories';
+
+<Meta of={FilterBarStories} />
+
+# FilterBar
+
+가로 스크롤이 가능한 필터 버튼 바 컴포넌트입니다. 카테고리 필터링 등에 사용합니다.
+
+## Usage
+
+```tsx
+import { FilterBar } from '@ubittz/design-system';
+
+function Example() {
+  const [selected, setSelected] = useState('all');
+
+  const options = [
+    { label: '전체', value: 'all' },
+    { label: '진행중', value: 'in-progress' },
+    { label: '완료', value: 'completed' },
+  ];
+
+  return (
+    <FilterBar
+      options={options}
+      value={selected}
+      onChange={setSelected}
+    />
+  );
+}
+```
+
+## Default
+
+기본 필터 바입니다. 필터를 클릭하면 선택 상태가 변경됩니다.
+
+<Canvas of={FilterBarStories.Default} />
+
+## WithSelection
+
+옵션이 많은 경우 가로 스크롤이 자동으로 활성화됩니다.
+
+<Canvas of={FilterBarStories.WithSelection} />
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>options</code></td>
+      <td><code>{'FilterOption[]'}</code></td>
+      <td>-</td>
+      <td>필터 옵션 목록 (필수)</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>현재 선택된 필터의 value</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>{'(value: string) => void'}</code></td>
+      <td>-</td>
+      <td>필터 선택 시 호출되는 콜백</td>
+    </tr>
+    <tr>
+      <td><code>className</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>컨테이너에 적용할 CSS 클래스</td>
+    </tr>
+    <tr>
+      <td><code>style</code></td>
+      <td><code>React.CSSProperties</code></td>
+      <td>-</td>
+      <td>컨테이너에 적용할 인라인 스타일</td>
+    </tr>
+  </tbody>
+</table>
+
+## FilterOption
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>string</code></td>
+      <td>필터에 표시될 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string</code></td>
+      <td>필터의 고유 값</td>
+    </tr>
+  </tbody>
+</table>
