@@ -11,4 +11,5 @@ export * from './SelectableOption';
 export * from './TopNavigation';
 export * from './BottomNavigation';
 export * from './TabMenu';
+export * from './Toggle';
 export * from './Pagination';
