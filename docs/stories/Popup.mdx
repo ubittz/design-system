@@ -1,0 +1,181 @@
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as PopupStories from './Popup.stories';
+
+<Meta of={PopupStories} />
+
+# Popup
+
+모달 형태의 팝업 컴포넌트입니다. 타이틀, 본문, 버튼을 포함합니다.
+
+## Usage (컴포넌트 방식)
+
+```tsx
+import { Popup } from '@ubittz/design-system';
+
+function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>열기</button>
+      <Popup
+        open={open}
+        title="알림"
+        body="변경사항을 저장하시겠습니까?"
+        cancelButton={{ label: '취소', onClick: () => setOpen(false) }}
+        confirmButton={{
+          label: '확인',
+          onClick: () => {
+            save();
+            setOpen(false);
+          },
+        }}
+        onBackdropClick={() => setOpen(false)}
+      />
+    </>
+  );
+}
+```
+
+## Usage (Hook 방식)
+
+```tsx
+import { PopupProvider, usePopup } from '@ubittz/design-system';
+
+// 앱 루트에 Provider 설정
+function App() {
+  return (
+    <PopupProvider>
+      <MyPage />
+    </PopupProvider>
+  );
+}
+
+// 컴포넌트에서 usePopup 사용
+function MyPage() {
+  const popup = usePopup();
+
+  const handleDelete = () => {
+    popup.open({
+      title: '삭제 확인',
+      body: '정말 삭제하시겠습니까?',
+      cancelButton: { label: '취소' },
+      confirmButton: {
+        label: '삭제',
+        onClick: () => deleteItem(),
+      },
+    });
+  };
+
+  return <button onClick={handleDelete}>삭제</button>;
+}
+```
+
+## Horizontal (Body 있음)
+
+`cancelButton`을 전달하면 취소/확인 2개 버튼이 표시됩니다.
+
+<Canvas of={PopupStories.HorizontalWithBody} />
+
+## Single (Body 있음)
+
+`cancelButton` 없이 `confirmButton`만 전달하면 단일 버튼이 표시됩니다.
+
+<Canvas of={PopupStories.SingleWithBody} />
+
+## Horizontal (Body 없음)
+
+`body`를 생략하면 타이틀만 표시됩니다.
+
+<Canvas of={PopupStories.HorizontalNoBody} />
+
+## Single (Body 없음)
+
+<Canvas of={PopupStories.SingleNoBody} />
+
+## usePopup Hook
+
+`PopupProvider`로 감싼 후 `usePopup` 훅으로 팝업을 호출합니다. 버튼 클릭 시 자동으로 닫힙니다.
+
+<Canvas of={PopupStories.WithHook} />
+
+## Props
+
+### PopupProps
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>open</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>팝업 표시 여부</td>
+    </tr>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>팝업 타이틀</td>
+    </tr>
+    <tr>
+      <td><code>body</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>팝업 본문 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>confirmButton</code></td>
+      <td><code>PopupButtonProps</code></td>
+      <td>-</td>
+      <td>확인 버튼 props</td>
+    </tr>
+    <tr>
+      <td><code>cancelButton</code></td>
+      <td><code>PopupButtonProps</code></td>
+      <td>-</td>
+      <td>취소 버튼 props (전달 시 2버튼 모드)</td>
+    </tr>
+    <tr>
+      <td><code>onBackdropClick</code></td>
+      <td><code>{'() => void'}</code></td>
+      <td>-</td>
+      <td>배경 클릭 콜백</td>
+    </tr>
+  </tbody>
+</table>
+
+### PopupButtonProps
+
+`ButtonProps`에서 `children`을 제외하고 `label`을 추가한 타입입니다. `variant`, `size`, `disabled`, `onClick` 등 Button의 모든 props를 사용할 수 있습니다.
+
+### usePopup
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>open</code></td>
+      <td><code>{'(options: PopupOptions) => void'}</code></td>
+      <td>팝업 열기 (버튼 클릭 시 자동 닫힘)</td>
+    </tr>
+    <tr>
+      <td><code>close</code></td>
+      <td><code>{'() => void'}</code></td>
+      <td>팝업 닫기</td>
+    </tr>
+  </tbody>
+</table>
