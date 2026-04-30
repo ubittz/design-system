@@ -2,6 +2,7 @@ export * from './Button';
 export * from './FormGroup';
 export * from './TextField';
 export * from './TextArea';
+export * from './Search';
 export * from './TopNavigation';
 export * from './BottomNavigation';
 export * from './TabMenu';

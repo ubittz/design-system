@@ -1,0 +1,76 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as SearchStories from './Search.stories';
+
+<Meta of={SearchStories} />
+
+# Search
+
+검색 입력 필드 컴포넌트입니다.
+우측에 검색 아이콘이 포함되며, Enter 키 또는 아이콘 클릭으로 검색을 실행할 수 있습니다.
+
+## 사용법
+
+```tsx
+import { Search } from '@ubittz/design-system';
+
+<Search placeholder="검색어를 입력하세요." />
+<Search
+  placeholder="검색어를 입력하세요."
+  onSearch={(value) => console.log(value)}
+/>
+```
+
+### 기본
+
+<Canvas of={SearchStories.Default} />
+
+### With Search Callback
+
+`onSearch` 콜백은 Enter 키를 누르거나 검색 아이콘을 클릭할 때 호출됩니다.
+
+<Canvas of={SearchStories.WithSearchCallback} />
+
+### States
+
+<Canvas of={SearchStories.States} />
+
+### Playground
+
+<Canvas of={SearchStories.Playground} />
+<Controls of={SearchStories.Playground} />
+
+### Search Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>onSearch</code></td>
+      <td><code>(value: string) =&gt; void</code></td>
+      <td>-</td>
+      <td>Enter 키 또는 검색 아이콘 클릭 시 호출</td>
+    </tr>
+    <tr>
+      <td><code>placeholder</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>플레이스홀더 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>비활성 상태</td>
+    </tr>
+    <tr>
+      <td colspan="4">+ 모든 <code>{'InputHTMLAttributes<HTMLInputElement>'}</code> props 지원 (<code>type</code> 제외)</td>
+    </tr>
+  </tbody>
+</table>
