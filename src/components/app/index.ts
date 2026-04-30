@@ -16,4 +16,6 @@ export * from './RadioButton';
 export * from './Checkbox';
 export * from './Popup';
 export * from './BottomSheet';
+export * from './FilterBar';
+export * from './SortSelect';
 export * from './Pagination';
