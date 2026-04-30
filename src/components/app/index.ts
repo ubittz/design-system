@@ -2,6 +2,7 @@ export * from './Button';
 export * from './Calendar';
 export * from './Dropdown';
 export * from './FormGroup';
+export * from './ImageUploader';
 export * from './Picker';
 export * from './TextField';
 export * from './TextArea';
