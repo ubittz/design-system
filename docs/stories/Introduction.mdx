@@ -36,6 +36,62 @@ function App() {
 }
 ```
 
+## Tailwind CSS 연동
+
+디자인 토큰을 Tailwind CSS 유틸리티 클래스로 사용할 수 있습니다.
+
+### Tailwind v4
+
+CSS 진입점에서 토큰과 테마 파일을 import합니다.
+
+```css
+@import "tailwindcss";
+@import "@ubittz/design-system/tokens.css";
+@import "@ubittz/design-system/tailwind-theme.css";
+```
+
+`tokens.css`는 CSS 변수를 정의하고, `tailwind-theme.css`는 이를 Tailwind `@theme`에 등록하여 유틸리티 클래스를 생성합니다.
+
+### Tailwind v3
+
+Preset을 `tailwind.config.js`에 추가합니다.
+
+```js
+// tailwind.config.js (CommonJS)
+const ubittzPreset = require('@ubittz/design-system/tailwind-preset');
+
+module.exports = {
+  presets: [ubittzPreset],
+  // ...
+};
+```
+
+```ts
+// tailwind.config.ts (ESM)
+import ubittzPreset from '@ubittz/design-system/tailwind-preset';
+
+export default {
+  presets: [ubittzPreset],
+  // ...
+};
+```
+
+컴포넌트를 import하면 `tokens.css`가 자동 로드되므로 별도 CSS import는 불필요합니다.
+컴포넌트 없이 토큰만 사용하는 경우 CSS 진입점에 `@import "@ubittz/design-system/tokens.css"`를 추가하세요.
+
+### 사용 예시
+
+```html
+<!-- 컬러 -->
+<div class="bg-brand-primary-500 text-text-inverse">브랜드 버튼</div>
+
+<!-- 스페이싱 -->
+<div class="p-4 m-2 gap-3">레이아웃</div>
+
+<!-- 타이포그래피 (v4: text-app-heading1 / v3: text-app-heading1) -->
+<h1 class="text-app-heading1 font-kr font-semibold leading-kr-tight">제목</h1>
+```
+
 ## 브랜드 컬러 커스터마이징
 
 ```tsx
