@@ -1,7 +1,9 @@
 import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
-import { TextField } from '../../src/components/app/TextField';
+
 import { FormGroup } from '../../src/components/app/FormGroup';
+import { TextField } from '../../src/components/app/TextField';
 
 const meta = {
   title: 'Components/App/TextField',
@@ -50,12 +52,8 @@ export const Default: Story = {
     const Demo = () => {
       const [value, setValue] = useState('');
       return (
-        <PhoneFrame title="기본 TextField">
-          <TextField
-            placeholder="플레이스 홀더입니다."
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
+        <PhoneFrame title='기본 TextField'>
+          <TextField placeholder='플레이스 홀더입니다.' value={value} onChange={(e) => setValue(e.target.value)} />
         </PhoneFrame>
       );
     };
@@ -72,8 +70,8 @@ export const WithLabel: Story = {
   render: () => (
     <PhoneFrame>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-        <TextField label="이메일" placeholder="이메일을 입력해주세요." />
-        <TextField label="비밀번호" placeholder="비밀번호를 입력해주세요." required />
+        <TextField label='이메일' placeholder='이메일을 입력해주세요.' />
+        <TextField label='비밀번호' placeholder='비밀번호를 입력해주세요.' required />
       </div>
     </PhoneFrame>
   ),
@@ -87,20 +85,20 @@ export const States: Story = {
   name: 'States',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      <PhoneFrame title="기본">
-        <TextField label="Label" placeholder="플레이스 홀더입니다." />
+      <PhoneFrame title='기본'>
+        <TextField label='Label' placeholder='플레이스 홀더입니다.' />
       </PhoneFrame>
-      <PhoneFrame title="입력됨">
-        <TextField label="Label" value="기본 텍스트입니다." readOnly />
+      <PhoneFrame title='입력됨'>
+        <TextField label='Label' value='기본 텍스트입니다.' readOnly />
       </PhoneFrame>
-      <PhoneFrame title="비활성">
-        <TextField label="Label" placeholder="비활성화 텍스트입니다." disabled />
+      <PhoneFrame title='비활성'>
+        <TextField label='Label' placeholder='비활성화 텍스트입니다.' disabled />
       </PhoneFrame>
-      <PhoneFrame title="에러">
-        <TextField label="Label" placeholder="플레이스 홀더입니다." errorMessage="에러 문구 입니다." />
+      <PhoneFrame title='에러'>
+        <TextField label='Label' placeholder='플레이스 홀더입니다.' errorMessage='에러 문구 입니다.' />
       </PhoneFrame>
-      <PhoneFrame title="캡션">
-        <TextField label="Label" placeholder="플레이스 홀더입니다." caption="안내 문구 입니다." />
+      <PhoneFrame title='캡션'>
+        <TextField label='Label' placeholder='플레이스 홀더입니다.' caption='안내 문구 입니다.' />
       </PhoneFrame>
     </div>
   ),
@@ -114,11 +112,11 @@ export const Shapes: Story = {
   name: 'Shapes',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      <PhoneFrame title="Default (box)">
-        <TextField shape="default" label="Label" placeholder="플레이스 홀더입니다." />
+      <PhoneFrame title='Default (box)'>
+        <TextField shape='default' label='Label' placeholder='플레이스 홀더입니다.' />
       </PhoneFrame>
-      <PhoneFrame title="Line (underline)">
-        <TextField shape="line" label="Label" placeholder="플레이스 홀더입니다." />
+      <PhoneFrame title='Line (underline)'>
+        <TextField shape='line' label='Label' placeholder='플레이스 홀더입니다.' />
       </PhoneFrame>
     </div>
   ),
@@ -132,11 +130,11 @@ export const WithUnit: Story = {
   name: 'With Unit',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      <PhoneFrame title="단위 표시">
-        <TextField label="금액" value="10,000" unit="원" readOnly />
+      <PhoneFrame title='단위 표시'>
+        <TextField label='금액' value='10,000' unit='원' readOnly />
       </PhoneFrame>
-      <PhoneFrame title="단위 + 비활성">
-        <TextField label="금액" placeholder="금액을 입력해주세요." unit="원" disabled />
+      <PhoneFrame title='단위 + 비활성'>
+        <TextField label='금액' placeholder='금액을 입력해주세요.' unit='원' disabled />
       </PhoneFrame>
     </div>
   ),
@@ -152,10 +150,10 @@ export const WithButton: Story = {
     const Demo = () => {
       const [sent, setSent] = useState(false);
       return (
-        <PhoneFrame title="버튼 포함">
+        <PhoneFrame title='버튼 포함'>
           <TextField
-            label="인증번호"
-            placeholder="인증번호를 입력해주세요."
+            label='인증번호'
+            placeholder='인증번호를 입력해주세요.'
             buttonProps={{
               children: sent ? '재전송' : '인증',
               variant: 'primary',
@@ -181,10 +179,10 @@ export const WithTimer: Story = {
       const min = Math.floor(seconds / 60);
       const sec = seconds % 60;
       return (
-        <PhoneFrame title="타이머 포함">
+        <PhoneFrame title='타이머 포함'>
           <TextField
-            label="인증번호"
-            placeholder="인증번호를 입력해주세요."
+            label='인증번호'
+            placeholder='인증번호를 입력해주세요.'
             timerContent={`${min}:${sec.toString().padStart(2, '0')}`}
             buttonProps={{
               children: '재전송',
@@ -200,34 +198,14 @@ export const WithTimer: Story = {
 };
 
 // ============================================================================
-// 8. Complex Example
-// ============================================================================
-
-export const ComplexExample: Story = {
-  name: 'Complex (Unit + Timer + Caption)',
-  render: () => (
-    <PhoneFrame title="복합 예시">
-      <TextField
-        label="Label"
-        value="기본 텍스트입니다."
-        unit="원"
-        timerContent="2:59"
-        caption="안내 문구 입니다."
-        readOnly
-      />
-    </PhoneFrame>
-  ),
-};
-
-// ============================================================================
 // 9. FormGroup standalone
 // ============================================================================
 
 export const FormGroupStandalone: Story = {
   name: 'FormGroup (standalone)',
   render: () => (
-    <PhoneFrame title="FormGroup을 커스텀 입력과 함께 사용">
-      <FormGroup label="커스텀 셀렉트" required caption="항목을 선택하세요.">
+    <PhoneFrame title='FormGroup을 커스텀 입력과 함께 사용'>
+      <FormGroup label='커스텀 셀렉트' required caption='항목을 선택하세요.'>
         <div
           style={{
             display: 'flex',
@@ -261,21 +239,21 @@ export const Format: Story = {
       const [bizNo, setBizNo] = useState('');
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-          <PhoneFrame title="휴대폰 번호 (ddd-dddd-dddd)">
+          <PhoneFrame title='휴대폰 번호 (ddd-dddd-dddd)'>
             <TextField
-              label="휴대폰 번호"
-              placeholder="010-0000-0000"
-              format="ddd-dddd-dddd"
+              label='휴대폰 번호'
+              placeholder='010-0000-0000'
+              format='ddd-dddd-dddd'
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
             <SectionTitle>raw value: {phone}</SectionTitle>
           </PhoneFrame>
-          <PhoneFrame title="사업자등록번호 (ddd-dd-ddddd)">
+          <PhoneFrame title='사업자등록번호 (ddd-dd-ddddd)'>
             <TextField
-              label="사업자등록번호"
-              placeholder="000-00-00000"
-              format="ddd-dd-ddddd"
+              label='사업자등록번호'
+              placeholder='000-00-00000'
+              format='ddd-dd-ddddd'
               value={bizNo}
               onChange={(e) => setBizNo(e.target.value)}
             />
@@ -358,38 +336,32 @@ export const SignUpExample: Story = {
       const emailError = email && !email.includes('@') ? '올바른 이메일 형식이 아닙니다.' : undefined;
 
       return (
-        <PhoneFrame title="회원가입 폼 예시">
+        <PhoneFrame title='회원가입 폼 예시'>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <TextField label='이름' placeholder='이름을 입력해주세요.' required value={name} onChange={(e) => setName(e.target.value)} />
             <TextField
-              label="이름"
-              placeholder="이름을 입력해주세요."
+              label='이메일'
+              placeholder='이메일을 입력해주세요.'
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <TextField
-              label="이메일"
-              placeholder="이메일을 입력해주세요."
-              required
-              type="email"
+              type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               errorMessage={emailError}
             />
             <TextField
-              label="비밀번호"
-              placeholder="8자 이상 입력해주세요."
+              label='비밀번호'
+              placeholder='8자 이상 입력해주세요.'
               required
-              type="password"
+              type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              caption="영문, 숫자, 특수문자를 포함해 8자 이상"
+              caption='영문, 숫자, 특수문자를 포함해 8자 이상'
             />
             <TextField
-              label="휴대폰 번호"
-              placeholder="010-0000-0000"
+              label='휴대폰 번호'
+              placeholder='010-0000-0000'
               required
-              type="tel"
+              type='tel'
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               buttonProps={{
