@@ -18,6 +18,7 @@ const preview: Preview = {
           ['Colors', 'Typography', 'Icons', 'Spacing'],
           'Components',
           ['Shared', 'App', 'Web'],
+          'AI Guide',
         ],
       },
     },
