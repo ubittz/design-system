@@ -13,308 +13,300 @@
  *   text-app-heading1, font-weight-semibold, leading-kr-tight
  */
 
+@import './tokens.css';
+
 @theme {
   /* ================================================================
      Base Colors - Gray Scale
      ================================================================ */
-  --color-gray-0: #ffffff;
-  --color-gray-10: #dcdfe4;
-  --color-gray-50: #f3f5f7;
-  --color-gray-100: #e1e4e8;
-  --color-gray-200: #cbcfd7;
-  --color-gray-300: #b4bac5;
-  --color-gray-400: #9da5b4;
-  --color-gray-500: #808a9d;
-  --color-gray-600: #667085;
-  --color-gray-700: #4b5362;
-  --color-gray-800: #31363f;
-  --color-gray-900: #16181d;
+  --color-gray-0: var(--color-gray-0);
+  --color-gray-10: var(--color-gray-10);
+  --color-gray-50: var(--color-gray-50);
+  --color-gray-100: var(--color-gray-100);
+  --color-gray-200: var(--color-gray-200);
+  --color-gray-300: var(--color-gray-300);
+  --color-gray-400: var(--color-gray-400);
+  --color-gray-500: var(--color-gray-500);
+  --color-gray-600: var(--color-gray-600);
+  --color-gray-700: var(--color-gray-700);
+  --color-gray-800: var(--color-gray-800);
+  --color-gray-900: var(--color-gray-900);
 
   /* Base Colors - Coral */
-  --color-coral-50: #fcf3f3;
-  --color-coral-100: #f7dede;
-  --color-coral-200: #f1c6c6;
-  --color-coral-300: #e79d9d;
-  --color-coral-400: #de7d7d;
-  --color-coral-500: #d05858;
-  --color-coral-600: #bf3636;
-  --color-coral-700: #972b2b;
-  --color-coral-800: #6f1f1f;
-  --color-coral-900: #481414;
+  --color-coral-50: var(--color-coral-50);
+  --color-coral-100: var(--color-coral-100);
+  --color-coral-200: var(--color-coral-200);
+  --color-coral-300: var(--color-coral-300);
+  --color-coral-400: var(--color-coral-400);
+  --color-coral-500: var(--color-coral-500);
+  --color-coral-600: var(--color-coral-600);
+  --color-coral-700: var(--color-coral-700);
+  --color-coral-800: var(--color-coral-800);
+  --color-coral-900: var(--color-coral-900);
 
   /* Base Colors - Apple */
-  --color-apple-50: #fcedef;
-  --color-apple-100: #fad2d7;
-  --color-apple-200: #f5a5ae;
-  --color-apple-300: #f07584;
-  --color-apple-400: #eb475b;
-  --color-apple-500: #e51931;
-  --color-apple-600: #b81428;
-  --color-apple-700: #93101f;
-  --color-apple-800: #650b15;
-  --color-apple-900: #40070e;
+  --color-apple-50: var(--color-apple-50);
+  --color-apple-100: var(--color-apple-100);
+  --color-apple-200: var(--color-apple-200);
+  --color-apple-300: var(--color-apple-300);
+  --color-apple-400: var(--color-apple-400);
+  --color-apple-500: var(--color-apple-500);
+  --color-apple-600: var(--color-apple-600);
+  --color-apple-700: var(--color-apple-700);
+  --color-apple-800: var(--color-apple-800);
+  --color-apple-900: var(--color-apple-900);
 
   /* Base Colors - Carrot */
-  --color-carrot-50: #fcf1ee;
-  --color-carrot-100: #f7dcd4;
-  --color-carrot-200: #f3c6ba;
-  --color-carrot-300: #edaa97;
-  --color-carrot-400: #e5876c;
-  --color-carrot-500: #dd6440;
-  --color-carrot-600: #c74823;
-  --color-carrot-700: #9c391c;
-  --color-carrot-800: #712914;
-  --color-carrot-900: #46190c;
+  --color-carrot-50: var(--color-carrot-50);
+  --color-carrot-100: var(--color-carrot-100);
+  --color-carrot-200: var(--color-carrot-200);
+  --color-carrot-300: var(--color-carrot-300);
+  --color-carrot-400: var(--color-carrot-400);
+  --color-carrot-500: var(--color-carrot-500);
+  --color-carrot-600: var(--color-carrot-600);
+  --color-carrot-700: var(--color-carrot-700);
+  --color-carrot-800: var(--color-carrot-800);
+  --color-carrot-900: var(--color-carrot-900);
 
   /* Base Colors - Orange */
-  --color-orange-50: #fff7f0;
-  --color-orange-100: #feebd7;
-  --color-orange-200: #fddbb9;
-  --color-orange-300: #fcc288;
-  --color-orange-400: #fba856;
-  --color-orange-500: #f98f24;
-  --color-orange-600: #e57506;
-  --color-orange-700: #b35c05;
-  --color-orange-800: #814203;
-  --color-orange-900: #502902;
+  --color-orange-50: var(--color-orange-50);
+  --color-orange-100: var(--color-orange-100);
+  --color-orange-200: var(--color-orange-200);
+  --color-orange-300: var(--color-orange-300);
+  --color-orange-400: var(--color-orange-400);
+  --color-orange-500: var(--color-orange-500);
+  --color-orange-600: var(--color-orange-600);
+  --color-orange-700: var(--color-orange-700);
+  --color-orange-800: var(--color-orange-800);
+  --color-orange-900: var(--color-orange-900);
 
   /* Base Colors - Mustard */
-  --color-mustard-50: #fff7e5;
-  --color-mustard-100: #fff0cc;
-  --color-mustard-200: #ffe099;
-  --color-mustard-300: #ffd166;
-  --color-mustard-400: #ffc133;
-  --color-mustard-500: #ffb200;
-  --color-mustard-600: #cc8e00;
-  --color-mustard-700: #996b00;
-  --color-mustard-800: #664700;
-  --color-mustard-900: #3d2b00;
+  --color-mustard-50: var(--color-mustard-50);
+  --color-mustard-100: var(--color-mustard-100);
+  --color-mustard-200: var(--color-mustard-200);
+  --color-mustard-300: var(--color-mustard-300);
+  --color-mustard-400: var(--color-mustard-400);
+  --color-mustard-500: var(--color-mustard-500);
+  --color-mustard-600: var(--color-mustard-600);
+  --color-mustard-700: var(--color-mustard-700);
+  --color-mustard-800: var(--color-mustard-800);
+  --color-mustard-900: var(--color-mustard-900);
 
   /* Base Colors - Lemon */
-  --color-lemon-50: #fffbe5;
-  --color-lemon-100: #fff7cc;
-  --color-lemon-200: #fff1a3;
-  --color-lemon-300: #ffea70;
-  --color-lemon-400: #ffe23d;
-  --color-lemon-500: #ffda0a;
-  --color-lemon-600: #d6b600;
-  --color-lemon-700: #a38b00;
-  --color-lemon-800: #705f00;
-  --color-lemon-900: #473d00;
+  --color-lemon-50: var(--color-lemon-50);
+  --color-lemon-100: var(--color-lemon-100);
+  --color-lemon-200: var(--color-lemon-200);
+  --color-lemon-300: var(--color-lemon-300);
+  --color-lemon-400: var(--color-lemon-400);
+  --color-lemon-500: var(--color-lemon-500);
+  --color-lemon-600: var(--color-lemon-600);
+  --color-lemon-700: var(--color-lemon-700);
+  --color-lemon-800: var(--color-lemon-800);
+  --color-lemon-900: var(--color-lemon-900);
 
   /* Base Colors - Coffee */
-  --color-coffee-50: #f8f5f1;
-  --color-coffee-100: #eee6dd;
-  --color-coffee-200: #e0d2c2;
-  --color-coffee-300: #d4bbaa;
-  --color-coffee-400: #c3a488;
-  --color-coffee-500: #af8560;
-  --color-coffee-600: #926749;
-  --color-coffee-700: #6d4d37;
-  --color-coffee-800: #523a29;
-  --color-coffee-900: #33241a;
+  --color-coffee-50: var(--color-coffee-50);
+  --color-coffee-100: var(--color-coffee-100);
+  --color-coffee-200: var(--color-coffee-200);
+  --color-coffee-300: var(--color-coffee-300);
+  --color-coffee-400: var(--color-coffee-400);
+  --color-coffee-500: var(--color-coffee-500);
+  --color-coffee-600: var(--color-coffee-600);
+  --color-coffee-700: var(--color-coffee-700);
+  --color-coffee-800: var(--color-coffee-800);
+  --color-coffee-900: var(--color-coffee-900);
 
   /* Base Colors - Grass */
-  --color-grass-50: #f9fded;
-  --color-grass-100: #eff9d2;
-  --color-grass-200: #dff2a6;
-  --color-grass-300: #ceec79;
-  --color-grass-400: #bfe54d;
-  --color-grass-500: #b0df20;
-  --color-grass-600: #8cb319;
-  --color-grass-700: #6a8613;
-  --color-grass-800: #46590d;
-  --color-grass-900: #313e09;
+  --color-grass-50: var(--color-grass-50);
+  --color-grass-100: var(--color-grass-100);
+  --color-grass-200: var(--color-grass-200);
+  --color-grass-300: var(--color-grass-300);
+  --color-grass-400: var(--color-grass-400);
+  --color-grass-500: var(--color-grass-500);
+  --color-grass-600: var(--color-grass-600);
+  --color-grass-700: var(--color-grass-700);
+  --color-grass-800: var(--color-grass-800);
+  --color-grass-900: var(--color-grass-900);
 
   /* Base Colors - Sage */
-  --color-sage-50: #f5f7f2;
-  --color-sage-100: #e6ecdf;
-  --color-sage-200: #d2ddc5;
-  --color-sage-300: #b9caa5;
-  --color-sage-400: #a0b785;
-  --color-sage-500: #8ca86c;
-  --color-sage-600: #728d54;
-  --color-sage-700: #586d41;
-  --color-sage-800: #3e4d2e;
-  --color-sage-900: #27301d;
+  --color-sage-50: var(--color-sage-50);
+  --color-sage-100: var(--color-sage-100);
+  --color-sage-200: var(--color-sage-200);
+  --color-sage-300: var(--color-sage-300);
+  --color-sage-400: var(--color-sage-400);
+  --color-sage-500: var(--color-sage-500);
+  --color-sage-600: var(--color-sage-600);
+  --color-sage-700: var(--color-sage-700);
+  --color-sage-800: var(--color-sage-800);
+  --color-sage-900: var(--color-sage-900);
 
   /* Base Colors - Pistachio */
-  --color-pistachio-50: #f3faf0;
-  --color-pistachio-100: #e1f2d9;
-  --color-pistachio-200: #c3e4b4;
-  --color-pistachio-300: #a4d78e;
-  --color-pistachio-400: #86c969;
-  --color-pistachio-500: #68bc43;
-  --color-pistachio-600: #539636;
-  --color-pistachio-700: #3e7128;
-  --color-pistachio-800: #2a4b1b;
-  --color-pistachio-900: #1d3513;
+  --color-pistachio-50: var(--color-pistachio-50);
+  --color-pistachio-100: var(--color-pistachio-100);
+  --color-pistachio-200: var(--color-pistachio-200);
+  --color-pistachio-300: var(--color-pistachio-300);
+  --color-pistachio-400: var(--color-pistachio-400);
+  --color-pistachio-500: var(--color-pistachio-500);
+  --color-pistachio-600: var(--color-pistachio-600);
+  --color-pistachio-700: var(--color-pistachio-700);
+  --color-pistachio-800: var(--color-pistachio-800);
+  --color-pistachio-900: var(--color-pistachio-900);
 
   /* Base Colors - Sky */
-  --color-sky-50: #ebf5fe;
-  --color-sky-100: #d8ebfd;
-  --color-sky-200: #b6d9fc;
-  --color-sky-300: #89c2fa;
-  --color-sky-400: #59a8f8;
-  --color-sky-500: #288ff6;
-  --color-sky-600: #0975e1;
-  --color-sky-700: #075cb0;
-  --color-sky-800: #05427f;
-  --color-sky-900: #03294e;
+  --color-sky-50: var(--color-sky-50);
+  --color-sky-100: var(--color-sky-100);
+  --color-sky-200: var(--color-sky-200);
+  --color-sky-300: var(--color-sky-300);
+  --color-sky-400: var(--color-sky-400);
+  --color-sky-500: var(--color-sky-500);
+  --color-sky-600: var(--color-sky-600);
+  --color-sky-700: var(--color-sky-700);
+  --color-sky-800: var(--color-sky-800);
+  --color-sky-900: var(--color-sky-900);
 
   /* Base Colors - Blueberry */
-  --color-blueberry-50: #edf0fd;
-  --color-blueberry-100: #dae1fb;
-  --color-blueberry-200: #b6c3f7;
-  --color-blueberry-300: #889df2;
-  --color-blueberry-400: #6882ee;
-  --color-blueberry-500: #4364ea;
-  --color-blueberry-600: #1e46e6;
-  --color-blueberry-700: #1436bd;
-  --color-blueberry-800: #0f298f;
-  --color-blueberry-900: #0b1c61;
+  --color-blueberry-50: var(--color-blueberry-50);
+  --color-blueberry-100: var(--color-blueberry-100);
+  --color-blueberry-200: var(--color-blueberry-200);
+  --color-blueberry-300: var(--color-blueberry-300);
+  --color-blueberry-400: var(--color-blueberry-400);
+  --color-blueberry-500: var(--color-blueberry-500);
+  --color-blueberry-600: var(--color-blueberry-600);
+  --color-blueberry-700: var(--color-blueberry-700);
+  --color-blueberry-800: var(--color-blueberry-800);
+  --color-blueberry-900: var(--color-blueberry-900);
 
   /* Base Colors - Violet */
-  --color-violet-50: #eeedfd;
-  --color-violet-100: #d4d1fa;
-  --color-violet-200: #bab5f7;
-  --color-violet-300: #8f87f2;
-  --color-violet-400: #745eed;
-  --color-violet-500: #5b40e2;
-  --color-violet-600: #5026d9;
-  --color-violet-700: #401fad;
-  --color-violet-800: #2d1579;
-  --color-violet-900: #1d0e4e;
+  --color-violet-50: var(--color-violet-50);
+  --color-violet-100: var(--color-violet-100);
+  --color-violet-200: var(--color-violet-200);
+  --color-violet-300: var(--color-violet-300);
+  --color-violet-400: var(--color-violet-400);
+  --color-violet-500: var(--color-violet-500);
+  --color-violet-600: var(--color-violet-600);
+  --color-violet-700: var(--color-violet-700);
+  --color-violet-800: var(--color-violet-800);
+  --color-violet-900: var(--color-violet-900);
 
   /* Base Colors - Plum */
-  --color-plum-50: #f8edfd;
-  --color-plum-100: #ecd1fa;
-  --color-plum-200: #e1b5f7;
-  --color-plum-300: #ce87f2;
-  --color-plum-400: #be5eed;
-  --color-plum-500: #af3ae9;
-  --color-plum-600: #a11ae5;
-  --color-plum-700: #8114b8;
-  --color-plum-800: #5a0e81;
-  --color-plum-900: #3a0953;
+  --color-plum-50: var(--color-plum-50);
+  --color-plum-100: var(--color-plum-100);
+  --color-plum-200: var(--color-plum-200);
+  --color-plum-300: var(--color-plum-300);
+  --color-plum-400: var(--color-plum-400);
+  --color-plum-500: var(--color-plum-500);
+  --color-plum-600: var(--color-plum-600);
+  --color-plum-700: var(--color-plum-700);
+  --color-plum-800: var(--color-plum-800);
+  --color-plum-900: var(--color-plum-900);
 
   /* Base Colors - Purple */
-  --color-purple-50: #fbedfd;
-  --color-purple-100: #f6d1fa;
-  --color-purple-200: #f0b5f7;
-  --color-purple-300: #e787f2;
-  --color-purple-400: #df5eed;
-  --color-purple-500: #d83ae9;
-  --color-purple-600: #d11ae5;
-  --color-purple-700: #a714b8;
-  --color-purple-800: #750e81;
-  --color-purple-900: #4b0953;
+  --color-purple-50: var(--color-purple-50);
+  --color-purple-100: var(--color-purple-100);
+  --color-purple-200: var(--color-purple-200);
+  --color-purple-300: var(--color-purple-300);
+  --color-purple-400: var(--color-purple-400);
+  --color-purple-500: var(--color-purple-500);
+  --color-purple-600: var(--color-purple-600);
+  --color-purple-700: var(--color-purple-700);
+  --color-purple-800: var(--color-purple-800);
+  --color-purple-900: var(--color-purple-900);
 
   /* Base Colors - Wine */
-  --color-wine-50: #fdedf5;
-  --color-wine-100: #fad1e5;
-  --color-wine-200: #f6acd1;
-  --color-wine-300: #f287bd;
-  --color-wine-400: #ed59a3;
-  --color-wine-500: #e82b8a;
-  --color-wine-600: #ca1670;
-  --color-wine-700: #9c1157;
-  --color-wine-800: #6e0c3d;
-  --color-wine-900: #37061f;
+  --color-wine-50: var(--color-wine-50);
+  --color-wine-100: var(--color-wine-100);
+  --color-wine-200: var(--color-wine-200);
+  --color-wine-300: var(--color-wine-300);
+  --color-wine-400: var(--color-wine-400);
+  --color-wine-500: var(--color-wine-500);
+  --color-wine-600: var(--color-wine-600);
+  --color-wine-700: var(--color-wine-700);
+  --color-wine-800: var(--color-wine-800);
+  --color-wine-900: var(--color-wine-900);
 
   /* ================================================================
      Brand Colors
      ================================================================ */
-  --color-brand-primary-50: #edf0fd;
-  --color-brand-primary-100: #dae1fb;
-  --color-brand-primary-200: #b6c3f7;
-  --color-brand-primary-300: #889df2;
-  --color-brand-primary-400: #6882ee;
-  --color-brand-primary-500: #4364ea;
-  --color-brand-primary-600: #1e46e6;
-  --color-brand-primary-700: #1436bd;
-  --color-brand-primary-800: #0f298f;
-  --color-brand-primary-900: #0b1c61;
+  --color-brand-primary-50: var(--color-brand-primary-50);
+  --color-brand-primary-100: var(--color-brand-primary-100);
+  --color-brand-primary-200: var(--color-brand-primary-200);
+  --color-brand-primary-300: var(--color-brand-primary-300);
+  --color-brand-primary-400: var(--color-brand-primary-400);
+  --color-brand-primary-500: var(--color-brand-primary-500);
+  --color-brand-primary-600: var(--color-brand-primary-600);
+  --color-brand-primary-700: var(--color-brand-primary-700);
+  --color-brand-primary-800: var(--color-brand-primary-800);
+  --color-brand-primary-900: var(--color-brand-primary-900);
 
-  --color-brand-secondary-50: #fbedfd;
-  --color-brand-secondary-100: #f6d1fa;
-  --color-brand-secondary-200: #f0b5f7;
-  --color-brand-secondary-300: #e787f2;
-  --color-brand-secondary-400: #df5eed;
-  --color-brand-secondary-500: #d83ae9;
-  --color-brand-secondary-600: #d11ae5;
-  --color-brand-secondary-700: #a714b8;
-  --color-brand-secondary-800: #750e81;
-  --color-brand-secondary-900: #4b0953;
+  --color-brand-secondary-50: var(--color-brand-secondary-50);
+  --color-brand-secondary-100: var(--color-brand-secondary-100);
+  --color-brand-secondary-200: var(--color-brand-secondary-200);
+  --color-brand-secondary-300: var(--color-brand-secondary-300);
+  --color-brand-secondary-400: var(--color-brand-secondary-400);
+  --color-brand-secondary-500: var(--color-brand-secondary-500);
+  --color-brand-secondary-600: var(--color-brand-secondary-600);
+  --color-brand-secondary-700: var(--color-brand-secondary-700);
+  --color-brand-secondary-800: var(--color-brand-secondary-800);
+  --color-brand-secondary-900: var(--color-brand-secondary-900);
 
   /* ================================================================
      Semantic Colors
      ================================================================ */
+  --color-surface-default: var(--color-surface-default);
+  --color-surface-subtle: var(--color-surface-subtle);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-surface-emphasis: var(--color-surface-emphasis);
 
-  /* Surface */
-  --color-surface-default: #ffffff;
-  --color-surface-subtle: var(--color-gray-50);
-  --color-surface-muted: var(--color-gray-100);
-  --color-surface-emphasis: var(--color-gray-900);
+  --color-border-default: var(--color-border-default);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-border-emphasis: var(--color-border-emphasis);
 
-  /* Border */
-  --color-border-default: var(--color-gray-200);
-  --color-border-subtle: var(--color-gray-100);
-  --color-border-emphasis: var(--color-gray-300);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  --color-text-inverse: var(--color-text-inverse);
+  --color-text-on-primary: var(--color-text-on-primary);
+  --color-text-on-secondary: var(--color-text-on-secondary);
 
-  /* Text */
-  --color-text-primary: var(--color-gray-900);
-  --color-text-secondary: var(--color-gray-700);
-  --color-text-tertiary: var(--color-gray-500);
-  --color-text-inverse: #ffffff;
-  --color-text-on-primary: #ffffff;
-  --color-text-on-secondary: #ffffff;
+  --color-icon-default: var(--color-icon-default);
+  --color-icon-subtle: var(--color-icon-subtle);
+  --color-icon-emphasis: var(--color-icon-emphasis);
+  --color-icon-inverse: var(--color-icon-inverse);
 
-  /* Icon */
-  --color-icon-default: var(--color-gray-600);
-  --color-icon-subtle: var(--color-gray-400);
-  --color-icon-emphasis: var(--color-gray-900);
-  --color-icon-inverse: #ffffff;
-
-  /* System State */
-  --color-system-success: #68bc43;
-  --color-system-success-light: #e1f2d9;
-  --color-system-warning: #ffb200;
-  --color-system-warning-light: #fff0cc;
-  --color-system-error: #e51931;
-  --color-system-error-light: #fad2d7;
-  --color-system-info: #288ff6;
-  --color-system-info-light: #d8ebfd;
+  --color-system-success: var(--color-system-success);
+  --color-system-success-light: var(--color-system-success-light);
+  --color-system-warning: var(--color-system-warning);
+  --color-system-warning-light: var(--color-system-warning-light);
+  --color-system-error: var(--color-system-error);
+  --color-system-error-light: var(--color-system-error-light);
+  --color-system-info: var(--color-system-info);
+  --color-system-info-light: var(--color-system-info-light);
 
   /* ================================================================
      Spacing
      ================================================================ */
-  --spacing-0: 0;
-  --spacing-1: 0.25rem;
-  --spacing-2: 0.5rem;
-  --spacing-3: 0.75rem;
-  --spacing-4: 1rem;
-  --spacing-5: 1.25rem;
-  --spacing-6: 1.5rem;
-  --spacing-8: 2rem;
-  --spacing-10: 2.5rem;
-  --spacing-12: 3rem;
-  --spacing-16: 4rem;
-  --spacing-20: 5rem;
-  --spacing-24: 6rem;
+  --spacing-0: var(--spacing-0);
+  --spacing-1: var(--spacing-1);
+  --spacing-2: var(--spacing-2);
+  --spacing-3: var(--spacing-3);
+  --spacing-4: var(--spacing-4);
+  --spacing-5: var(--spacing-5);
+  --spacing-6: var(--spacing-6);
+  --spacing-8: var(--spacing-8);
+  --spacing-10: var(--spacing-10);
+  --spacing-12: var(--spacing-12);
+  --spacing-16: var(--spacing-16);
+  --spacing-20: var(--spacing-20);
+  --spacing-24: var(--spacing-24);
 
   /* ================================================================
      Typography - Font Family
-     → font-kr, font-en
-     tokens.css의 --font-family-* 변수를 참조하여 오버라이드 시 함께 반영
      ================================================================ */
   --font-kr: var(--font-family-kr);
   --font-en: var(--font-family-en);
 
   /* ================================================================
-     Typography - Font Size (text-* utilities)
-     → text-app-heading1, text-web-display, etc.
-     tokens.css의 --font-size-* 변수를 참조
+     Typography - Font Size
      ================================================================ */
   --text-app-heading1: var(--font-size-app-heading1);
   --text-app-heading2: var(--font-size-app-heading2);
@@ -336,18 +328,14 @@
 
   /* ================================================================
      Typography - Font Weight
-     → font-regular, font-medium, font-semibold, font-bold
-     변수명이 tokens.css와 동일하므로 그대로 참조
      ================================================================ */
-  --font-weight-regular: var(--font-weight-regular, 400);
-  --font-weight-medium: var(--font-weight-medium, 500);
-  --font-weight-semibold: var(--font-weight-semibold, 600);
-  --font-weight-bold: var(--font-weight-bold, 700);
+  --font-weight-regular: var(--font-weight-regular);
+  --font-weight-medium: var(--font-weight-medium);
+  --font-weight-semibold: var(--font-weight-semibold);
+  --font-weight-bold: var(--font-weight-bold);
 
   /* ================================================================
-     Typography - Line Height (leading-* utilities)
-     → leading-kr-tight, leading-en-normal, etc.
-     tokens.css의 --line-height-* 변수를 참조
+     Typography - Line Height
      ================================================================ */
   --leading-kr-tight: var(--line-height-kr-tight);
   --leading-kr-normal: var(--line-height-kr-normal);
@@ -357,9 +345,7 @@
   --leading-en-relaxed: var(--line-height-en-relaxed);
 
   /* ================================================================
-     Typography - Letter Spacing (tracking-* utilities)
-     → tracking-kr-tight, tracking-en-wide, etc.
-     tokens.css의 --letter-spacing-* 변수를 참조
+     Typography - Letter Spacing
      ================================================================ */
   --tracking-kr-tight: var(--letter-spacing-kr-tight);
   --tracking-kr-normal: var(--letter-spacing-kr-normal);
