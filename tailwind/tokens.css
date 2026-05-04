@@ -1,5 +1,17 @@
+/**
+ * @ubittz/design-system Design Tokens (standalone CSS)
+ *
+ * CSS Custom Properties만 필요한 경우 이 파일을 import하세요.
+ * Tailwind 없이도 사용 가능합니다.
+ *
+ * Usage:
+ *   @import "@ubittz/design-system/tokens.css";
+ */
+
 :root {
-  /* Base Colors - Gray Scale */
+  /* ================================================================
+     Base Colors - Gray Scale
+     ================================================================ */
   --color-gray-0: #ffffff;
   --color-gray-10: #dcdfe4;
   --color-gray-50: #f3f5f7;
@@ -25,7 +37,7 @@
   --color-coral-800: #6f1f1f;
   --color-coral-900: #481414;
 
-  /* Base Colors - Apple (Red) */
+  /* Base Colors - Apple */
   --color-apple-50: #fcedef;
   --color-apple-100: #fad2d7;
   --color-apple-200: #f5a5ae;
@@ -205,7 +217,9 @@
   --color-wine-800: #6e0c3d;
   --color-wine-900: #37061f;
 
-  /* Brand Colors - Primary (Overridable) */
+  /* ================================================================
+     Brand Colors
+     ================================================================ */
   --color-brand-primary-50: #edf0fd;
   --color-brand-primary-100: #dae1fb;
   --color-brand-primary-200: #b6c3f7;
@@ -217,7 +231,6 @@
   --color-brand-primary-800: #0f298f;
   --color-brand-primary-900: #0b1c61;
 
-  /* Brand Colors - Secondary (Overridable) */
   --color-brand-secondary-50: #fbedfd;
   --color-brand-secondary-100: #f6d1fa;
   --color-brand-secondary-200: #f0b5f7;
@@ -229,18 +242,18 @@
   --color-brand-secondary-800: #750e81;
   --color-brand-secondary-900: #4b0953;
 
-  /* Surface */
+  /* ================================================================
+     Semantic Colors
+     ================================================================ */
   --color-surface-default: #ffffff;
   --color-surface-subtle: var(--color-gray-50);
   --color-surface-muted: var(--color-gray-100);
   --color-surface-emphasis: var(--color-gray-900);
 
-  /* Border */
   --color-border-default: var(--color-gray-200);
   --color-border-subtle: var(--color-gray-100);
   --color-border-emphasis: var(--color-gray-300);
 
-  /* Text */
   --color-text-primary: var(--color-gray-900);
   --color-text-secondary: var(--color-gray-700);
   --color-text-tertiary: var(--color-gray-500);
@@ -248,13 +261,11 @@
   --color-text-on-primary: #ffffff;
   --color-text-on-secondary: #ffffff;
 
-  /* Icon */
   --color-icon-default: var(--color-gray-600);
   --color-icon-subtle: var(--color-gray-400);
   --color-icon-emphasis: var(--color-gray-900);
   --color-icon-inverse: #ffffff;
 
-  /* System State */
   --color-system-success: #68bc43;
   --color-system-success-light: #e1f2d9;
   --color-system-warning: #ffb200;
@@ -264,57 +275,9 @@
   --color-system-info: #288ff6;
   --color-system-info-light: #d8ebfd;
 
-  /* Typography - Font Family */
-  --font-family-kr: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
-  --font-family-en: 'Inter', -apple-system, sans-serif;
-
-  /* Typography - App Font Size */
-  --font-size-app-heading1: 24px;
-  --font-size-app-heading2: 20px;
-  --font-size-app-heading3: 18px;
-  --font-size-app-body1: 16px;
-  --font-size-app-body2: 14px;
-  --font-size-app-caption: 12px;
-  --font-size-app-overline: 10px;
-
-  /* Typography - Web Font Size */
-  --font-size-web-display: 48px;
-  --font-size-web-heading1: 32px;
-  --font-size-web-heading2: 28px;
-  --font-size-web-heading3: 24px;
-  --font-size-web-heading4: 20px;
-  --font-size-web-body1: 16px;
-  --font-size-web-body2: 14px;
-  --font-size-web-caption: 12px;
-  --font-size-web-overline: 10px;
-
-  /* Typography - Font Weight */
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-
-  /* Typography - Line Height (KR) */
-  --line-height-kr-tight: 1.3;
-  --line-height-kr-normal: 1.5;
-  --line-height-kr-relaxed: 1.7;
-
-  /* Typography - Line Height (EN) */
-  --line-height-en-tight: 1.2;
-  --line-height-en-normal: 1.4;
-  --line-height-en-relaxed: 1.6;
-
-  /* Typography - Letter Spacing (KR) */
-  --letter-spacing-kr-tight: -0.02em;
-  --letter-spacing-kr-normal: 0;
-  --letter-spacing-kr-wide: 0.02em;
-
-  /* Typography - Letter Spacing (EN) */
-  --letter-spacing-en-tight: -0.01em;
-  --letter-spacing-en-normal: 0;
-  --letter-spacing-en-wide: 0.05em;
-
-  /* Spacing */
+  /* ================================================================
+     Spacing
+     ================================================================ */
   --spacing-0: 0;
   --spacing-1: 0.25rem;
   --spacing-2: 0.5rem;
@@ -328,4 +291,59 @@
   --spacing-16: 4rem;
   --spacing-20: 5rem;
   --spacing-24: 6rem;
+
+  /* ================================================================
+     Typography - Font Family
+     ================================================================ */
+  --font-family-kr: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-en: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* ================================================================
+     Typography - Font Size
+     ================================================================ */
+  --font-size-app-heading1: 1.75rem;
+  --font-size-app-heading2: 1.5rem;
+  --font-size-app-heading3: 1.25rem;
+  --font-size-app-body1: 1rem;
+  --font-size-app-body2: 0.875rem;
+  --font-size-app-caption: 0.75rem;
+  --font-size-app-overline: 0.625rem;
+
+  --font-size-web-display: 3.25rem;
+  --font-size-web-heading1: 2.75rem;
+  --font-size-web-heading2: 2.25rem;
+  --font-size-web-heading3: 1.75rem;
+  --font-size-web-heading4: 1.5rem;
+  --font-size-web-body1: 1.25rem;
+  --font-size-web-body2: 1rem;
+  --font-size-web-caption: 0.875rem;
+  --font-size-web-overline: 0.75rem;
+
+  /* ================================================================
+     Typography - Font Weight
+     ================================================================ */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ================================================================
+     Typography - Line Height
+     ================================================================ */
+  --line-height-kr-tight: 1.2;
+  --line-height-kr-normal: 1.5;
+  --line-height-kr-relaxed: 1.75;
+  --line-height-en-tight: 1.2;
+  --line-height-en-normal: 1.5;
+  --line-height-en-relaxed: 1.75;
+
+  /* ================================================================
+     Typography - Letter Spacing
+     ================================================================ */
+  --letter-spacing-kr-tight: -0.04em;
+  --letter-spacing-kr-normal: -0.02em;
+  --letter-spacing-kr-wide: 0;
+  --letter-spacing-en-tight: -0.02em;
+  --letter-spacing-en-normal: 0;
+  --letter-spacing-en-wide: 0.05em;
 }
