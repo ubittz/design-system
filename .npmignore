@@ -3,3 +3,7 @@ public/
 *.config.*
 *.ts
 *.tsx
+.claude/**
+!.claude/skills/**
+!.claude/agents/**
+.omc/**
