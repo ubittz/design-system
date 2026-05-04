@@ -2,46 +2,34 @@
 
 import React from 'react';
 
-import { RoundStroke, RoundSolid, DefaultStroke, DefaultSolid } from '../../../icons';
-
 import { CheckboxProps } from './types';
+import { RoundStroke, RoundSolid, DefaultStroke, DefaultSolid } from '../../../icons';
+import { cn } from '../../../utils/cn';
+
 
 const SIZE_CONFIG = {
   S: {
-    paddingY: 10,
+    paddingY: 'py-[10px]',
     iconSize: 20,
-    fontSize: 14,
-    lineHeight: '22px',
-    letterSpacing: '-0.28px',
+    fontSize: 'text-sm',
+    lineHeight: 'leading-[22px]',
+    letterSpacing: 'tracking-[-0.28px]',
   },
   M: {
-    paddingY: 12,
+    paddingY: 'py-3',
     iconSize: 24,
-    fontSize: 16,
-    lineHeight: '24px',
-    letterSpacing: '-0.32px',
+    fontSize: 'text-base',
+    lineHeight: 'leading-6',
+    letterSpacing: 'tracking-[-0.32px]',
   },
 } as const;
 
-function getCheckboxIcon(
-  shape: 'default' | 'square',
-  checked: boolean,
-  size: number,
-  color: string,
-): React.JSX.Element {
+function getCheckboxIcon(shape: 'default' | 'square', checked: boolean, size: number, color: string): React.JSX.Element {
   if (shape === 'square') {
-    return checked ? (
-      <DefaultSolid.Checkbox size={size} color={color} />
-    ) : (
-      <DefaultStroke.Sqaure size={size} color={color} />
-    );
+    return checked ? <DefaultSolid.Checkbox size={size} color={color} /> : <DefaultStroke.Sqaure size={size} color={color} />;
   }
 
-  return checked ? (
-    <RoundSolid.Checkbox size={size} color={color} />
-  ) : (
-    <RoundStroke.Sqaure size={size} color={color} />
-  );
+  return checked ? <RoundSolid.Checkbox size={size} color={color} /> : <RoundStroke.Sqaure size={size} color={color} />;
 }
 
 export function Checkbox({
@@ -58,9 +46,7 @@ export function Checkbox({
 }: CheckboxProps): React.JSX.Element {
   const config = SIZE_CONFIG[size];
 
-  const iconColor = checked
-    ? 'var(--component-input-selected-icon)'
-    : 'var(--component-input-default-icon)';
+  const iconColor = checked ? 'var(--component-input-selected-icon)' : 'var(--component-input-default-icon)';
 
   const handleClick = () => {
     if (disabled) return;
@@ -69,8 +55,13 @@ export function Checkbox({
 
   return (
     <div
-      className={className}
-      role="checkbox"
+      className={cn(
+        'flex flex-row items-center gap-2 w-full select-none',
+        config.paddingY,
+        disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer',
+        className
+      )}
+      role='checkbox'
       aria-checked={checked}
       aria-disabled={disabled}
       tabIndex={0}
@@ -81,86 +72,22 @@ export function Checkbox({
           handleClick();
         }
       }}
-      style={{
-        ...containerStyle,
-        paddingTop: config.paddingY,
-        paddingBottom: config.paddingY,
-        opacity: disabled ? 0.4 : 1,
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        ...style,
-      }}
+      style={style}
     >
-      <span style={iconWrapperStyle}>
-        {getCheckboxIcon(shape, checked, config.iconSize, iconColor)}
-      </span>
+      <span className='flex items-center justify-center shrink-0'>{getCheckboxIcon(shape, checked, config.iconSize, iconColor)}</span>
 
       {(label || caption) && (
-        <span
-          style={{
-            ...labelAreaStyle,
-            fontSize: config.fontSize,
-            lineHeight: config.lineHeight,
-            letterSpacing: config.letterSpacing,
-          }}
-        >
-          {caption && <span style={captionStyle}>[{caption}]</span>}
-          {label && <span style={labelStyle}>{label}</span>}
+        <span className={cn('flex flex-row items-center gap-1 flex-1 min-w-0 font-normal', config.fontSize, config.lineHeight, config.letterSpacing)}>
+          {caption && <span className='text-[var(--text-default-brandPrimary)] shrink-0'>[{caption}]</span>}
+          {label && <span className='text-[var(--component-input-default-text)]'>{label}</span>}
         </span>
       )}
 
       {arrow && (
-        <span style={arrowStyle}>
-          <RoundStroke.Bottom size={config.iconSize} color="var(--component-input-default-icon)" />
+        <span className='flex items-center justify-center shrink-0 ml-auto'>
+          <RoundStroke.Bottom size={config.iconSize} color='var(--component-input-default-icon)' />
         </span>
       )}
     </div>
   );
 }
-
-// ============================================================================
-// Styles
-// ============================================================================
-
-const containerStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  gap: 8,
-  width: '100%',
-  boxSizing: 'border-box',
-  userSelect: 'none',
-};
-
-const iconWrapperStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexShrink: 0,
-};
-
-const labelAreaStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  gap: 4,
-  flex: 1,
-  minWidth: 0,
-  fontWeight: 400,
-};
-
-const captionStyle: React.CSSProperties = {
-  color: 'var(--text-default-brandPrimary)',
-  flexShrink: 0,
-};
-
-const labelStyle: React.CSSProperties = {
-  color: 'var(--component-input-default-text)',
-};
-
-const arrowStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexShrink: 0,
-  marginLeft: 'auto',
-};

@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { cn } from '../../../utils/cn';
+
 export interface IconButtonProps {
   icon: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'ghost' | 'gray' | 'outline';
@@ -13,58 +15,38 @@ export interface IconButtonProps {
   style?: React.CSSProperties;
 }
 
-const SIZE_MAP = {
-  xs: { dimension: 28, iconSize: 16 },
-  s: { dimension: 32, iconSize: 16 },
-  m: { dimension: 40, iconSize: 20 },
-  l: { dimension: 48, iconSize: 20 },
-  xl: { dimension: 52, iconSize: 24 },
+const SIZE_CLASSES = {
+  xs: 'w-7 h-7',
+  s: 'w-8 h-8',
+  m: 'w-10 h-10',
+  l: 'w-12 h-12',
+  xl: 'w-[52px] h-[52px]',
 } as const;
 
-function getVariantStyle(
-  variant: NonNullable<IconButtonProps['variant']>,
-  disabled: boolean,
-): React.CSSProperties {
+const ICON_SIZE_CLASSES = {
+  xs: 'w-4 h-4',
+  s: 'w-4 h-4',
+  m: 'w-5 h-5',
+  l: 'w-5 h-5',
+  xl: 'w-6 h-6',
+} as const;
+
+function getVariantClasses(variant: NonNullable<IconButtonProps['variant']>, disabled: boolean): string {
   if (disabled) {
-    return {
-      background: 'var(--component-button-disabled-background)',
-      color: 'var(--component-button-disabled-icon)',
-      border: 'none',
-      cursor: 'not-allowed',
-    };
+    return 'bg-[var(--component-button-disabled-background)] text-[var(--component-button-disabled-icon)] border-0 cursor-not-allowed';
   }
 
   switch (variant) {
     case 'primary':
-      return {
-        background: 'var(--component-button-primary-background)',
-        color: 'var(--component-button-primary-icon)',
-        border: 'none',
-      };
+      return 'bg-[var(--component-button-primary-background)] text-[var(--component-button-primary-icon)] border-0';
     case 'secondary':
-      return {
-        background: 'var(--component-button-secondary-background)',
-        color: 'var(--component-button-secondary-icon)',
-        border: 'none',
-      };
+      return 'bg-[var(--component-button-secondary-background)] text-[var(--component-button-secondary-icon)] border-0';
     case 'ghost':
-      return {
-        background: 'transparent',
-        color: 'var(--component-button-ghost-icon)',
-        border: '1px solid var(--component-button-ghost-border)',
-      };
+      return 'bg-transparent text-[var(--component-button-ghost-icon)] border border-[var(--component-button-ghost-border)]';
     case 'gray':
-      return {
-        background: 'var(--component-button-gray-background)',
-        color: 'var(--component-button-gray-icon)',
-        border: 'none',
-      };
+      return 'bg-[var(--component-button-gray-background)] text-[var(--component-button-gray-icon)] border-0';
     case 'outline':
-      return {
-        background: 'transparent',
-        color: 'var(--component-button-outline-icon)',
-        border: '1px solid var(--component-button-outline-border)',
-      };
+      return 'bg-transparent text-[var(--component-button-outline-icon)] border border-[var(--component-button-outline-border)]';
   }
 }
 
@@ -78,41 +60,22 @@ export function IconButton({
   className,
   style,
 }: IconButtonProps): React.JSX.Element {
-  const sizeSpec = SIZE_MAP[size];
-  const variantStyle = getVariantStyle(variant, disabled);
-
   return (
     <button
-      type="button"
+      type='button'
       disabled={disabled}
       onClick={disabled ? undefined : onClick}
       aria-label={ariaLabel}
-      className={className}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: sizeSpec.dimension,
-        height: sizeSpec.dimension,
-        borderRadius: 999,
-        padding: 0,
-        boxSizing: 'border-box',
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        ...variantStyle,
-        ...style,
-      }}
+      className={cn(
+        'inline-flex items-center justify-center rounded-full p-0',
+        SIZE_CLASSES[size],
+        getVariantClasses(variant, disabled),
+        !disabled && 'cursor-pointer',
+        className
+      )}
+      style={style}
     >
-      <span
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: sizeSpec.iconSize,
-          height: sizeSpec.iconSize,
-        }}
-      >
-        {icon}
-      </span>
+      <span className={cn('inline-flex items-center justify-center', ICON_SIZE_CLASSES[size])}>{icon}</span>
     </button>
   );
 }

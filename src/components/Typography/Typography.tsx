@@ -4,9 +4,9 @@ import React from 'react';
 
 import { useDesignSystem } from '../../core/DesignSystemProvider';
 import { mobileTypography, webTypography, type TypographyStyle } from '../../tokens/typography';
+import { cn } from '../../utils/cn';
 
 export interface TypographyProps {
-  /** Typography variant */
   variant:
     | 'h1'
     | 'h2'
@@ -25,31 +25,19 @@ export interface TypographyProps {
     | 'button1'
     | 'button2'
     | 'button3';
-  /** Text content */
   children: React.ReactNode;
-  /** Language (kr or en) - defaults to context defaultLang */
   lang?: 'kr' | 'en';
-  /** Text color */
   color?: string;
-  /** Text alignment */
   align?: 'left' | 'center' | 'right' | 'justify';
-  /** HTML tag to render */
   as?: React.ElementType;
-  /** Additional className */
   className?: string;
-  /** Additional styles */
   style?: React.CSSProperties;
 }
 
-const getTypographyStyle = (
-  variant: TypographyProps['variant'],
-  lang: 'kr' | 'en',
-  platform: 'web' | 'mobile'
-): TypographyStyle => {
+const getTypographyStyle = (variant: TypographyProps['variant'], lang: 'kr' | 'en', platform: 'web' | 'mobile'): TypographyStyle => {
   const typography = platform === 'web' ? webTypography : mobileTypography;
   const langTypography = typography[lang];
 
-  // Variant를 카테고리와 스타일로 분리
   const titleVariants = ['h1', 'h2', 'h3', 'h4', 'subtitle1', 'subtitle2', 'subtitle3'];
   const bodyVariants = ['body1', 'body2', 'body3', 'body4', 'caption', 'caption1', 'caption2'];
   const buttonVariants = ['button1', 'button2', 'button3'];
@@ -65,9 +53,15 @@ const getTypographyStyle = (
     return (langTypography.button as any)[variant];
   }
 
-  // Fallback
   return langTypography.body.body3 || langTypography.body.body1;
 };
+
+const ALIGN_CLASSES = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+  justify: 'text-justify',
+} as const;
 
 const getDefaultTag = (variant: TypographyProps['variant']): React.ElementType => {
   if (variant.startsWith('h')) return variant as 'h1' | 'h2' | 'h3' | 'h4';
@@ -77,37 +71,26 @@ const getDefaultTag = (variant: TypographyProps['variant']): React.ElementType =
   return 'p';
 };
 
-export const Typography: React.FC<TypographyProps> = ({
-  variant,
-  children,
-  lang,
-  color,
-  align = 'left',
-  as,
-  className,
-  style,
-}) => {
+export const Typography: React.FC<TypographyProps> = ({ variant, children, lang, color, align = 'left', as, className, style }) => {
   const { platform, defaultLang } = useDesignSystem();
   const effectiveLang = lang || defaultLang;
-  // 'app' platform을 'mobile'로 매핑
   const effectivePlatform: 'web' | 'mobile' = platform === 'app' ? 'mobile' : platform;
   const typographyStyle = getTypographyStyle(variant, effectiveLang, effectivePlatform);
   const Component = as || getDefaultTag(variant);
 
-  const combinedStyle: React.CSSProperties = {
-    fontFamily: typographyStyle.fontFamily,
-    fontSize: typographyStyle.fontSize,
-    fontWeight: typographyStyle.fontWeight,
-    lineHeight: typographyStyle.lineHeight,
-    letterSpacing: typographyStyle.letterSpacing,
-    textAlign: align,
-    color: color,
-    margin: 0,
-    ...style,
-  };
-
   return (
-    <Component className={className} style={combinedStyle}>
+    <Component
+      className={cn('m-0', ALIGN_CLASSES[align], className)}
+      style={{
+        fontFamily: typographyStyle.fontFamily,
+        fontSize: typographyStyle.fontSize,
+        fontWeight: typographyStyle.fontWeight,
+        lineHeight: typographyStyle.lineHeight,
+        letterSpacing: typographyStyle.letterSpacing,
+        color: color,
+        ...style,
+      }}
+    >
       {children}
     </Component>
   );

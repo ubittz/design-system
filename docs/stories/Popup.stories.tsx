@@ -1,7 +1,9 @@
 import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
-import { Popup, PopupProvider, usePopup } from '../../src/components/app/Popup';
+
 import { Button } from '../../src/components/app/Button';
+import { Popup, PopupProvider, usePopup } from '../../src/components/app/Popup';
 
 const meta = {
   title: 'Components/App/Popup',

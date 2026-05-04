@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react';
+
 import { DesignSystemProvider } from '../../src/core/DesignSystemProvider';
 import '../../src/styles/index.css';
 

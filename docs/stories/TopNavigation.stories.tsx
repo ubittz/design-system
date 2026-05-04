@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { TopNavigation } from '../../src/components/app/TopNavigation';
@@ -32,7 +31,7 @@ const PhoneFrame: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 const IconButton: React.FC<{ children: React.ReactNode; onClick?: () => void }> = ({ children, onClick }) => (
   <button
-    type="button"
+    type='button'
     onClick={onClick}
     style={{
       display: 'flex',
@@ -65,7 +64,7 @@ export const BackWithTitle: Story = {
             <RoundStroke.Left size={24} />
           </IconButton>
         }
-        title="페이지 타이틀"
+        title='페이지 타이틀'
       />
     </PhoneFrame>
   ),
@@ -81,7 +80,7 @@ export const BackWithTitleAndActions: Story = {
             <RoundStroke.Left size={24} />
           </IconButton>
         }
-        title="상품 상세"
+        title='상품 상세'
         right={
           <div style={{ display: 'flex', gap: 16 }}>
             <IconButton>
@@ -127,7 +126,7 @@ export const CloseAction: Story = {
   render: () => (
     <PhoneFrame>
       <TopNavigation
-        title="필터"
+        title='필터'
         right={
           <IconButton>
             <RoundStroke.Cancel size={24} />
@@ -194,7 +193,7 @@ export const AllVariants: Story = {
                 <RoundStroke.Left size={24} />
               </IconButton>
             }
-            title="페이지 타이틀"
+            title='페이지 타이틀'
           />
         </div>
       </div>
@@ -208,7 +207,7 @@ export const AllVariants: Story = {
                 <RoundStroke.Left size={24} />
               </IconButton>
             }
-            title="상품 상세"
+            title='상품 상세'
             right={
               <div style={{ display: 'flex', gap: 16 }}>
                 <IconButton>
@@ -250,7 +249,7 @@ export const AllVariants: Story = {
         <h3 style={{ fontSize: 14, color: '#667085', marginBottom: 8 }}>Title + Close</h3>
         <div style={{ width: 375, border: '1px solid #E1E4E8', borderRadius: 8, overflow: 'hidden' }}>
           <TopNavigation
-            title="필터"
+            title='필터'
             right={
               <IconButton>
                 <RoundStroke.Cancel size={24} />

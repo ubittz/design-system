@@ -2,8 +2,8 @@
 
 import React, { useState, useCallback, useRef } from 'react';
 
+import { cn } from '../../../utils/cn';
 import { FormGroup, useFormGroupProps } from '../FormGroup';
-
 import { TextFieldProps } from './types';
 
 function extractDigits(value: string): string {
@@ -27,14 +27,8 @@ function applyFormat(digits: string, format: string): string {
   return result;
 }
 
-export function TextField({
-  shape = 'default',
-  unit,
-  format,
-  ...props
-}: TextFieldProps): React.JSX.Element {
-  const { formGroupProps, className, style, onFocus, onBlur, onChange, inputMode, ...inputProps } =
-    useFormGroupProps(props);
+export function TextField({ shape = 'default', unit, format, ...props }: TextFieldProps): React.JSX.Element {
+  const { formGroupProps, className, style, onFocus, onBlur, onChange, inputMode, ...inputProps } = useFormGroupProps(props);
 
   const [focused, setFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -46,7 +40,7 @@ export function TextField({
       setFocused(true);
       onFocus?.(e);
     },
-    [onFocus],
+    [onFocus]
   );
 
   const handleBlur = useCallback(
@@ -54,7 +48,7 @@ export function TextField({
       setFocused(false);
       onBlur?.(e);
     },
-    [onBlur],
+    [onBlur]
   );
 
   const handleChange = useCallback(
@@ -71,10 +65,10 @@ export function TextField({
       }
       onChange?.(e);
     },
-    [format, onChange],
+    [format, onChange]
   );
 
-  const resolvedInputMode = format ? inputMode ?? 'numeric' : inputMode;
+  const resolvedInputMode = format ? (inputMode ?? 'numeric') : inputMode;
 
   const getBorderColor = () => {
     if (isDisabled) return 'var(--component-input-default-border)';
@@ -83,60 +77,26 @@ export function TextField({
     return 'var(--component-input-default-border)';
   };
 
-  const containerStyle: React.CSSProperties =
-    shape === 'line'
-      ? {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          width: '100%',
-          height: 40,
-          padding: 8,
-          borderBottom: `1px solid ${getBorderColor()}`,
-          background: isDisabled ? 'var(--component-input-disabled-background)' : 'transparent',
-          boxSizing: 'border-box',
-          transition: 'border-color 0.2s',
-        }
-      : {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          width: '100%',
-          height: 40,
-          padding: '0 12px',
-          border: `1px solid ${getBorderColor()}`,
-          borderRadius: 4,
-          background: isDisabled
-            ? 'var(--component-input-disabled-background)'
-            : 'var(--component-input-default-background)',
-          boxSizing: 'border-box',
-          transition: 'border-color 0.2s',
-        };
-
-  const inputStyle: React.CSSProperties = {
-    flex: 1,
-    width: '100%',
-    minWidth: 0,
-    border: 'none',
-    outline: 'none',
-    background: 'transparent',
-    padding: 0,
-    fontSize: 14,
-    fontWeight: 400,
-    lineHeight: '22px',
-    letterSpacing: '-0.02em',
-    color: isDisabled
-      ? 'var(--component-input-disabled-text)'
-      : 'var(--component-input-default-text)',
-  };
-
   return (
     <FormGroup className={className} style={style} {...formGroupProps}>
-      <div style={containerStyle}>
+      <div
+        className={cn(
+          'flex items-center gap-2 w-full h-10 transition-[border-color] duration-200',
+          shape === 'line' ? 'p-2' : 'px-3 rounded',
+          isDisabled && 'bg-[var(--component-input-disabled-background)]',
+          !isDisabled && shape !== 'line' && 'bg-[var(--component-input-default-background)]',
+          !isDisabled && shape === 'line' && 'bg-transparent'
+        )}
+        style={{
+          ...(shape === 'line' ? { borderBottom: `1px solid ${getBorderColor()}` } : { border: `1px solid ${getBorderColor()}` }),
+        }}
+      >
         <input
           ref={inputRef}
-          className="ds-textfield"
-          style={inputStyle}
+          className={cn(
+            'ds-textfield flex-1 w-full min-w-0 border-0 outline-none bg-transparent p-0 text-sm font-normal leading-[22px] tracking-[-0.02em]',
+            isDisabled ? 'text-[var(--component-input-disabled-text)]' : 'text-[var(--component-input-default-text)]'
+          )}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
@@ -145,16 +105,10 @@ export function TextField({
         />
         {unit && (
           <span
-            style={{
-              flexShrink: 0,
-              fontSize: 14,
-              fontWeight: 400,
-              lineHeight: '22px',
-              letterSpacing: '-0.02em',
-              color: isDisabled
-                ? 'var(--component-input-disabled-text)'
-                : 'var(--component-input-default-text)',
-            }}
+            className={cn(
+              'shrink-0 text-sm font-normal leading-[22px] tracking-[-0.02em]',
+              isDisabled ? 'text-[var(--component-input-disabled-text)]' : 'text-[var(--component-input-default-text)]'
+            )}
           >
             {unit}
           </span>

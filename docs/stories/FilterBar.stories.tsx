@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { FilterBar } from '../../src/components/app/FilterBar';
 
 const meta = {

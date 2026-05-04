@@ -39,11 +39,7 @@ export function getCalendarDays(year: number, month: number): CalendarDay[] {
 }
 
 export function isSameDay(a: Date, b: Date): boolean {
-  return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
-  );
+  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 }
 
 export function isInRange(date: Date, start: Date, end: Date): boolean {

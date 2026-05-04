@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+
 import { createPortal } from 'react-dom';
 
 import { RoundStroke } from '../../../icons';
+import { cn } from '../../../utils/cn';
 import { Calendar } from '../Calendar';
 import { FormGroup, useFormGroupProps } from '../FormGroup';
-
 import { PickerProps } from './types';
 
 const PANEL_GAP = 4;
@@ -23,15 +24,7 @@ function defaultFormatRange(range: [Date, Date]): string {
 }
 
 export function Picker(props: PickerProps): React.JSX.Element {
-  const {
-    formGroupProps,
-    shape = 'default',
-    placeholder,
-    disabled = false,
-    className,
-    style,
-    ...rest
-  } = useFormGroupProps(props);
+  const { formGroupProps, shape = 'default', placeholder, disabled = false, className, style, ...rest } = useFormGroupProps(props);
 
   const mode = (rest as { mode?: string }).mode ?? 'single';
   const value = rest.value;
@@ -55,7 +48,6 @@ export function Picker(props: PickerProps): React.JSX.Element {
   const updatePosition = useCallback(() => {
     if (!triggerRef.current) return;
     const rect = triggerRef.current.getBoundingClientRect();
-    // Calendar is ~480px tall, estimate for flip check
     const panelHeight = 480;
     const spaceBelow = window.innerHeight - rect.bottom - PANEL_GAP;
     const spaceAbove = rect.top - PANEL_GAP;
@@ -68,15 +60,11 @@ export function Picker(props: PickerProps): React.JSX.Element {
     });
   }, []);
 
-  // Close on outside click
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
       const target = e.target as Node;
-      if (
-        triggerRef.current && !triggerRef.current.contains(target) &&
-        panelRef.current && !panelRef.current.contains(target)
-      ) {
+      if (triggerRef.current && !triggerRef.current.contains(target) && panelRef.current && !panelRef.current.contains(target)) {
         setOpen(false);
       }
     };
@@ -84,7 +72,6 @@ export function Picker(props: PickerProps): React.JSX.Element {
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  // Close on external scroll / resize
   useEffect(() => {
     if (!open) return;
     const handleScroll = (e: Event) => {
@@ -112,9 +99,7 @@ export function Picker(props: PickerProps): React.JSX.Element {
       return formatDate ? formatDate(value) : defaultFormatDate(value);
     }
     if (mode === 'range' && Array.isArray(value)) {
-      return formatRange
-        ? formatRange(value as [Date, Date])
-        : defaultFormatRange(value as [Date, Date]);
+      return formatRange ? formatRange(value as [Date, Date]) : defaultFormatRange(value as [Date, Date]);
     }
     return null;
   };
@@ -128,48 +113,13 @@ export function Picker(props: PickerProps): React.JSX.Element {
     return 'var(--component-input-default-border)';
   };
 
-  const triggerStyle: React.CSSProperties =
-    shape === 'line'
-      ? {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          width: '100%',
-          height: 42,
-          padding: '10px 8px',
-          border: 'none',
-          borderBottom: `1px solid ${getBorderColor()}`,
-          background: disabled ? 'var(--component-input-disabled-background)' : 'transparent',
-          boxSizing: 'border-box',
-          cursor: disabled ? 'not-allowed' : 'pointer',
-          transition: 'border-color 0.2s',
-        }
-      : {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          width: '100%',
-          height: 40,
-          padding: '8px 12px',
-          border: `1px solid ${getBorderColor()}`,
-          borderRadius: 4,
-          background: disabled
-            ? 'var(--component-input-disabled-background)'
-            : 'var(--component-input-default-background)',
-          boxSizing: 'border-box',
-          cursor: disabled ? 'not-allowed' : 'pointer',
-          transition: 'border-color 0.2s',
-        };
-
   const textColor = disabled
     ? 'var(--component-input-disabled-text)'
     : displayText
       ? 'var(--component-input-default-text)'
       : 'var(--component-input-default-placeholder)';
 
-  const iconColor = disabled
-    ? 'var(--component-input-disabled-icon)'
-    : 'var(--component-input-default-icon)';
+  const iconColor = disabled ? 'var(--component-input-disabled-icon)' : 'var(--component-input-default-icon)';
 
   const handleCalendarChange = useCallback(
     (dateOrRange: Date | [Date, Date] | null) => {
@@ -177,70 +127,52 @@ export function Picker(props: PickerProps): React.JSX.Element {
         (onChange as ((date: Date) => void) | undefined)?.(dateOrRange as Date);
         setOpen(false);
       } else {
-        (onChange as ((range: [Date, Date] | null) => void) | undefined)?.(
-          dateOrRange as [Date, Date] | null,
-        );
+        (onChange as ((range: [Date, Date] | null) => void) | undefined)?.(dateOrRange as [Date, Date] | null);
         if (dateOrRange) setOpen(false);
       }
     },
-    [mode, onChange],
+    [mode, onChange]
   );
 
   const panelStyle: React.CSSProperties = {
     position: 'fixed',
     left: panelPos.left,
     zIndex: 9999,
-    ...(panelPos.direction === 'up'
-      ? { bottom: window.innerHeight - panelPos.top }
-      : { top: panelPos.top }),
+    ...(panelPos.direction === 'up' ? { bottom: window.innerHeight - panelPos.top } : { top: panelPos.top }),
   };
 
   return (
     <FormGroup className={className} style={style} {...formGroupProps}>
-      <div style={{ position: 'relative', width: '100%' }}>
-        <button ref={triggerRef} type="button" onClick={handleToggle} disabled={disabled} style={triggerStyle}>
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 20,
-              height: 20,
-              flexShrink: 0,
-              color: iconColor,
-            }}
-          >
+      <div className='relative w-full'>
+        <button
+          ref={triggerRef}
+          type='button'
+          onClick={handleToggle}
+          disabled={disabled}
+          className={cn(
+            'flex items-center gap-2 w-full transition-[border-color] duration-200',
+            shape === 'line' ? 'h-[42px] px-2 py-[10px] border-0' : 'h-10 px-3 py-2 rounded',
+            disabled ? 'cursor-not-allowed' : 'cursor-pointer',
+            disabled && 'bg-[var(--component-input-disabled-background)]',
+            !disabled && shape === 'line' && 'bg-transparent',
+            !disabled && shape !== 'line' && 'bg-[var(--component-input-default-background)]'
+          )}
+          style={{
+            ...(shape === 'line' ? { borderBottom: `1px solid ${getBorderColor()}` } : { border: `1px solid ${getBorderColor()}` }),
+          }}
+        >
+          <span className='inline-flex items-center justify-center w-5 h-5 shrink-0' style={{ color: iconColor }}>
             <RoundStroke.Calendar size={20} />
           </span>
           <span
-            style={{
-              flex: 1,
-              minWidth: 0,
-              textAlign: 'left',
-              fontSize: 14,
-              fontWeight: 400,
-              lineHeight: '22px',
-              letterSpacing: '-0.28px',
-              color: textColor,
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
+            className='flex-1 min-w-0 text-left text-sm font-normal leading-[22px] tracking-[-0.28px] whitespace-nowrap overflow-hidden text-ellipsis'
+            style={{ color: textColor }}
           >
-            {displayText ?? (placeholder ?? '')}
+            {displayText ?? placeholder ?? ''}
           </span>
           <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 20,
-              height: 20,
-              flexShrink: 0,
-              color: iconColor,
-              transform: open ? 'rotate(180deg)' : undefined,
-              transition: 'transform 0.2s',
-            }}
+            className='inline-flex items-center justify-center w-5 h-5 shrink-0 transition-transform duration-200'
+            style={{ color: iconColor, transform: open ? 'rotate(180deg)' : undefined }}
           >
             <RoundStroke.Bottom size={20} />
           </span>
@@ -251,7 +183,7 @@ export function Picker(props: PickerProps): React.JSX.Element {
             <div ref={panelRef} style={panelStyle}>
               {mode === 'single' ? (
                 <Calendar
-                  mode="single"
+                  mode='single'
                   value={(value as Date | null) ?? null}
                   onChange={handleCalendarChange as (date: Date) => void}
                   minDate={minDate}
@@ -259,7 +191,7 @@ export function Picker(props: PickerProps): React.JSX.Element {
                 />
               ) : (
                 <Calendar
-                  mode="range"
+                  mode='range'
                   value={(value as [Date, Date] | null) ?? null}
                   onChange={handleCalendarChange as (range: [Date, Date] | null) => void}
                   minDate={minDate}
@@ -267,7 +199,7 @@ export function Picker(props: PickerProps): React.JSX.Element {
                 />
               )}
             </div>,
-            document.body,
+            document.body
           )}
       </div>
     </FormGroup>

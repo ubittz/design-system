@@ -2,8 +2,8 @@
 
 import React, { useState, useCallback } from 'react';
 
+import { cn } from '../../../utils/cn';
 import { FormGroup, useFormGroupProps } from '../FormGroup';
-
 import { TextAreaProps } from './types';
 
 export function TextArea({ shape = 'default', ...props }: TextAreaProps): React.JSX.Element {
@@ -18,7 +18,7 @@ export function TextArea({ shape = 'default', ...props }: TextAreaProps): React.
       setFocused(true);
       onFocus?.(e);
     },
-    [onFocus],
+    [onFocus]
   );
 
   const handleBlur = useCallback(
@@ -26,7 +26,7 @@ export function TextArea({ shape = 'default', ...props }: TextAreaProps): React.
       setFocused(false);
       onBlur?.(e);
     },
-    [onBlur],
+    [onBlur]
   );
 
   const getBorderColor = () => {
@@ -36,46 +36,21 @@ export function TextArea({ shape = 'default', ...props }: TextAreaProps): React.
     return 'var(--component-input-default-border)';
   };
 
-  const containerStyle: React.CSSProperties = {
-    display: 'flex',
-    width: '100%',
-    height: 140,
-    padding: '8px 12px',
-    border: `1px solid ${getBorderColor()}`,
-    borderRadius: shape === 'square' ? 0 : 4,
-    background: isDisabled
-      ? 'var(--component-input-disabled-background)'
-      : 'var(--component-input-default-background)',
-    boxSizing: 'border-box',
-    transition: 'border-color 0.2s',
-  };
-
-  const textareaStyle: React.CSSProperties = {
-    flex: 1,
-    width: '100%',
-    minWidth: 0,
-    height: '100%',
-    border: 'none',
-    outline: 'none',
-    background: 'transparent',
-    padding: 0,
-    resize: 'none',
-    fontSize: 14,
-    fontWeight: 400,
-    lineHeight: '22px',
-    letterSpacing: '-0.02em',
-    fontFamily: 'inherit',
-    color: isDisabled
-      ? 'var(--component-input-disabled-text)'
-      : 'var(--component-input-default-text)',
-  };
-
   return (
     <FormGroup className={className} style={style} {...formGroupProps}>
-      <div style={containerStyle}>
+      <div
+        className={cn(
+          'flex w-full h-[140px] py-2 px-3 transition-[border-color] duration-200',
+          shape === 'square' ? 'rounded-none' : 'rounded',
+          isDisabled ? 'bg-[var(--component-input-disabled-background)]' : 'bg-[var(--component-input-default-background)]'
+        )}
+        style={{ border: `1px solid ${getBorderColor()}` }}
+      >
         <textarea
-          className="ds-textfield"
-          style={textareaStyle}
+          className={cn(
+            'ds-textfield flex-1 w-full min-w-0 h-full border-0 outline-none bg-transparent p-0 resize-none text-sm font-normal leading-[22px] tracking-[-0.02em] font-[inherit]',
+            isDisabled ? 'text-[var(--component-input-disabled-text)]' : 'text-[var(--component-input-default-text)]'
+          )}
           onFocus={handleFocus}
           onBlur={handleBlur}
           {...textareaProps}

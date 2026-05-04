@@ -2,20 +2,12 @@
 
 import React, { useState, useCallback } from 'react';
 
-import { Search as SearchIcon } from '../../../icons/round/stroke/Search';
-
 import { SearchProps } from './types';
+import { Search as SearchIcon } from '../../../icons/round/stroke/Search';
+import { cn } from '../../../utils/cn';
 
-export function Search({
-  className,
-  style,
-  onFocus,
-  onBlur,
-  onSearch,
-  onKeyDown,
-  disabled,
-  ...inputProps
-}: SearchProps): React.JSX.Element {
+
+export function Search({ className, style, onFocus, onBlur, onSearch, onKeyDown, disabled, ...inputProps }: SearchProps): React.JSX.Element {
   const [focused, setFocused] = useState(false);
 
   const handleFocus = useCallback(
@@ -23,7 +15,7 @@ export function Search({
       setFocused(true);
       onFocus?.(e);
     },
-    [onFocus],
+    [onFocus]
   );
 
   const handleBlur = useCallback(
@@ -31,7 +23,7 @@ export function Search({
       setFocused(false);
       onBlur?.(e);
     },
-    [onBlur],
+    [onBlur]
   );
 
   const handleKeyDown = useCallback(
@@ -41,7 +33,7 @@ export function Search({
       }
       onKeyDown?.(e);
     },
-    [onSearch, onKeyDown],
+    [onSearch, onKeyDown]
   );
 
   const handleIconClick = useCallback(() => {
@@ -56,42 +48,17 @@ export function Search({
     return 'var(--component-input-default-border)';
   };
 
-  const containerStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 12,
-    width: '100%',
-    height: 40,
-    padding: '8px 16px',
-    border: `1px solid ${getBorderColor()}`,
-    borderRadius: 4,
-    background: 'var(--component-input-default-background)',
-    boxSizing: 'border-box',
-    transition: 'border-color 0.2s',
-    ...style,
-  };
-
-  const inputStyle: React.CSSProperties = {
-    flex: 1,
-    width: '100%',
-    minWidth: 0,
-    border: 'none',
-    outline: 'none',
-    background: 'transparent',
-    padding: 0,
-    fontSize: 14,
-    fontWeight: 400,
-    lineHeight: '22px',
-    letterSpacing: '-0.02em',
-    color: 'var(--component-input-default-text)',
-  };
-
   return (
-    <div className={className} style={containerStyle}>
+    <div
+      className={cn(
+        'flex items-center gap-3 w-full h-10 px-4 py-2 rounded bg-[var(--component-input-default-background)] transition-[border-color] duration-200',
+        className
+      )}
+      style={{ border: `1px solid ${getBorderColor()}`, ...style }}
+    >
       <input
-        className="ds-textfield ds-search-input"
-        style={inputStyle}
-        type="text"
+        className='ds-textfield ds-search-input flex-1 w-full min-w-0 border-0 outline-none bg-transparent p-0 text-sm font-normal leading-[22px] tracking-[-0.02em] text-[var(--component-input-default-text)]'
+        type='text'
         disabled={disabled}
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -100,7 +67,7 @@ export function Search({
       />
       <SearchIcon
         size={24}
-        color="var(--component-input-default-icon)"
+        color='var(--component-input-default-icon)'
         style={{ flexShrink: 0, cursor: disabled ? 'default' : 'pointer' }}
         onClick={handleIconClick}
       />

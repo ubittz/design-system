@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { Calendar } from '../../src/components/app/Calendar';
 
 const meta = {

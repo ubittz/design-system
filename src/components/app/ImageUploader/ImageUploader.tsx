@@ -4,6 +4,7 @@ import React, { useCallback, useRef } from 'react';
 
 import { ImageUploaderProps } from './types';
 import { RoundSolid } from '../../../icons';
+import { cn } from '../../../utils/cn';
 
 export function ImageUploader({
   value = [],
@@ -42,8 +43,6 @@ export function ImageUploader({
       }));
 
       onChange?.([...value, ...newImages]);
-
-      // Reset input so same file can be re-selected
       e.target.value = '';
     },
     [value, maxCount, onChange]
@@ -61,128 +60,44 @@ export function ImageUploader({
   const isFull = value.length >= maxCount;
 
   return (
-    <div className={className} style={{ ...containerStyle, ...style }}>
-      <input ref={inputRef} type='file' accept={accept} multiple onChange={handleFileChange} style={{ display: 'none' }} />
+    <div className={cn('flex flex-wrap items-start content-start gap-y-3 gap-x-2', className)} style={style}>
+      <input ref={inputRef} type='file' accept={accept} multiple onChange={handleFileChange} className='hidden' />
 
-      {/* Upload Button */}
       <button
         type='button'
         onClick={handleClick}
         disabled={disabled || isFull}
-        style={{
-          ...uploadButtonStyle,
-          cursor: disabled || isFull ? 'not-allowed' : 'pointer',
-          opacity: disabled ? 0.5 : 1,
-        }}
+        className={cn(
+          'flex flex-col items-center justify-center w-[76px] h-[76px] px-[22px] py-3 border border-[var(--component-input-default-border)] rounded bg-transparent shrink-0',
+          disabled || isFull ? 'cursor-not-allowed' : 'cursor-pointer',
+          disabled && 'opacity-50'
+        )}
       >
-        <span style={{ display: 'inline-flex', color: 'var(--component-input-default-icon)' }}>
+        <span className='inline-flex text-[var(--component-input-default-icon)]'>
           <RoundSolid.Camera size={24} />
         </span>
-        <span style={countTextStyle}>
+        <span className='text-[10px] font-normal leading-4 text-[#aeb1b7] text-center'>
           ({value.length}/{maxCount})
         </span>
       </button>
 
-      {/* Uploaded Files */}
       {value.map((image) => (
-        <div key={image.id} style={fileWrapperStyle}>
-          <div style={thumbnailContainerStyle}>
-            <img src={image.url} alt={image.name} style={thumbnailImageStyle} />
-            <button type='button' onClick={() => handleRemove(image.id)} style={removeButtonStyle}>
+        <div key={image.id} className='flex flex-col items-start gap-1 shrink-0'>
+          <div className='relative w-[76px] h-[76px] rounded overflow-hidden shrink-0'>
+            <img src={image.url} alt={image.name} className='w-full h-full object-cover block bg-[var(--color-gray-50,#f1f2f3)]' />
+            <button
+              type='button'
+              onClick={() => handleRemove(image.id)}
+              className='absolute top-1 right-1 w-5 h-5 p-0 border-0 bg-transparent cursor-pointer inline-flex items-center justify-center text-[#cbcfd7]'
+            >
               <RoundSolid.CircleCancel size={20} />
             </button>
           </div>
-          <span style={fileNameStyle}>{image.name}</span>
+          <span className='text-[10px] font-normal leading-4 text-[#aeb1b7] w-[76px] overflow-hidden text-ellipsis whitespace-nowrap'>
+            {image.name}
+          </span>
         </div>
       ))}
     </div>
   );
 }
-
-// ============================================================================
-// Styles
-// ============================================================================
-
-const containerStyle: React.CSSProperties = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  alignItems: 'flex-start',
-  alignContent: 'flex-start',
-  rowGap: 12,
-  columnGap: 8,
-};
-
-const uploadButtonStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: 76,
-  height: 76,
-  padding: '12px 22px',
-  border: '1px solid var(--component-input-default-border)',
-  borderRadius: 4,
-  background: 'transparent',
-  boxSizing: 'border-box',
-  flexShrink: 0,
-};
-
-const countTextStyle: React.CSSProperties = {
-  fontSize: 10,
-  fontWeight: 400,
-  lineHeight: '16px',
-  color: '#aeb1b7',
-  textAlign: 'center',
-};
-
-const fileWrapperStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  gap: 4,
-  flexShrink: 0,
-};
-
-const thumbnailContainerStyle: React.CSSProperties = {
-  position: 'relative',
-  width: 76,
-  height: 76,
-  borderRadius: 4,
-  overflow: 'hidden',
-  flexShrink: 0,
-};
-
-const thumbnailImageStyle: React.CSSProperties = {
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  display: 'block',
-  background: 'var(--color-gray-50, #f1f2f3)',
-};
-
-const removeButtonStyle: React.CSSProperties = {
-  position: 'absolute',
-  top: 4,
-  right: 4,
-  width: 20,
-  height: 20,
-  padding: 0,
-  border: 'none',
-  background: 'transparent',
-  cursor: 'pointer',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: '#cbcfd7',
-};
-
-const fileNameStyle: React.CSSProperties = {
-  fontSize: 10,
-  fontWeight: 400,
-  lineHeight: '16px',
-  color: '#aeb1b7',
-  width: 76,
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-};

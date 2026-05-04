@@ -17,9 +17,7 @@ export function resolveTokenReferences<T extends Record<string, any>>(
   const resolvedCache = new Map<string, string>();
 
   // 1단계: semantic colors 병합
-  const semanticColors = customSemanticColors
-    ? deepMerge(tokens, customSemanticColors)
-    : tokens;
+  const semanticColors = customSemanticColors ? deepMerge(tokens, customSemanticColors) : tokens;
 
   // 2단계: 모든 참조 해결
   function resolve(value: TokenValue, path: string[] = []): string | Record<string, unknown> {
@@ -121,10 +119,7 @@ function deepMerge<T extends Record<string, any>>(target: T, source: DeepPartial
  * @param prefix - CSS Variable 접두사 (기본: 'color')
  * @returns CSS Variable 문자열
  */
-export function tokensToCSSVariables(
-  tokens: Record<string, unknown> | undefined,
-  prefix: string = 'color'
-): string {
+export function tokensToCSSVariables(tokens: Record<string, unknown> | undefined, prefix: string = 'color'): string {
   if (!tokens) return '';
 
   const variables: string[] = [];

@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { SelectableOption } from '../../src/components/app/SelectableOption';
 
 const meta = {

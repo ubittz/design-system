@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+
 import { createPortal } from 'react-dom';
 
-import { RoundSolid } from '../../../icons';
-
 import { SortSelectProps } from './types';
+import { RoundSolid } from '../../../icons';
+import { cn } from '../../../utils/cn';
+
 
 const PANEL_GAP = 4;
 
@@ -22,7 +24,7 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
   const panelRef = useRef<HTMLDivElement>(null);
 
   const selectedOption = options.find((o) => o.value === value);
-  const displayLabel = selectedOption ? selectedOption.label : options[0]?.label ?? '';
+  const displayLabel = selectedOption ? selectedOption.label : (options[0]?.label ?? '');
 
   const updatePosition = useCallback(() => {
     if (!triggerRef.current) return;
@@ -46,20 +48,14 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
       onChange?.(optionValue);
       setOpen(false);
     },
-    [onChange],
+    [onChange]
   );
 
-  // Close on outside click
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
       const target = e.target as Node;
-      if (
-        triggerRef.current &&
-        !triggerRef.current.contains(target) &&
-        panelRef.current &&
-        !panelRef.current.contains(target)
-      ) {
+      if (triggerRef.current && !triggerRef.current.contains(target) && panelRef.current && !panelRef.current.contains(target)) {
         setOpen(false);
       }
     };
@@ -67,7 +63,6 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  // Close on external scroll / resize
   useEffect(() => {
     if (!open) return;
     const handleScroll = (e: Event) => {
@@ -83,55 +78,26 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
     };
   }, [open]);
 
-  const triggerStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 4,
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingLeft: 0,
-    paddingRight: 0,
-    border: 'none',
-    background: 'transparent',
-    cursor: 'pointer',
-    boxSizing: 'border-box',
-  };
-
-  const labelStyle: React.CSSProperties = {
-    fontSize: 14,
-    fontWeight: 400,
-    lineHeight: '22px',
-    letterSpacing: '-0.28px',
-    color: 'var(--semantic-text-default-tertiary)',
-    whiteSpace: 'nowrap',
-  };
-
-  const iconStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-    color: 'var(--semantic-text-default-tertiary)',
-  };
-
   const panelStyle: React.CSSProperties = {
     position: 'fixed',
     top: panelPos.top,
     left: panelPos.left,
     minWidth: panelPos.minWidth,
-    background: '#FFFFFF',
-    borderRadius: 8,
-    boxShadow: '0px 0px 10px 4px rgba(0, 0, 0, 0.05)',
-    border: '1px solid var(--semantic-border-default, #F2F4F7)',
     zIndex: 9999,
-    overflow: 'hidden',
   };
 
   return (
-    <div className={className} style={{ display: 'inline-flex', ...style }}>
-      <button ref={triggerRef} type="button" onClick={handleToggle} style={triggerStyle}>
-        <span style={labelStyle}>{displayLabel}</span>
-        <span style={iconStyle}>
+    <div className={cn('inline-flex', className)} style={style}>
+      <button
+        ref={triggerRef}
+        type='button'
+        onClick={handleToggle}
+        className='flex items-center gap-1 py-1 px-0 border-0 bg-transparent cursor-pointer'
+      >
+        <span className='text-sm font-normal leading-[22px] tracking-[-0.28px] text-[var(--semantic-text-default-tertiary)] whitespace-nowrap'>
+          {displayLabel}
+        </span>
+        <span className='inline-flex items-center justify-center shrink-0 text-[var(--semantic-text-default-tertiary)]'>
           <RoundSolid.Bottom size={16} />
         </span>
       </button>
@@ -139,13 +105,17 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
       {open &&
         options.length > 0 &&
         createPortal(
-          <div ref={panelRef} style={panelStyle}>
+          <div
+            ref={panelRef}
+            className='bg-white rounded-lg shadow-[0px_0px_10px_4px_rgba(0,0,0,0.05)] border border-[var(--semantic-border-default,#F2F4F7)] overflow-hidden'
+            style={panelStyle}
+          >
             {options.map((option) => {
               const isSelected = option.value === value;
               return (
                 <button
                   key={option.value}
-                  type="button"
+                  type='button'
                   onClick={() => handleSelect(option.value)}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.background = 'var(--semantic-background-default, #F9FAFB)';
@@ -153,23 +123,9 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.background = '#FFFFFF';
                   }}
+                  className='flex items-center w-full px-4 py-3 border-0 bg-white cursor-pointer text-sm font-normal leading-[22px] tracking-[-0.28px] text-left'
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    width: '100%',
-                    padding: '12px 16px',
-                    border: 'none',
-                    background: '#FFFFFF',
-                    cursor: 'pointer',
-                    fontSize: 14,
-                    fontWeight: 400,
-                    lineHeight: '22px',
-                    letterSpacing: '-0.28px',
-                    color: isSelected
-                      ? 'var(--component-input-selected-text)'
-                      : 'var(--semantic-text-default-tertiary)',
-                    textAlign: 'left',
-                    boxSizing: 'border-box',
+                    color: isSelected ? 'var(--component-input-selected-text)' : 'var(--semantic-text-default-tertiary)',
                   }}
                 >
                   {option.label}
@@ -177,7 +133,7 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
               );
             })}
           </div>,
-          document.body,
+          document.body
         )}
     </div>
   );

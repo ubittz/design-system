@@ -2,13 +2,14 @@
 
 import React from 'react';
 
-import { RoundStroke, RoundSolid } from '../../../icons';
-
 import { RadioButtonProps } from './types';
+import { RoundStroke, RoundSolid } from '../../../icons';
+import { cn } from '../../../utils/cn';
+
 
 const SIZE_MAP = {
-  S: { iconSize: 20, fontSize: 14, lineHeight: '22px', letterSpacing: '-0.28px' },
-  M: { iconSize: 24, fontSize: 16, lineHeight: '24px', letterSpacing: '-0.32px' },
+  S: { iconSize: 20, fontSize: 'text-sm', lineHeight: 'leading-[22px]', letterSpacing: 'tracking-[-0.28px]' },
+  M: { iconSize: 24, fontSize: 'text-base', lineHeight: 'leading-6', letterSpacing: 'tracking-[-0.32px]' },
 } as const;
 
 export function RadioButton({
@@ -38,48 +39,34 @@ export function RadioButton({
   };
 
   const IconComponent = checked ? RoundSolid.Radio : RoundStroke.Circle;
-  const iconColor = checked
-    ? 'var(--component-input-selected-icon)'
-    : 'var(--component-input-default-icon)';
+  const iconColor = checked ? 'var(--component-input-selected-icon)' : 'var(--component-input-default-icon)';
 
   return (
     <label
-      className={className}
-      style={{
-        ...containerStyle,
-        ...(disabled ? disabledStyle : {}),
-        ...style,
-      }}
+      className={cn('flex flex-row items-center gap-1 py-2 cursor-pointer', disabled && 'cursor-not-allowed opacity-40', className)}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      role="radio"
+      role='radio'
       aria-checked={checked}
       aria-disabled={disabled}
       tabIndex={disabled ? -1 : 0}
+      style={style}
     >
       <input
-        type="radio"
+        type='radio'
         name={name}
         value={value}
         checked={checked}
         disabled={disabled}
         onChange={() => onChange?.(!checked)}
-        style={hiddenInputStyle}
+        className='absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0'
+        style={{ clip: 'rect(0, 0, 0, 0)' }}
         tabIndex={-1}
       />
-      <IconComponent
-        size={sizeSpec.iconSize}
-        color={iconColor}
-        style={iconStyle}
-      />
+      <IconComponent size={sizeSpec.iconSize} color={iconColor} style={{ flexShrink: 0 }} />
       {label && (
         <span
-          style={{
-            ...labelStyle,
-            fontSize: sizeSpec.fontSize,
-            lineHeight: sizeSpec.lineHeight,
-            letterSpacing: sizeSpec.letterSpacing,
-          }}
+          className={cn('font-normal text-[var(--component-input-default-text)]', sizeSpec.fontSize, sizeSpec.lineHeight, sizeSpec.letterSpacing)}
         >
           {label}
         </span>
@@ -87,44 +74,3 @@ export function RadioButton({
     </label>
   );
 }
-
-// ============================================================================
-// Styles
-// ============================================================================
-
-const containerStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  gap: 4,
-  paddingTop: 8,
-  paddingBottom: 8,
-  cursor: 'pointer',
-  boxSizing: 'border-box',
-};
-
-const disabledStyle: React.CSSProperties = {
-  cursor: 'not-allowed',
-  opacity: 0.4,
-};
-
-const hiddenInputStyle: React.CSSProperties = {
-  position: 'absolute',
-  width: 1,
-  height: 1,
-  padding: 0,
-  margin: -1,
-  overflow: 'hidden',
-  clip: 'rect(0, 0, 0, 0)',
-  whiteSpace: 'nowrap',
-  border: 0,
-};
-
-const iconStyle: React.CSSProperties = {
-  flexShrink: 0,
-};
-
-const labelStyle: React.CSSProperties = {
-  color: 'var(--component-input-default-text)',
-  fontWeight: 400,
-};
