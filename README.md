@@ -177,31 +177,9 @@ var(--component-button-primary-background)
 
 ## Tailwind CSS 연동
 
-### 소비 프로젝트 content 설정
+디자인 시스템 컴포넌트에 필요한 Tailwind 유틸리티 CSS는 패키지에 **사전 빌드되어 포함**되어 있습니다. 컴포넌트를 import하면 CSS가 자동 로드되므로, 소비 프로젝트에 Tailwind가 설치되어 있지 않아도 컴포넌트가 정상 동작합니다.
 
-디자인 시스템 컴포넌트가 Tailwind 클래스를 사용하므로, 소비 프로젝트의 Tailwind 설정에 디자인 시스템 패키지 경로를 content에 추가해야 합니다:
-
-```js
-// tailwind.config.js (v3)
-module.exports = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@ubittz/design-system/dist/**/*.js', // 필수
-  ],
-  // ...
-};
-```
-
-```ts
-// tailwind.config.ts (v3)
-export default {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@ubittz/design-system/dist/**/*.js', // 필수
-  ],
-  // ...
-};
-```
+아래는 소비 프로젝트에서 **추가로** 디자인 토큰 기반 유틸리티 클래스를 사용하고 싶은 경우의 설정입니다.
 
 ### Tailwind v4
 

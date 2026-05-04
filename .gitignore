@@ -143,3 +143,5 @@ vite.config.ts.timestamp-*
 !.claude/skills/**
 !.claude/agents/**
 .omc/**
+# Generated Tailwind CSS
+src/styles/_generated.css
