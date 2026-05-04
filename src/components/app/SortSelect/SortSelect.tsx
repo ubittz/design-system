@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+
 import { createPortal } from 'react-dom';
 
-import { cn } from '../../../utils/cn';
-import { RoundSolid } from '../../../icons';
-
 import { SortSelectProps } from './types';
+import { RoundSolid } from '../../../icons';
+import { cn } from '../../../utils/cn';
+
 
 const PANEL_GAP = 4;
 

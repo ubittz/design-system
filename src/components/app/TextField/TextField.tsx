@@ -4,7 +4,6 @@ import React, { useState, useCallback, useRef } from 'react';
 
 import { cn } from '../../../utils/cn';
 import { FormGroup, useFormGroupProps } from '../FormGroup';
-
 import { TextFieldProps } from './types';
 
 function extractDigits(value: string): string {

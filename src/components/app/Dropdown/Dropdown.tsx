@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+
 import { createPortal } from 'react-dom';
 
-import { cn } from '../../../utils/cn';
 import { RoundStroke } from '../../../icons';
+import { cn } from '../../../utils/cn';
 import { FormGroup, useFormGroupProps } from '../FormGroup';
-
 import { DropdownProps } from './types';
 
 const PANEL_MAX_HEIGHT = 180;

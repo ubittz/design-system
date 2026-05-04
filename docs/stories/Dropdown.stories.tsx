@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { Dropdown } from '../../src/components/app/Dropdown';
 
 const meta = {

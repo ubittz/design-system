@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-import { cn } from '../../../utils/cn';
-import { RoundStroke, RoundSolid, DefaultStroke, DefaultSolid } from '../../../icons';
-
 import { CheckboxProps } from './types';
+import { RoundStroke, RoundSolid, DefaultStroke, DefaultSolid } from '../../../icons';
+import { cn } from '../../../utils/cn';
+
 
 const SIZE_CONFIG = {
   S: {

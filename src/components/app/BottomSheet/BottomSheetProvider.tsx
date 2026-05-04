@@ -2,8 +2,8 @@
 
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
-import { BottomSheetContextValue, BottomSheetOptions } from './types';
 import { BottomSheet } from './BottomSheet';
+import { BottomSheetContextValue, BottomSheetOptions } from './types';
 
 const BottomSheetContext = createContext<BottomSheetContextValue | null>(null);
 

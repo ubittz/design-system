@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-import { cn } from '../../utils/cn';
 import { useDesignSystem } from '../../core/DesignSystemProvider';
 import { mobileTypography, webTypography, type TypographyStyle } from '../../tokens/typography';
+import { cn } from '../../utils/cn';
 
 export interface TypographyProps {
   variant:

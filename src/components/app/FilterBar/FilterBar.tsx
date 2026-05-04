@@ -2,9 +2,9 @@
 
 import React from 'react';
 
+import { FilterBarProps } from './types';
 import { cn } from '../../../utils/cn';
 
-import { FilterBarProps } from './types';
 
 export function FilterBar({ options, value, onChange, className, style }: FilterBarProps): React.JSX.Element {
   return (

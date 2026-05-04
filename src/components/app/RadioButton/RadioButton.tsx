@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-import { cn } from '../../../utils/cn';
-import { RoundStroke, RoundSolid } from '../../../icons';
-
 import { RadioButtonProps } from './types';
+import { RoundStroke, RoundSolid } from '../../../icons';
+import { cn } from '../../../utils/cn';
+
 
 const SIZE_MAP = {
   S: { iconSize: 20, fontSize: 'text-sm', lineHeight: 'leading-[22px]', letterSpacing: 'tracking-[-0.28px]' },

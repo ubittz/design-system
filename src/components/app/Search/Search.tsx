@@ -2,10 +2,10 @@
 
 import React, { useState, useCallback } from 'react';
 
-import { cn } from '../../../utils/cn';
-import { Search as SearchIcon } from '../../../icons/round/stroke/Search';
-
 import { SearchProps } from './types';
+import { Search as SearchIcon } from '../../../icons/round/stroke/Search';
+import { cn } from '../../../utils/cn';
+
 
 export function Search({ className, style, onFocus, onBlur, onSearch, onKeyDown, disabled, ...inputProps }: SearchProps): React.JSX.Element {
   const [focused, setFocused] = useState(false);

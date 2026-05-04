@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { Search } from '../../src/components/app/Search';
 
 const meta = {

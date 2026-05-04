@@ -6,7 +6,8 @@ export type IconComponent = {
 };
 
 export function createIcon(svgContent: React.ReactNode, displayName: string): IconComponent {
-  const Icon: IconComponent = ({ size = 24, color, className, style, children: _, ...props }) => (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const Icon: IconComponent = ({ size = 24, color, className, style, children: _children, ...props }) => (
     <svg
       width={size}
       height={size}

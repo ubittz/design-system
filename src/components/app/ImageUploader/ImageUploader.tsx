@@ -2,9 +2,9 @@
 
 import React, { useCallback, useRef } from 'react';
 
-import { cn } from '../../../utils/cn';
 import { ImageUploaderProps } from './types';
 import { RoundSolid } from '../../../icons';
+import { cn } from '../../../utils/cn';
 
 export function ImageUploader({
   value = [],

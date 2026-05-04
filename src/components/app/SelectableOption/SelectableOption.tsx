@@ -2,9 +2,9 @@
 
 import React from 'react';
 
+import { SelectableOptionProps } from './types';
 import { cn } from '../../../utils/cn';
 
-import { SelectableOptionProps } from './types';
 
 const SIZE_CLASSES = {
   s: 'px-[14px] py-1.5 text-sm leading-5 tracking-[-0.28px]',

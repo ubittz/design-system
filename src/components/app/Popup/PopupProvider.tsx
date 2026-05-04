@@ -2,8 +2,8 @@
 
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
-import { PopupContextValue, PopupOptions } from './types';
 import { Popup } from './Popup';
+import { PopupContextValue, PopupOptions } from './types';
 
 const PopupContext = createContext<PopupContextValue | null>(null);
 

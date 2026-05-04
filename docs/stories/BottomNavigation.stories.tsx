@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { BottomNavigation } from '../../src/components/app/BottomNavigation';

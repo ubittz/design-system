@@ -2,9 +2,9 @@
 
 import React from 'react';
 
+import { ToggleProps } from './types';
 import { cn } from '../../../utils/cn';
 
-import { ToggleProps } from './types';
 
 export function Toggle({ items, activeIndex, onChange, className, style }: ToggleProps): React.JSX.Element {
   return (

@@ -1,10 +1,11 @@
 import { useState, useMemo } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
-import * as RoundStrokeIcons from '../../src/icons/round/stroke';
-import * as RoundSolidIcons from '../../src/icons/round/solid';
-import * as DefaultStrokeIcons from '../../src/icons/default/stroke';
 import * as DefaultSolidIcons from '../../src/icons/default/solid';
+import * as DefaultStrokeIcons from '../../src/icons/default/stroke';
+import * as RoundSolidIcons from '../../src/icons/round/solid';
+import * as RoundStrokeIcons from '../../src/icons/round/stroke';
 
 const meta = {
   title: 'Design Tokens/Icons',

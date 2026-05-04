@@ -4,7 +4,6 @@ import React, { useState, useCallback } from 'react';
 
 import { cn } from '../../../utils/cn';
 import { FormGroup, useFormGroupProps } from '../FormGroup';
-
 import { TextAreaProps } from './types';
 
 export function TextArea({ shape = 'default', ...props }: TextAreaProps): React.JSX.Element {
