@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react';
 
 import { DesignSystemProvider } from '../../src/core/DesignSystemProvider';
+
 import '../../src/styles/index.css';
 
 const preview: Preview = {
@@ -13,14 +14,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: [
-          'Introduction',
-          'Design Tokens',
-          ['Colors', 'Typography', 'Icons', 'Spacing'],
-          'Components',
-          ['Shared', 'App', 'Web'],
-          'AI Guide',
-        ],
+        order: ['Introduction', 'Design Tokens', ['Colors', 'Typography', 'Icons', 'Spacing'], 'Components', ['Shared', 'App', 'Web'], 'AI Guide'],
       },
     },
   },
