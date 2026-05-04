@@ -159,15 +159,7 @@ export const SystemColors: Story = {
   ),
 };
 
-const TokenReferenceItem = ({
-  name,
-  value,
-  resolvedValue,
-}: {
-  name: string;
-  value: string;
-  resolvedValue: string;
-}) => (
+const TokenReferenceItem = ({ name, value, resolvedValue }: { name: string; value: string; resolvedValue: string }) => (
   <div style={{ marginBottom: '12px', padding: '12px', backgroundColor: '#f9fafb', borderRadius: '6px' }}>
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
       <div

@@ -15,17 +15,10 @@ const defaultConfig: DesignSystemContextValue = {
 
 const DesignSystemContext = createContext<DesignSystemContextValue>(defaultConfig);
 
-export function DesignSystemProvider({
-  platform = 'web',
-  defaultLang = 'kr',
-  theme,
-  children,
-}: DesignSystemConfig & { children: React.ReactNode }) {
+export function DesignSystemProvider({ platform = 'web', defaultLang = 'kr', theme, children }: DesignSystemConfig & { children: React.ReactNode }) {
   const contextValue = useMemo(() => {
     // 1. Semantic Colors 병합 (사용자 오버라이드 적용)
-    const mergedSemanticColors = theme?.semanticColors
-      ? deepMerge(defaultSemanticColors, theme.semanticColors)
-      : defaultSemanticColors;
+    const mergedSemanticColors = theme?.semanticColors ? deepMerge(defaultSemanticColors, theme.semanticColors) : defaultSemanticColors;
 
     // 2. Semantic Colors의 참조 해결 (brand.primary.500 등)
     const resolvedSemanticColors = resolveTokenReferences(mergedSemanticColors);

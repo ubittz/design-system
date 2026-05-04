@@ -2,18 +2,20 @@
 
 import React from 'react';
 
+import { cn } from '../../../utils/cn';
+
 import { SelectableOptionProps } from './types';
 
-const SIZE_MAP = {
-  s: { paddingH: 14, paddingV: 6, fontSize: 14, lineHeight: '20px', letterSpacing: '-0.28px' },
-  m: { paddingH: 18, paddingV: 10, fontSize: 14, lineHeight: '20px', letterSpacing: '-0.28px' },
-  l: { paddingH: 18, paddingV: 6, fontSize: 16, lineHeight: '24px', letterSpacing: '-0.32px', height: 48 },
+const SIZE_CLASSES = {
+  s: 'px-[14px] py-1.5 text-sm leading-5 tracking-[-0.28px]',
+  m: 'px-[18px] py-[10px] text-sm leading-5 tracking-[-0.28px]',
+  l: 'px-[18px] py-1.5 text-base leading-6 tracking-[-0.32px] h-12',
 } as const;
 
-const SHAPE_RADIUS = {
-  default: 4,
-  round: 999,
-  square: 0,
+const SHAPE_CLASSES = {
+  default: 'rounded',
+  round: 'rounded-full',
+  square: 'rounded-none',
 } as const;
 
 export function SelectableOption({
@@ -21,42 +23,25 @@ export function SelectableOption({
   size = 'm',
   selected = false,
   children,
+  className,
   style,
   ...buttonProps
 }: SelectableOptionProps): React.JSX.Element {
-  const sizeSpec = SIZE_MAP[size];
-
-  const baseStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: `${sizeSpec.paddingV}px ${sizeSpec.paddingH}px`,
-    borderRadius: SHAPE_RADIUS[shape],
-    fontSize: sizeSpec.fontSize,
-    fontWeight: 400,
-    lineHeight: sizeSpec.lineHeight,
-    letterSpacing: sizeSpec.letterSpacing,
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    cursor: 'pointer',
-    height: 'height' in sizeSpec ? sizeSpec.height : undefined,
-    ...(selected
-      ? {
-          background: 'var(--component-input-selected-background)',
-          color: 'var(--component-input-selected-text)',
-          border: '1px solid transparent',
-        }
-      : {
-          background: 'transparent',
-          color: 'var(--component-input-default-label)',
-          border: '1px solid var(--component-input-default-border)',
-        }),
-    ...style,
-  };
-
   return (
-    <button type="button" style={baseStyle} {...buttonProps}>
+    <button
+      type='button'
+      className={cn(
+        'inline-flex items-center justify-center font-normal text-center whitespace-nowrap cursor-pointer',
+        SIZE_CLASSES[size],
+        SHAPE_CLASSES[shape],
+        selected
+          ? 'bg-[var(--component-input-selected-background)] text-[var(--component-input-selected-text)] border border-transparent'
+          : 'bg-transparent text-[var(--component-input-default-label)] border border-[var(--component-input-default-border)]',
+        className
+      )}
+      style={style}
+      {...buttonProps}
+    >
       {children}
     </button>
   );

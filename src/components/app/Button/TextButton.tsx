@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import { cn } from '../../../utils/cn';
 import { RoundStroke } from '../../../icons';
 
 export interface TextButtonProps {
@@ -13,56 +14,40 @@ export interface TextButtonProps {
   style?: React.CSSProperties;
 }
 
-const SIZE_MAP = {
-  s: { fontSize: 12, fontWeight: 500, lineHeight: '20px', iconSize: 12 },
-  m: { fontSize: 14, fontWeight: 500, lineHeight: '22px', iconSize: 16 },
-  l: { fontSize: 16, fontWeight: 500, lineHeight: '24px', iconSize: 16 },
+const SIZE_CLASSES = {
+  s: 'text-xs font-medium leading-5 tracking-[-0.02em]',
+  m: 'text-sm font-medium leading-[22px] tracking-[-0.02em]',
+  l: 'text-base font-medium leading-6 tracking-[-0.02em]',
 } as const;
 
-export function TextButton({
-  children,
-  size = 'm',
-  showArrow = false,
-  onClick,
-  className,
-  style,
-}: TextButtonProps): React.JSX.Element {
-  const sizeSpec = SIZE_MAP[size];
+const ICON_SIZE_MAP = {
+  s: 12,
+  m: 16,
+  l: 16,
+} as const;
 
+const ICON_SIZE_CLASSES = {
+  s: 'w-3 h-3',
+  m: 'w-4 h-4',
+  l: 'w-4 h-4',
+} as const;
+
+export function TextButton({ children, size = 'm', showArrow = false, onClick, className, style }: TextButtonProps): React.JSX.Element {
   return (
     <button
-      type="button"
+      type='button'
       onClick={onClick}
-      className={className}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 4,
-        padding: 0,
-        border: 'none',
-        background: 'transparent',
-        color: 'var(--component-button-text-label)',
-        fontSize: sizeSpec.fontSize,
-        fontWeight: sizeSpec.fontWeight,
-        lineHeight: sizeSpec.lineHeight,
-        letterSpacing: '-0.02em',
-        cursor: 'pointer',
-        ...style,
-      }}
+      className={cn(
+        'inline-flex items-center gap-1 p-0 border-0 bg-transparent text-[var(--component-button-text-label)] cursor-pointer',
+        SIZE_CLASSES[size],
+        className
+      )}
+      style={style}
     >
       {children}
       {showArrow && (
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: sizeSpec.iconSize,
-            height: sizeSpec.iconSize,
-            color: 'var(--component-button-text-icon)',
-          }}
-        >
-          <RoundStroke.Right size={sizeSpec.iconSize} />
+        <span className={cn('inline-flex items-center justify-center text-[var(--component-button-text-icon)]', ICON_SIZE_CLASSES[size])}>
+          <RoundStroke.Right size={ICON_SIZE_MAP[size]} />
         </span>
       )}
     </button>

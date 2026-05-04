@@ -27,7 +27,7 @@ export function BottomSheetProvider({ children }: { children: React.ReactNode })
         close();
       };
     },
-    [close],
+    [close]
   );
 
   const sheetProps = options
@@ -35,9 +35,7 @@ export function BottomSheetProvider({ children }: { children: React.ReactNode })
         ...options,
         open: true,
         onClose: wrapOnClick(options.onClose),
-        button: options.button
-          ? { ...options.button, onClick: wrapOnClick(options.button.onClick) }
-          : undefined,
+        button: options.button ? { ...options.button, onClick: wrapOnClick(options.button.onClick) } : undefined,
       }
     : null;
 

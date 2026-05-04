@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { createPortal } from 'react-dom';
 
+import { cn } from '../../../utils/cn';
 import { BottomSheetProps } from './types';
 import { FullButton } from '../Button';
 import { RoundStroke } from '../../../icons';
@@ -22,8 +23,6 @@ export function BottomSheet({
   const [animate, setAnimate] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  // Open: mount → next frame animate in
-  // Close: animate out → unmount
   useEffect(() => {
     if (open) {
       setVisible(true);
@@ -35,7 +34,6 @@ export function BottomSheet({
     return () => clearTimeout(timerRef.current);
   }, [open]);
 
-  // Prevent body scroll
   useEffect(() => {
     if (!visible) return;
     const prev = document.body.style.overflow;
@@ -51,162 +49,65 @@ export function BottomSheet({
         onClose?.();
       }
     },
-    [onClose],
+    [onClose]
   );
 
   if (!visible) return null;
 
   const hasHeader = !!title || showClose;
 
-  const {
-    label: buttonLabel,
-    variant: buttonVariant = 'primary',
-    style: buttonStyle,
-    ...buttonRest
-  } = button ?? {};
+  const { label: buttonLabel, variant: buttonVariant = 'primary', style: buttonStyle, ...buttonRest } = button ?? {};
 
   return createPortal(
     <div
-      style={{
-        ...overlayStyle,
-        opacity: animate ? 1 : 0,
-      }}
+      className='fixed inset-0 flex items-end justify-center bg-black/40 z-[9999] transition-opacity duration-300 ease-in-out'
+      style={{ opacity: animate ? 1 : 0 }}
       onClick={handleBackdropClick}
     >
       <div
-        className={className}
+        className={cn(
+          'flex flex-col w-full max-w-[480px] max-h-[90vh] rounded-t-xl bg-[var(--component-modal-background)] transition-transform duration-300 ease-in-out',
+          className
+        )}
         style={{
-          ...sheetStyle,
           transform: animate ? 'translateY(0)' : 'translateY(100%)',
           ...style,
         }}
       >
-        {/* Grabber */}
-        <div style={grabberAreaStyle}>
-          <div style={grabberBarStyle} />
+        <div className='flex items-center justify-center py-4 shrink-0'>
+          <div className='w-10 h-1 rounded-[27px] bg-[#f1f2f3]' />
         </div>
 
-        {/* Header */}
         {hasHeader && (
-          <div style={headerStyle}>
-            <div style={titleStyle}>{title}</div>
+          <div className='flex items-center h-14 px-4 py-3 shrink-0 gap-[10px]'>
+            <div className='flex-1 min-w-0 text-lg font-medium leading-[26px] tracking-[-0.36px] text-[var(--component-navigation-default-title)]'>
+              {title}
+            </div>
             {showClose && (
-              <button type="button" onClick={onClose} style={closeButtonStyle}>
+              <button
+                type='button'
+                onClick={onClose}
+                className='inline-flex items-center justify-center w-6 h-6 p-0 border-0 bg-transparent cursor-pointer shrink-0 text-[var(--component-navigation-default-iconPrimary)]'
+              >
                 <RoundStroke.Cancel size={24} />
               </button>
             )}
           </div>
         )}
 
-        {/* Content */}
-        <div style={contentStyle}>{children}</div>
+        <div className='flex-1 min-h-0 overflow-y-auto'>{children}</div>
 
-        {/* Button */}
         {button && (
-          <div style={buttonAreaStyle}>
+          <div className='px-4 py-2 shrink-0'>
             <FullButton variant={buttonVariant} {...buttonRest} style={buttonStyle}>
               {buttonLabel}
             </FullButton>
           </div>
         )}
 
-        {/* Bottom Safe Area */}
-        <div style={safeAreaStyle} />
+        <div className='h-6 shrink-0' />
       </div>
     </div>,
-    document.body,
+    document.body
   );
 }
-
-// ============================================================================
-// Styles
-// ============================================================================
-
-const overlayStyle: React.CSSProperties = {
-  position: 'fixed',
-  inset: 0,
-  display: 'flex',
-  alignItems: 'flex-end',
-  justifyContent: 'center',
-  background: 'rgba(0, 0, 0, 0.4)',
-  zIndex: 9999,
-  transition: 'opacity 0.3s ease',
-};
-
-const sheetStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-  maxWidth: 480,
-  maxHeight: '90vh',
-  borderRadius: '12px 12px 0 0',
-  background: 'var(--component-modal-background)',
-  boxSizing: 'border-box',
-  transition: 'transform 0.3s ease',
-};
-
-const grabberAreaStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '16px 0',
-  flexShrink: 0,
-};
-
-const grabberBarStyle: React.CSSProperties = {
-  width: 40,
-  height: 4,
-  borderRadius: 27,
-  background: '#f1f2f3',
-};
-
-const headerStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  height: 56,
-  padding: '12px 16px',
-  flexShrink: 0,
-  boxSizing: 'border-box',
-  gap: 10,
-};
-
-const titleStyle: React.CSSProperties = {
-  flex: 1,
-  minWidth: 0,
-  fontSize: 18,
-  fontWeight: 500,
-  lineHeight: '26px',
-  letterSpacing: '-0.36px',
-  color: 'var(--component-navigation-default-title)',
-};
-
-const closeButtonStyle: React.CSSProperties = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: 24,
-  height: 24,
-  padding: 0,
-  border: 'none',
-  background: 'transparent',
-  cursor: 'pointer',
-  flexShrink: 0,
-  color: 'var(--component-navigation-default-iconPrimary)',
-};
-
-const contentStyle: React.CSSProperties = {
-  flex: 1,
-  minHeight: 0,
-  overflowY: 'auto',
-};
-
-const buttonAreaStyle: React.CSSProperties = {
-  padding: '8px 16px',
-  flexShrink: 0,
-  boxSizing: 'border-box',
-};
-
-const safeAreaStyle: React.CSSProperties = {
-  height: 24,
-  flexShrink: 0,
-};

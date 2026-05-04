@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
+import { cn } from '../../../utils/cn';
 import { RoundStroke } from '../../../icons';
 import { FormGroup, useFormGroupProps } from '../FormGroup';
 
@@ -65,18 +66,14 @@ export function Dropdown(props: DropdownProps): React.JSX.Element {
       onChange?.(optionValue);
       setOpen(false);
     },
-    [onChange],
+    [onChange]
   );
 
-  // Close on outside click
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
       const target = e.target as Node;
-      if (
-        triggerRef.current && !triggerRef.current.contains(target) &&
-        panelRef.current && !panelRef.current.contains(target)
-      ) {
+      if (triggerRef.current && !triggerRef.current.contains(target) && panelRef.current && !panelRef.current.contains(target)) {
         setOpen(false);
       }
     };
@@ -84,7 +81,6 @@ export function Dropdown(props: DropdownProps): React.JSX.Element {
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  // Close on external scroll / resize
   useEffect(() => {
     if (!open) return;
     const handleScroll = (e: Event) => {
@@ -106,48 +102,13 @@ export function Dropdown(props: DropdownProps): React.JSX.Element {
     return 'var(--component-input-default-border)';
   };
 
-  const triggerStyle: React.CSSProperties =
-    shape === 'line'
-      ? {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          width: '100%',
-          height: 42,
-          padding: '10px 8px',
-          border: 'none',
-          borderBottom: `1px solid ${getBorderColor()}`,
-          background: disabled ? 'var(--component-input-disabled-background)' : 'transparent',
-          boxSizing: 'border-box',
-          cursor: disabled ? 'not-allowed' : 'pointer',
-          transition: 'border-color 0.2s',
-        }
-      : {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          width: '100%',
-          height: 42,
-          padding: '10px 12px',
-          border: `1px solid ${getBorderColor()}`,
-          borderRadius: 4,
-          background: disabled
-            ? 'var(--component-input-disabled-background)'
-            : 'var(--component-input-default-background)',
-          boxSizing: 'border-box',
-          cursor: disabled ? 'not-allowed' : 'pointer',
-          transition: 'border-color 0.2s',
-        };
-
   const textColor = disabled
     ? 'var(--component-input-disabled-text)'
     : selectedOption
       ? 'var(--component-input-default-text)'
       : 'var(--component-input-default-placeholder)';
 
-  const iconColor = disabled
-    ? 'var(--component-input-disabled-icon)'
-    : 'var(--component-input-default-icon)';
+  const iconColor = disabled ? 'var(--component-input-disabled-icon)' : 'var(--component-input-default-icon)';
 
   const panelStyle: React.CSSProperties = {
     position: 'fixed',
@@ -158,50 +119,45 @@ export function Dropdown(props: DropdownProps): React.JSX.Element {
     borderRadius: 4,
     boxShadow: '0px 0px 10px 4px rgba(0, 0, 0, 0.05)',
     zIndex: 9999,
-    ...(panelPos.direction === 'up'
-      ? { bottom: window.innerHeight - panelPos.top }
-      : { top: panelPos.top }),
+    ...(panelPos.direction === 'up' ? { bottom: window.innerHeight - panelPos.top } : { top: panelPos.top }),
   };
 
   return (
     <FormGroup className={className} style={style} {...formGroupProps}>
-      <div style={{ position: 'relative', width: '100%' }}>
-        <button ref={triggerRef} type="button" onClick={handleToggle} disabled={disabled} style={triggerStyle}>
+      <div className='relative w-full'>
+        <button
+          ref={triggerRef}
+          type='button'
+          onClick={handleToggle}
+          disabled={disabled}
+          className={cn(
+            'flex items-center gap-2 w-full h-[42px] transition-[border-color] duration-200',
+            shape === 'line' ? 'px-2 py-[10px] border-0' : 'px-3 py-[10px] rounded',
+            disabled ? 'cursor-not-allowed' : 'cursor-pointer',
+            disabled && 'bg-[var(--component-input-disabled-background)]',
+            !disabled && shape === 'line' && 'bg-transparent',
+            !disabled && shape !== 'line' && 'bg-[var(--component-input-default-background)]'
+          )}
+          style={{
+            ...(shape === 'line' ? { borderBottom: `1px solid ${getBorderColor()}` } : { border: `1px solid ${getBorderColor()}` }),
+          }}
+        >
           <span
-            style={{
-              flex: 1,
-              minWidth: 0,
-              textAlign: 'left',
-              fontSize: 14,
-              fontWeight: 400,
-              lineHeight: '22px',
-              letterSpacing: '-0.28px',
-              color: textColor,
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
+            className='flex-1 min-w-0 text-left text-sm font-normal leading-[22px] tracking-[-0.28px] whitespace-nowrap overflow-hidden text-ellipsis'
+            style={{ color: textColor }}
           >
             {selectedOption ? selectedOption.label : (placeholder ?? '')}
           </span>
           <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 20,
-              height: 20,
-              flexShrink: 0,
-              color: iconColor,
-              transform: open ? 'rotate(180deg)' : undefined,
-              transition: 'transform 0.2s',
-            }}
+            className='inline-flex items-center justify-center w-5 h-5 shrink-0 transition-transform duration-200'
+            style={{ color: iconColor, transform: open ? 'rotate(180deg)' : undefined }}
           >
             <RoundStroke.Bottom size={20} />
           </span>
         </button>
 
-        {open && options.length > 0 &&
+        {open &&
+          options.length > 0 &&
           createPortal(
             <div ref={panelRef} style={panelStyle}>
               {options.map((option) => {
@@ -209,25 +165,11 @@ export function Dropdown(props: DropdownProps): React.JSX.Element {
                 return (
                   <button
                     key={option.value}
-                    type="button"
+                    type='button'
                     onClick={() => handleSelect(option.value)}
+                    className='flex items-center w-full px-3 py-2 border-0 bg-[var(--component-input-default-background)] cursor-pointer text-sm font-normal leading-[22px] tracking-[-0.28px] text-left'
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      width: '100%',
-                      padding: '8px 12px',
-                      border: 'none',
-                      background: 'var(--component-input-default-background)',
-                      cursor: 'pointer',
-                      fontSize: 14,
-                      fontWeight: 400,
-                      lineHeight: '22px',
-                      letterSpacing: '-0.28px',
-                      color: isSelected
-                        ? 'var(--component-input-selected-text)'
-                        : 'var(--component-input-default-text)',
-                      textAlign: 'left',
-                      boxSizing: 'border-box',
+                      color: isSelected ? 'var(--component-input-selected-text)' : 'var(--component-input-default-text)',
                     }}
                   >
                     {option.label}
@@ -235,7 +177,7 @@ export function Dropdown(props: DropdownProps): React.JSX.Element {
                 );
               })}
             </div>,
-            document.body,
+            document.body
           )}
       </div>
     </FormGroup>

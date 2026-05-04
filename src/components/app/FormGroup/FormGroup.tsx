@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import { cn } from '../../../utils/cn';
 import { Button } from '../Button';
 
 import { FormGroupProps } from './types';
@@ -24,88 +25,32 @@ export function FormGroup({
   style,
 }: FormGroupComponentProps): React.JSX.Element {
   return (
-    <div
-      className={className}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 8,
-        width: '100%',
-        ...style,
-      }}
-    >
+    <div className={cn('flex flex-col gap-2 w-full', className)} style={style}>
       {label && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 2,
-            fontSize: 14,
-            fontWeight: 400,
-            lineHeight: '22px',
-            letterSpacing: '-0.02em',
-            color: 'var(--component-input-default-label)',
-          }}
-        >
+        <div className='flex items-center gap-0.5 text-sm font-normal leading-[22px] tracking-[-0.02em] text-[var(--component-input-default-label)]'>
           {label}
-          {required && (
-            <span style={{ color: 'var(--component-input-error-caption)' }}>*</span>
-          )}
+          {required && <span className='text-[var(--component-input-error-caption)]'>*</span>}
         </div>
       )}
 
-      <div style={{ display: 'flex', gap: 8, alignItems: 'stretch' }}>
-        <div style={{ position: 'relative', width: '100%', flex: 1 }}>
+      <div className='flex gap-2 items-stretch'>
+        <div className='relative w-full flex-1'>
           {children}
           {timerContent && (
-            <div
-              style={{
-                position: 'absolute',
-                right: 12,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                fontSize: 14,
-                fontWeight: 400,
-                lineHeight: '22px',
-                letterSpacing: '-0.02em',
-                color: 'var(--component-input-default-caption)',
-                pointerEvents: 'none',
-                zIndex: 1,
-              }}
-            >
+            <div className='absolute right-3 top-1/2 -translate-y-1/2 text-sm font-normal leading-[22px] tracking-[-0.02em] text-[var(--component-input-default-caption)] pointer-events-none z-[1]'>
               {timerContent}
             </div>
           )}
         </div>
-        {buttonProps && <Button size="m" {...buttonProps} />}
+        {buttonProps && <Button size='m' {...buttonProps} />}
       </div>
 
       {caption && !errorMessage && (
-        <div
-          style={{
-            fontSize: 12,
-            fontWeight: 400,
-            lineHeight: '20px',
-            letterSpacing: '-0.02em',
-            color: 'var(--component-input-default-caption)',
-          }}
-        >
-          {caption}
-        </div>
+        <div className='text-xs font-normal leading-5 tracking-[-0.02em] text-[var(--component-input-default-caption)]'>{caption}</div>
       )}
 
       {errorMessage && (
-        <div
-          style={{
-            fontSize: 12,
-            fontWeight: 400,
-            lineHeight: '20px',
-            letterSpacing: '-0.02em',
-            color: 'var(--component-input-error-caption)',
-          }}
-        >
-          {errorMessage}
-        </div>
+        <div className='text-xs font-normal leading-5 tracking-[-0.02em] text-[var(--component-input-error-caption)]'>{errorMessage}</div>
       )}
     </div>
   );

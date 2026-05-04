@@ -783,9 +783,9 @@ import { spacing } from '@ubittz/design-system';
 
 ## Key Patterns & Conventions
 
-### All styling is inline
+### Tailwind class-based styling
 
-Components use `React.CSSProperties` inline styles with CSS variables. No CSS modules, no Tailwind classes inside the design system. Consuming projects may use Tailwind with the provided preset.
+Components use Tailwind utility classes via a `cn()` helper for all static styles. CSS custom properties (design tokens) are referenced using Tailwind's arbitrary value syntax (e.g., `bg-[var(--component-button-primary-background)]`). Inline `style` props are only used for truly dynamic runtime values (portal positions from `getBoundingClientRect`, animation transforms, token-resolved typography). Consuming projects must include `./node_modules/@ubittz/design-system/dist/**/*.js` in their Tailwind `content` config.
 
 ### FormGroup integration
 

@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { cn } from '../../../utils/cn';
+
 export interface ButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'ghost' | 'gray' | 'outline';
@@ -16,62 +18,45 @@ export interface ButtonProps {
   style?: React.CSSProperties;
 }
 
-const SIZE_MAP = {
-  xs: { height: 28, fontSize: 12, fontWeight: 500, lineHeight: '20px', paddingH: 12, iconSize: 16, gap: 4 },
-  s: { height: 32, fontSize: 12, fontWeight: 500, lineHeight: '20px', paddingH: 16, iconSize: 16, gap: 4 },
-  m: { height: 40, fontSize: 14, fontWeight: 500, lineHeight: '22px', paddingH: 20, iconSize: 20, gap: 6 },
-  l: { height: 48, fontSize: 16, fontWeight: 500, lineHeight: '24px', paddingH: 24, iconSize: 20, gap: 6 },
-  xl: { height: 52, fontSize: 16, fontWeight: 500, lineHeight: '24px', paddingH: 32, iconSize: 24, gap: 8 },
+const SIZE_CLASSES = {
+  xs: 'h-7 px-3 gap-1 text-xs font-medium leading-5 tracking-[-0.02em]',
+  s: 'h-8 px-4 gap-1 text-xs font-medium leading-5 tracking-[-0.02em]',
+  m: 'h-10 px-5 gap-1.5 text-sm font-medium leading-[22px] tracking-[-0.02em]',
+  l: 'h-12 px-6 gap-1.5 text-base font-medium leading-6 tracking-[-0.02em]',
+  xl: 'h-[52px] px-8 gap-2 text-base font-medium leading-6 tracking-[-0.02em]',
 } as const;
 
-const SHAPE_RADIUS = {
-  default: 4,
-  round: 999,
-  square: 0,
-  'semi-round': 8,
+const ICON_SIZE_CLASSES = {
+  xs: 'w-4 h-4',
+  s: 'w-4 h-4',
+  m: 'w-5 h-5',
+  l: 'w-5 h-5',
+  xl: 'w-6 h-6',
 } as const;
 
-function getVariantStyle(variant: NonNullable<ButtonProps['variant']>, disabled: boolean): React.CSSProperties {
+const SHAPE_CLASSES = {
+  default: 'rounded',
+  round: 'rounded-full',
+  square: 'rounded-none',
+  'semi-round': 'rounded-lg',
+} as const;
+
+function getVariantClasses(variant: NonNullable<ButtonProps['variant']>, disabled: boolean): string {
   if (disabled) {
-    return {
-      background: 'var(--component-button-disabled-background)',
-      color: 'var(--component-button-disabled-label)',
-      border: 'none',
-      cursor: 'not-allowed',
-    };
+    return 'bg-[var(--component-button-disabled-background)] text-[var(--component-button-disabled-label)] border-0 cursor-not-allowed';
   }
 
   switch (variant) {
     case 'primary':
-      return {
-        background: 'var(--component-button-primary-background)',
-        color: 'var(--component-button-primary-label)',
-        border: 'none',
-      };
+      return 'bg-[var(--component-button-primary-background)] text-[var(--component-button-primary-label)] border-0';
     case 'secondary':
-      return {
-        background: 'var(--component-button-secondary-background)',
-        color: 'var(--component-button-secondary-label)',
-        border: 'none',
-      };
+      return 'bg-[var(--component-button-secondary-background)] text-[var(--component-button-secondary-label)] border-0';
     case 'ghost':
-      return {
-        background: 'transparent',
-        color: 'var(--component-button-ghost-label)',
-        border: '1px solid var(--component-button-ghost-border)',
-      };
+      return 'bg-transparent text-[var(--component-button-ghost-label)] border border-[var(--component-button-ghost-border)]';
     case 'gray':
-      return {
-        background: 'var(--component-button-gray-background)',
-        color: 'var(--component-button-gray-label)',
-        border: 'none',
-      };
+      return 'bg-[var(--component-button-gray-background)] text-[var(--component-button-gray-label)] border-0';
     case 'outline':
-      return {
-        background: 'transparent',
-        color: 'var(--component-button-outline-label)',
-        border: '1px solid var(--component-button-outline-border)',
-      };
+      return 'bg-transparent text-[var(--component-button-outline-label)] border border-[var(--component-button-outline-border)]';
   }
 }
 
@@ -105,61 +90,32 @@ export function Button({
   className,
   style,
 }: ButtonProps): React.JSX.Element {
-  const sizeSpec = SIZE_MAP[size];
-  const variantStyle = getVariantStyle(variant, disabled);
   const iconColor = getIconColor(variant, disabled);
 
   return (
     <button
-      type="button"
+      type='button'
       disabled={disabled}
       onClick={disabled ? undefined : onClick}
-      className={className}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: sizeSpec.gap,
-        height: sizeSpec.height,
-        padding: `0 ${sizeSpec.paddingH}px`,
-        borderRadius: SHAPE_RADIUS[shape],
-        fontSize: sizeSpec.fontSize,
-        fontWeight: sizeSpec.fontWeight,
-        lineHeight: sizeSpec.lineHeight,
-        letterSpacing: '-0.02em',
-        boxSizing: 'border-box',
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        width: fullWidth ? '100%' : undefined,
-        ...variantStyle,
-        ...style,
-      }}
+      className={cn(
+        'inline-flex items-center justify-center',
+        SIZE_CLASSES[size],
+        SHAPE_CLASSES[shape],
+        getVariantClasses(variant, disabled),
+        !disabled && 'cursor-pointer',
+        fullWidth && 'w-full',
+        className
+      )}
+      style={style}
     >
       {iconFront && (
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: sizeSpec.iconSize,
-            height: sizeSpec.iconSize,
-            color: iconColor,
-          }}
-        >
+        <span className={cn('inline-flex items-center justify-center', ICON_SIZE_CLASSES[size])} style={{ color: iconColor }}>
           {iconFront}
         </span>
       )}
       {children}
       {iconBack && (
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: sizeSpec.iconSize,
-            height: sizeSpec.iconSize,
-            color: iconColor,
-          }}
-        >
+        <span className={cn('inline-flex items-center justify-center', ICON_SIZE_CLASSES[size])} style={{ color: iconColor }}>
           {iconBack}
         </span>
       )}

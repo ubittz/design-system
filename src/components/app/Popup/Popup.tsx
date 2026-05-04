@@ -5,6 +5,7 @@ import React, { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import { PopupProps } from './types';
+import { cn } from '../../../utils/cn';
 import { Button } from '../Button';
 
 export function Popup({
@@ -17,7 +18,6 @@ export function Popup({
   className,
   style,
 }: PopupProps): React.JSX.Element | null {
-  // Prevent body scroll when open
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -56,22 +56,23 @@ export function Popup({
   } = cancelButton ?? {};
 
   return createPortal(
-    <div style={overlayStyle} onClick={handleBackdropClick}>
-      <div className={className} style={{ ...cardStyle, ...style }}>
-        {/* Header */}
-        <div style={headerStyle}>
-          <div style={titleStyle}>{title}</div>
-          {body && <div style={bodyStyle}>{body}</div>}
+    <div className='fixed inset-0 flex items-center justify-center bg-black/40 z-[9999]' onClick={handleBackdropClick}>
+      <div
+        className={cn('flex flex-col w-[284px] min-h-[200px] rounded-xl bg-[var(--component-modal-background)] overflow-hidden', className)}
+        style={style}
+      >
+        <div className='flex-1 flex flex-col items-center justify-center gap-2 px-8 pt-7 pb-3 text-center'>
+          <div className='w-full text-lg font-bold leading-[26px] tracking-[-0.36px] text-[var(--component-modal-title)]'>{title}</div>
+          {body && <div className='w-full text-sm font-normal leading-[22px] tracking-[-0.28px] text-[var(--component-modal-body)]'>{body}</div>}
         </div>
 
-        {/* Action */}
-        <div style={actionStyle}>
+        <div className='flex items-center justify-center gap-2 px-6 pt-3 pb-6 shrink-0'>
           {renderCancel && (
-            <Button variant={cancelVariant} size={cancelSize} {...cancelRest} style={{ ...actionButtonStyle, ...cancelStyle }}>
+            <Button variant={cancelVariant} size={cancelSize} {...cancelRest} className='flex-1 min-w-0' style={cancelStyle}>
               {cancelLabel}
             </Button>
           )}
-          <Button variant={confirmVariant} size={confirmSize} {...confirmRest} style={{ ...actionButtonStyle, ...confirmStyle }}>
+          <Button variant={confirmVariant} size={confirmSize} {...confirmRest} className='flex-1 min-w-0' style={confirmStyle}>
             {confirmLabel}
           </Button>
         </div>
@@ -80,73 +81,3 @@ export function Popup({
     document.body
   );
 }
-
-// ============================================================================
-// Styles
-// ============================================================================
-
-const overlayStyle: React.CSSProperties = {
-  position: 'fixed',
-  inset: 0,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  background: 'rgba(0, 0, 0, 0.4)',
-  zIndex: 9999,
-};
-
-const cardStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  width: 284,
-  minHeight: 200,
-  borderRadius: 12,
-  background: 'var(--component-modal-background)',
-  overflow: 'hidden',
-  boxSizing: 'border-box',
-};
-
-const headerStyle: React.CSSProperties = {
-  flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: 8,
-  padding: '28px 32px 12px',
-  textAlign: 'center',
-  boxSizing: 'border-box',
-};
-
-const titleStyle: React.CSSProperties = {
-  width: '100%',
-  fontSize: 18,
-  fontWeight: 700,
-  lineHeight: '26px',
-  letterSpacing: '-0.36px',
-  color: 'var(--component-modal-title)',
-};
-
-const bodyStyle: React.CSSProperties = {
-  width: '100%',
-  fontSize: 14,
-  fontWeight: 400,
-  lineHeight: '22px',
-  letterSpacing: '-0.28px',
-  color: 'var(--component-modal-body)',
-};
-
-const actionStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: 8,
-  padding: '12px 24px 24px',
-  flexShrink: 0,
-  boxSizing: 'border-box',
-};
-
-const actionButtonStyle: React.CSSProperties = {
-  flex: 1,
-  minWidth: 0,
-};

@@ -28,7 +28,7 @@ export function PopupProvider({ children }: { children: React.ReactNode }): Reac
         close();
       };
     },
-    [close],
+    [close]
   );
 
   const popupProps = options
@@ -36,12 +36,8 @@ export function PopupProvider({ children }: { children: React.ReactNode }): Reac
         ...options,
         open: true,
         onBackdropClick: wrapOnClick(options.onBackdropClick),
-        confirmButton: options.confirmButton
-          ? { ...options.confirmButton, onClick: wrapOnClick(options.confirmButton.onClick) }
-          : undefined,
-        cancelButton: options.cancelButton
-          ? { ...options.cancelButton, onClick: wrapOnClick(options.cancelButton.onClick) }
-          : undefined,
+        confirmButton: options.confirmButton ? { ...options.confirmButton, onClick: wrapOnClick(options.confirmButton.onClick) } : undefined,
+        cancelButton: options.cancelButton ? { ...options.cancelButton, onClick: wrapOnClick(options.cancelButton.onClick) } : undefined,
       }
     : null;
 

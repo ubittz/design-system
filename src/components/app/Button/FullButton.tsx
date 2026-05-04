@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { cn } from '../../../utils/cn';
+
 export interface FullButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'ghost' | 'gray' | 'outline';
@@ -19,108 +21,47 @@ export interface FullButtonGroupProps {
   style?: React.CSSProperties;
 }
 
-function getVariantStyle(
-  variant: NonNullable<FullButtonProps['variant']>,
-  disabled: boolean,
-): React.CSSProperties {
+function getVariantClasses(variant: NonNullable<FullButtonProps['variant']>, disabled: boolean): string {
   if (disabled) {
-    return {
-      background: 'var(--component-button-disabled-background)',
-      color: 'var(--component-button-disabled-label)',
-      border: 'none',
-      cursor: 'not-allowed',
-    };
+    return 'bg-[var(--component-button-disabled-background)] text-[var(--component-button-disabled-label)] border-0 cursor-not-allowed';
   }
 
   switch (variant) {
     case 'primary':
-      return {
-        background: 'var(--component-button-primary-background)',
-        color: 'var(--component-button-primary-label)',
-        border: 'none',
-      };
+      return 'bg-[var(--component-button-primary-background)] text-[var(--component-button-primary-label)] border-0';
     case 'secondary':
-      return {
-        background: 'var(--component-button-secondary-background)',
-        color: 'var(--component-button-secondary-label)',
-        border: 'none',
-      };
+      return 'bg-[var(--component-button-secondary-background)] text-[var(--component-button-secondary-label)] border-0';
     case 'ghost':
-      return {
-        background: 'transparent',
-        color: 'var(--component-button-ghost-label)',
-        border: '1px solid var(--component-button-ghost-border)',
-      };
+      return 'bg-transparent text-[var(--component-button-ghost-label)] border border-[var(--component-button-ghost-border)]';
     case 'gray':
-      return {
-        background: 'var(--component-button-gray-background)',
-        color: 'var(--component-button-gray-label)',
-        border: 'none',
-      };
+      return 'bg-[var(--component-button-gray-background)] text-[var(--component-button-gray-label)] border-0';
     case 'outline':
-      return {
-        background: 'transparent',
-        color: 'var(--component-button-outline-label)',
-        border: '1px solid var(--component-button-outline-border)',
-      };
+      return 'bg-transparent text-[var(--component-button-outline-label)] border border-[var(--component-button-outline-border)]';
   }
 }
 
-function FullButtonBase({
-  children,
-  variant = 'primary',
-  disabled = false,
-  onClick,
-  className,
-  style,
-}: FullButtonProps): React.JSX.Element {
-  const variantStyle = getVariantStyle(variant, disabled);
-
+function FullButtonBase({ children, variant = 'primary', disabled = false, onClick, className, style }: FullButtonProps): React.JSX.Element {
   return (
     <button
-      type="button"
+      type='button'
       disabled={disabled}
       onClick={disabled ? undefined : onClick}
-      className={className}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        height: 52,
-        borderRadius: 4,
-        fontSize: 16,
-        fontWeight: 500,
-        lineHeight: '24px',
-        letterSpacing: '-0.02em',
-        boxSizing: 'border-box',
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        ...variantStyle,
-        ...style,
-      }}
+      className={cn(
+        'flex items-center justify-center w-full h-[52px] rounded text-base font-medium leading-6 tracking-[-0.02em]',
+        getVariantClasses(variant, disabled),
+        !disabled && 'cursor-pointer',
+        className
+      )}
+      style={style}
     >
       {children}
     </button>
   );
 }
 
-function FullButtonGroup({
-  children,
-  layout = 'vertical',
-  gap = 8,
-  className,
-  style,
-}: FullButtonGroupProps): React.JSX.Element {
+function FullButtonGroup({ children, layout = 'vertical', gap = 8, className, style }: FullButtonGroupProps): React.JSX.Element {
   return (
-    <div
-      className={className}
-      style={{
-        display: 'flex',
-        flexDirection: layout === 'horizontal' ? 'row' : 'column',
-        gap,
-        ...style,
-      }}
-    >
+    <div className={cn('flex', layout === 'horizontal' ? 'flex-row' : 'flex-col', className)} style={{ gap, ...style }}>
       {children}
     </div>
   );
