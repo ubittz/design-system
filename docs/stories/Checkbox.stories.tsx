@@ -105,7 +105,33 @@ export const WithContent: Story = {
 };
 
 // ============================================================================
-// 5. SquareShape
+// 5. WithContentMaxHeight (커스텀 높이)
+// ============================================================================
+
+export const WithContentMaxHeight: Story = {
+  name: 'With Content Max Height',
+  render: () => {
+    const Demo = () => {
+      const [checked, setChecked] = useState(false);
+      return (
+        <Section title="커스텀 콘텐츠 높이">
+          <Checkbox
+            label="이용약관에 동의합니다"
+            caption="필수"
+            content="약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다"
+            contentMaxHeight={150}
+            checked={checked}
+            onChange={setChecked}
+          />
+        </Section>
+      );
+    };
+    return <Demo />;
+  },
+};
+
+// ============================================================================
+// 6. SquareShape
 // ============================================================================
 
 export const SquareShape: Story = {
@@ -124,7 +150,7 @@ export const SquareShape: Story = {
 };
 
 // ============================================================================
-// 6. SizeM
+// 7. SizeM
 // ============================================================================
 
 export const SizeM: Story = {
@@ -143,7 +169,7 @@ export const SizeM: Story = {
 };
 
 // ============================================================================
-// 7. Disabled
+// 8. Disabled
 // ============================================================================
 
 export const Disabled: Story = {
