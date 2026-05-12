@@ -80,17 +80,23 @@ export const WithCaption: Story = {
 };
 
 // ============================================================================
-// 4. WithArrow
+// 4. WithContent (토글)
 // ============================================================================
 
-export const WithArrow: Story = {
-  name: 'With Arrow',
+export const WithContent: Story = {
+  name: 'With Content',
   render: () => {
     const Demo = () => {
       const [checked, setChecked] = useState(false);
       return (
-        <Section title="화살표 포함">
-          <Checkbox label="이용약관에 동의합니다" caption="필수" arrow checked={checked} onChange={setChecked} />
+        <Section title="토글 콘텐츠">
+          <Checkbox
+            label="이용약관에 동의합니다"
+            caption="필수"
+            content="약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다 약관내용입니다"
+            checked={checked}
+            onChange={setChecked}
+          />
         </Section>
       );
     };

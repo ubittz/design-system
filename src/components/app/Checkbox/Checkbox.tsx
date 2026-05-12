@@ -1,11 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { CheckboxProps } from './types';
 import { RoundStroke, RoundSolid, DefaultStroke, DefaultSolid } from '../../../icons';
 import { cn } from '../../../utils/cn';
-
 
 const SIZE_CONFIG = {
   S: {
@@ -38,12 +37,14 @@ export function Checkbox({
   shape = 'default',
   label,
   caption,
-  arrow = false,
+  content,
+  contentMaxHeight = 80,
   disabled = false,
   onChange,
   className,
   style,
 }: CheckboxProps): React.JSX.Element {
+  const [expanded, setExpanded] = useState(false);
   const config = SIZE_CONFIG[size];
 
   const iconColor = checked ? 'var(--component-input-selected-icon)' : 'var(--component-input-default-icon)';
@@ -53,40 +54,65 @@ export function Checkbox({
     onChange?.(!checked);
   };
 
+  const handleArrowClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setExpanded((prev) => !prev);
+  };
+
   return (
-    <div
-      className={cn(
-        'flex flex-row items-center gap-2 w-full select-none',
-        config.paddingY,
-        disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer',
-        className
-      )}
-      role='checkbox'
-      aria-checked={checked}
-      aria-disabled={disabled}
-      tabIndex={0}
-      onClick={handleClick}
-      onKeyDown={(e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault();
-          handleClick();
-        }
-      }}
-      style={style}
-    >
-      <span className='flex items-center justify-center shrink-0'>{getCheckboxIcon(shape, checked, config.iconSize, iconColor)}</span>
+    <div className={cn('flex flex-col w-full', className)} style={style}>
+      <div
+        className={cn(
+          'flex flex-row items-center gap-2 w-full select-none',
+          config.paddingY,
+          disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'
+        )}
+        role='checkbox'
+        aria-checked={checked}
+        aria-disabled={disabled}
+        tabIndex={0}
+        onClick={handleClick}
+        onKeyDown={(e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+      >
+        <span className='flex items-center justify-center shrink-0'>{getCheckboxIcon(shape, checked, config.iconSize, iconColor)}</span>
 
-      {(label || caption) && (
-        <span className={cn('flex flex-row items-center gap-1 flex-1 min-w-0 font-normal', config.fontSize, config.lineHeight, config.letterSpacing)}>
-          {caption && <span className='text-[var(--text-default-brandPrimary)] shrink-0'>[{caption}]</span>}
-          {label && <span className='text-[var(--component-input-default-text)]'>{label}</span>}
-        </span>
-      )}
+        {(label || caption) && (
+          <span
+            className={cn('flex flex-row items-center gap-1 flex-1 min-w-0 font-normal', config.fontSize, config.lineHeight, config.letterSpacing)}
+          >
+            {caption && <span className='text-(--text-default-brandPrimary) shrink-0'>[{caption}]</span>}
+            {label && <span className='text-(--component-input-default-text)'>{label}</span>}
+          </span>
+        )}
 
-      {arrow && (
-        <span className='flex items-center justify-center shrink-0 ml-auto'>
-          <RoundStroke.Bottom size={config.iconSize} color='var(--component-input-default-icon)' />
-        </span>
+        {content && (
+          <button
+            type='button'
+            className='flex items-center justify-center shrink-0 ml-auto bg-transparent border-none p-0 cursor-pointer transition-transform duration-200 ease-in-out'
+            onClick={handleArrowClick}
+            aria-expanded={expanded}
+            tabIndex={-1}
+            style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
+          >
+            <RoundStroke.Bottom size={config.iconSize} color='var(--component-input-default-icon)' />
+          </button>
+        )}
+      </div>
+
+      {content && (
+        <div className='overflow-hidden transition-all duration-200 ease-in-out' style={{ maxHeight: expanded ? contentMaxHeight : 0 }}>
+          <div
+            className='bg-surface-muted p-3 text-xs leading-5 tracking-[-0.24px] text-text-tertiary'
+            style={{ overflowY: 'auto', maxHeight: contentMaxHeight }}
+          >
+            {content}
+          </div>
+        </div>
       )}
     </div>
   );

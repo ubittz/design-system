@@ -9,8 +9,10 @@ export type CheckboxProps = {
   label?: string;
   /** 캡션 텍스트 (예: "필수") */
   caption?: string;
-  /** 우측 화살표 표시 여부 */
-  arrow?: boolean;
+  /** 토글 콘텐츠 (ReactNode를 전달하면 화살표가 표시되고 클릭 시 콘텐츠가 펼쳐짐) */
+  content?: React.ReactNode;
+  /** 토글 콘텐츠 최대 높이 (기본값: 80) */
+  contentMaxHeight?: number;
   /** 비활성화 여부 */
   disabled?: boolean;
   /** 체크 상태 변경 콜백 */
