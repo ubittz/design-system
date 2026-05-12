@@ -21,7 +21,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "cp src/styles/tokens.css tailwind/tokens.css && tsup",
+    "build": "tsup",
     "dev": "tsup --watch",
     "storybook": "cd docs && yarn storybook",
     "build-storybook": "cd docs && yarn build-storybook"
@@ -60,15 +60,17 @@
     "@storybook/react-vite": "^10.2.1",
     "@storybook/test": "^8.6.15",
     "@swc/core": "^1.13.2",
+    "@tailwindcss/postcss": "^4.2.4",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@ubittz/web-config": "^1.0.1",
     "eslint": "^9.32.0",
+    "postcss": "^8.5.13",
     "prettier": "^3.6.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "storybook": "^10.2.1",
-    "tailwind": "^4.0.0",
+    "tailwindcss": "^4.2.4",
     "tsup": "^8.5.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.38.0"

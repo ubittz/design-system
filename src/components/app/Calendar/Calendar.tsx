@@ -2,11 +2,11 @@
 
 import React, { useState, useMemo, useCallback } from 'react';
 
+import { CalendarProps, CalendarView, CalendarDay } from './types';
+import { getCalendarDays, isSameDay, isInRange, isDateDisabled } from './utils';
 import { RoundStroke } from '../../../icons';
 import { cn } from '../../../utils/cn';
 import { Button } from '../Button';
-import { CalendarProps, CalendarView, CalendarDay } from './types';
-import { getCalendarDays, isSameDay, isInRange, isDateDisabled } from './utils';
 
 const DAY_LABELS = ['일', '월', '화', '수', '목', '금', '토'];
 const MONTH_LABELS = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
@@ -175,18 +175,18 @@ export function Calendar(props: CalendarProps): React.JSX.Element {
 
   const getDayCellClasses = (state: { isToday: boolean; disabled: boolean; selected: boolean; inRange: boolean }) => {
     const base =
-      'flex items-center justify-center w-10 h-10 p-0 border-0 bg-transparent text-base font-normal leading-6 tracking-[-0.32px] rounded-full relative z-[1]';
+      'flex items-center justify-center w-10 h-10 p-0 border-0 text-base font-normal leading-6 tracking-[-0.32px] rounded-full relative z-[1]';
 
     if (state.disabled) {
-      return cn(base, 'cursor-default text-[var(--component-calendar-disabled-text)]');
+      return cn(base, 'bg-transparent cursor-default text-[var(--component-calendar-disabled-text)]');
     }
     if (state.selected) {
       return cn(base, 'cursor-pointer bg-[var(--component-calendar-selected-background)] text-[var(--component-calendar-selected-text)]');
     }
     if (state.isToday) {
-      return cn(base, 'cursor-pointer border border-[var(--component-calendar-today-border)] text-[var(--component-calendar-today-text)]');
+      return cn(base, 'bg-transparent cursor-pointer border border-[var(--component-calendar-today-border)] text-[var(--component-calendar-today-text)]');
     }
-    return cn(base, 'cursor-pointer text-[var(--component-calendar-default-text)]');
+    return cn(base, 'bg-transparent cursor-pointer text-[var(--component-calendar-default-text)]');
   };
 
   const getRangeBgClasses = (inRange: boolean, isRangeStart: boolean, isRangeEnd: boolean) => {

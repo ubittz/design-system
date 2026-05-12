@@ -1,3 +1,9 @@
 # .gitignore
 
 storybook-static
+
+# AI
+.claude/**
+!.claude/skills/**
+!.claude/agents/**
+.omc/**
