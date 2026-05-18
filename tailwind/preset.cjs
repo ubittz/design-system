@@ -83,12 +83,27 @@ module.exports = {
 
         // Semantic - Text
         text: {
-          primary: 'var(--color-text-primary)',
-          secondary: 'var(--color-text-secondary)',
-          tertiary: 'var(--color-text-tertiary)',
-          inverse: 'var(--color-text-inverse)',
-          'on-primary': 'var(--color-text-on-primary)',
-          'on-secondary': 'var(--color-text-on-secondary)',
+          default: {
+            DEFAULT: 'var(--color-text-default-primary)',
+            primary: 'var(--color-text-default-primary)',
+            secondary: 'var(--color-text-default-secondary)',
+            tertiary: 'var(--color-text-default-tertiary)',
+            quaternary: 'var(--color-text-default-quaternary)',
+            label: 'var(--color-text-default-label)',
+            placeholder: 'var(--color-text-default-placeholder)',
+            caption: 'var(--color-text-default-caption)',
+            disabled: 'var(--color-text-default-disabled)',
+            brand: 'var(--color-text-default-brand)',
+            discount: 'var(--color-text-default-discount)',
+          },
+          inverse: {
+            primary: 'var(--color-text-inverse-primary)',
+            secondary: 'var(--color-text-inverse-secondary)',
+            tertiary: 'var(--color-text-inverse-tertiary)',
+            caption: 'var(--color-text-inverse-caption)',
+            disabled: 'var(--color-text-inverse-disabled)',
+            brand: 'var(--color-text-inverse-brand)',
+          },
         },
 
         // Semantic - Icon

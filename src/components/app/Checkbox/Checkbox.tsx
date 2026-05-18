@@ -107,7 +107,7 @@ export function Checkbox({
       {content && (
         <div className='overflow-hidden transition-all duration-200 ease-in-out' style={{ maxHeight: expanded ? contentMaxHeight : 0 }}>
           <div
-            className='bg-surface-default-background p-3 text-xs leading-5 tracking-[-0.24px] text-text-tertiary'
+            className='bg-surface-default-background p-3 text-xs leading-5 tracking-[-0.24px] text-text-default-tertiary'
             style={{ overflowY: 'auto', maxHeight: contentMaxHeight }}
           >
             {content}

@@ -267,12 +267,25 @@
   --color-border-inverse-secondary: var(--color-gray-700);
   --color-border-inverse-brand: var(--color-brand-primary-50);
 
-  --color-text-primary: var(--color-gray-900);
-  --color-text-secondary: var(--color-gray-700);
-  --color-text-tertiary: var(--color-gray-500);
-  --color-text-inverse: #ffffff;
-  --color-text-on-primary: #ffffff;
-  --color-text-on-secondary: #ffffff;
+  /* Text - Default Theme */
+  --color-text-default-primary: var(--color-gray-900);
+  --color-text-default-secondary: var(--color-gray-700);
+  --color-text-default-tertiary: var(--color-gray-600);
+  --color-text-default-quaternary: var(--color-gray-400);
+  --color-text-default-label: var(--color-gray-600);
+  --color-text-default-placeholder: var(--color-gray-300);
+  --color-text-default-caption: var(--color-gray-600);
+  --color-text-default-disabled: var(--color-gray-200);
+  --color-text-default-brand: var(--color-brand-primary-500);
+  --color-text-default-discount: var(--color-coral-600);
+
+  /* Text - Inverse Theme */
+  --color-text-inverse-primary: var(--color-gray-0);
+  --color-text-inverse-secondary: var(--color-gray-200);
+  --color-text-inverse-tertiary: var(--color-gray-300);
+  --color-text-inverse-caption: var(--color-gray-400);
+  --color-text-inverse-disabled: var(--color-gray-700);
+  --color-text-inverse-brand: var(--color-brand-primary-100);
 
   --color-icon-default: var(--color-gray-600);
   --color-icon-subtle: var(--color-gray-400);

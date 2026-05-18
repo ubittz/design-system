@@ -14,7 +14,7 @@
 
   body {
     font-family: var(--font-family-kr);
-    color: var(--color-text-primary);
+    color: var(--color-text-default-primary);
     background-color: var(--color-surface-default-foreground);
   }
 
