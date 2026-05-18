@@ -50,47 +50,109 @@ module.exports = {
 
         // Semantic - Surface
         surface: {
-          DEFAULT: 'var(--color-surface-default)',
-          subtle: 'var(--color-surface-subtle)',
-          muted: 'var(--color-surface-muted)',
-          emphasis: 'var(--color-surface-emphasis)',
+          default: {
+            DEFAULT: 'var(--color-surface-default-foreground)',
+            foreground: 'var(--color-surface-default-foreground)',
+            background: 'var(--color-surface-default-background)',
+            'brand-primary': 'var(--color-surface-default-brand-primary)',
+            'brand-secondary': 'var(--color-surface-default-brand-secondary)',
+            gray: 'var(--color-surface-default-gray)',
+            disabled: 'var(--color-surface-default-disabled)',
+            hover: 'var(--color-surface-default-hover)',
+          },
+          inverse: {
+            background: 'var(--color-surface-inverse-background)',
+          },
         },
 
         // Semantic - Border
         border: {
-          DEFAULT: 'var(--color-border-default)',
-          subtle: 'var(--color-border-subtle)',
-          emphasis: 'var(--color-border-emphasis)',
+          default: {
+            DEFAULT: 'var(--color-border-default-default)',
+            primary: 'var(--color-border-default-primary)',
+            secondary: 'var(--color-border-default-secondary)',
+            brand: 'var(--color-border-default-brand)',
+            hover: 'var(--color-border-default-hover)',
+          },
+          inverse: {
+            primary: 'var(--color-border-inverse-primary)',
+            secondary: 'var(--color-border-inverse-secondary)',
+            brand: 'var(--color-border-inverse-brand)',
+          },
         },
 
         // Semantic - Text
         text: {
-          primary: 'var(--color-text-primary)',
-          secondary: 'var(--color-text-secondary)',
-          tertiary: 'var(--color-text-tertiary)',
-          inverse: 'var(--color-text-inverse)',
-          'on-primary': 'var(--color-text-on-primary)',
-          'on-secondary': 'var(--color-text-on-secondary)',
+          default: {
+            DEFAULT: 'var(--color-text-default-primary)',
+            primary: 'var(--color-text-default-primary)',
+            secondary: 'var(--color-text-default-secondary)',
+            tertiary: 'var(--color-text-default-tertiary)',
+            quaternary: 'var(--color-text-default-quaternary)',
+            label: 'var(--color-text-default-label)',
+            placeholder: 'var(--color-text-default-placeholder)',
+            caption: 'var(--color-text-default-caption)',
+            disabled: 'var(--color-text-default-disabled)',
+            brand: 'var(--color-text-default-brand)',
+            discount: 'var(--color-text-default-discount)',
+          },
+          inverse: {
+            primary: 'var(--color-text-inverse-primary)',
+            secondary: 'var(--color-text-inverse-secondary)',
+            tertiary: 'var(--color-text-inverse-tertiary)',
+            caption: 'var(--color-text-inverse-caption)',
+            disabled: 'var(--color-text-inverse-disabled)',
+            brand: 'var(--color-text-inverse-brand)',
+          },
         },
 
         // Semantic - Icon
         icon: {
-          DEFAULT: 'var(--color-icon-default)',
-          subtle: 'var(--color-icon-subtle)',
-          emphasis: 'var(--color-icon-emphasis)',
-          inverse: 'var(--color-icon-inverse)',
+          default: {
+            DEFAULT: 'var(--color-icon-default-primary)',
+            primary: 'var(--color-icon-default-primary)',
+            secondary: 'var(--color-icon-default-secondary)',
+            tertiary: 'var(--color-icon-default-tertiary)',
+            quaternary: 'var(--color-icon-default-quaternary)',
+            brand: 'var(--color-icon-default-brand)',
+            disabled: 'var(--color-icon-default-disabled)',
+            selected: 'var(--color-icon-default-selected)',
+          },
+          inverse: {
+            primary: 'var(--color-icon-inverse-primary)',
+            secondary: 'var(--color-icon-inverse-secondary)',
+            tertiary: 'var(--color-icon-inverse-tertiary)',
+            quaternary: 'var(--color-icon-inverse-quaternary)',
+            disabled: 'var(--color-icon-inverse-disabled)',
+          },
         },
 
         // System
         system: {
-          success: 'var(--color-system-success)',
-          'success-light': 'var(--color-system-success-light)',
-          warning: 'var(--color-system-warning)',
-          'warning-light': 'var(--color-system-warning-light)',
-          error: 'var(--color-system-error)',
-          'error-light': 'var(--color-system-error-light)',
-          info: 'var(--color-system-info)',
-          'info-light': 'var(--color-system-info-light)',
+          success: {
+            content: 'var(--color-system-success-content)',
+            surface: 'var(--color-system-success-surface)',
+            'border-primary': 'var(--color-system-success-border-primary)',
+            'border-secondary': 'var(--color-system-success-border-secondary)',
+          },
+          info: {
+            content: 'var(--color-system-info-content)',
+            surface: 'var(--color-system-info-surface)',
+            'border-primary': 'var(--color-system-info-border-primary)',
+            'border-secondary': 'var(--color-system-info-border-secondary)',
+          },
+          warning: {
+            content: 'var(--color-system-warning-content)',
+            surface: 'var(--color-system-warning-surface)',
+            'border-primary': 'var(--color-system-warning-border-primary)',
+            'border-secondary': 'var(--color-system-warning-border-secondary)',
+          },
+          error: {
+            content: 'var(--color-system-error-content)',
+            surface: 'var(--color-system-error-surface)',
+            'border-primary': 'var(--color-system-error-border-primary)',
+            'border-secondary': 'var(--color-system-error-border-secondary)',
+          },
         },
       },
 
@@ -157,6 +219,13 @@ module.exports = {
         'en-tight': 'var(--letter-spacing-en-tight)',
         'en-normal': 'var(--letter-spacing-en-normal)',
         'en-wide': 'var(--letter-spacing-en-wide)',
+      },
+
+      boxShadow: {
+        'modal-depth': 'var(--shadow-modal-depth)',
+        'icon': 'var(--shadow-icon)',
+        'fa-button-white': 'var(--shadow-fa-button-white)',
+        'fa-button-black': 'var(--shadow-fa-button-black)',
       },
     },
   },

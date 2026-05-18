@@ -85,7 +85,7 @@ export function Checkbox({
           <span
             className={cn('flex flex-row items-center gap-1 flex-1 min-w-0 font-normal', config.fontSize, config.lineHeight, config.letterSpacing)}
           >
-            {caption && <span className='text-(--text-default-brandPrimary) shrink-0'>[{caption}]</span>}
+            {caption && <span className='text-(--color-text-default-brand) shrink-0'>[{caption}]</span>}
             {label && <span className='text-(--component-input-default-text)'>{label}</span>}
           </span>
         )}
@@ -107,7 +107,7 @@ export function Checkbox({
       {content && (
         <div className='overflow-hidden transition-all duration-200 ease-in-out' style={{ maxHeight: expanded ? contentMaxHeight : 0 }}>
           <div
-            className='bg-surface-muted p-3 text-xs leading-5 tracking-[-0.24px] text-text-tertiary'
+            className='bg-surface-default-background p-3 text-xs leading-5 tracking-[-0.24px] text-text-default-tertiary'
             style={{ overflowY: 'auto', maxHeight: contentMaxHeight }}
           >
             {content}

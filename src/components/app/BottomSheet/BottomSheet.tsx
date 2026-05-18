@@ -75,7 +75,7 @@ export function BottomSheet({
         }}
       >
         <div className='flex items-center justify-center py-4 shrink-0'>
-          <div className='w-10 h-1 rounded-[27px] bg-[#f1f2f3]' />
+          <div className='w-10 h-1 rounded-[27px] bg-border-default-default' />
         </div>
 
         {hasHeader && (
@@ -87,7 +87,7 @@ export function BottomSheet({
               <button
                 type='button'
                 onClick={onClose}
-                className='inline-flex items-center justify-center w-6 h-6 p-0 border-0 bg-transparent cursor-pointer shrink-0 text-[var(--component-navigation-default-iconPrimary)]'
+                className='inline-flex items-center justify-center w-6 h-6 p-0 border-0 bg-transparent cursor-pointer shrink-0 text-[var(--component-navigation-default-icon-primary)]'
               >
                 <RoundStroke.Cancel size={24} />
               </button>

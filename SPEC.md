@@ -118,12 +118,20 @@ export const baseColors = {
   },
 
   // System Colors
-  grass: { /* Success */ },
-  apple: { /* Error */ },
-  orange: { /* Warning */ },
+  grass: {
+    /* Success */
+  },
+  apple: {
+    /* Error */
+  },
+  orange: {
+    /* Warning */
+  },
 
   // Additional Colors
-  coral: { /* ... */ },
+  coral: {
+    /* ... */
+  },
   // ... 기타 색상들
 } as const;
 ```
@@ -400,26 +408,16 @@ const defaultConfig: DesignSystemContextValue = {
 
 const DesignSystemContext = createContext<DesignSystemContextValue>(defaultConfig);
 
-export function DesignSystemProvider({
-  platform = 'web',
-  defaultLang = 'kr',
-  theme,
-  children
-}: DesignSystemConfig & { children: React.ReactNode }) {
+export function DesignSystemProvider({ platform = 'web', defaultLang = 'kr', theme, children }: DesignSystemConfig & { children: React.ReactNode }) {
   const contextValue = useMemo(() => {
     // 1. Semantic Colors 병합 (사용자 오버라이드 적용)
-    const mergedSemanticColors = theme?.semanticColors
-      ? deepMerge(defaultSemanticColors, theme.semanticColors)
-      : defaultSemanticColors;
+    const mergedSemanticColors = theme?.semanticColors ? deepMerge(defaultSemanticColors, theme.semanticColors) : defaultSemanticColors;
 
     // 2. Semantic Colors의 참조 해결 (brand.primary.500 등)
     const resolvedSemanticColors = resolveTokenReferences(mergedSemanticColors);
 
     // 3. Component Tokens의 참조 해결 (semantic colors 기반)
-    const resolvedComponentTokens = resolveTokenReferences(
-      componentTokens,
-      resolvedSemanticColors
-    );
+    const resolvedComponentTokens = resolveTokenReferences(componentTokens, resolvedSemanticColors);
 
     return {
       platform,
@@ -434,14 +432,8 @@ export function DesignSystemProvider({
 
   // CSS Variables 생성
   const cssVariables = useMemo(() => {
-    const semanticVars = tokensToCSSVariables(
-      contextValue.resolvedSemanticColors,
-      'semantic'
-    );
-    const componentVars = tokensToCSSVariables(
-      contextValue.resolvedComponentTokens,
-      'component'
-    );
+    const semanticVars = tokensToCSSVariables(contextValue.resolvedSemanticColors, 'semantic');
+    const componentVars = tokensToCSSVariables(contextValue.resolvedComponentTokens, 'component');
 
     return `:root {
       ${semanticVars}
@@ -625,6 +617,7 @@ function App() {
 ```
 
 **동작 방식:**
+
 - `brand.primary.500`을 `#FF6B00`으로 오버라이드하면
 - `{brand.primary.500}`을 참조하는 모든 Component Token이 자동으로 `#FF6B00`으로 변경됩니다
 - 예: `Button/Primary/Background`, `Input/Focused/Border`, `Icon/Default/Brand` 등
@@ -787,15 +780,27 @@ export const parameters = {
   --color-brand-secondary-dark: #db2777;
 
   /* Surface */
-  --color-surface-default: #ffffff;
-  --color-surface-subtle: var(--color-gray-50);
-  --color-surface-muted: var(--color-gray-100);
-  --color-surface-emphasis: var(--color-gray-900);
+  --color-surface-default-background: var(--color-gray-50);
+  --color-surface-default-foreground: var(--color-gray-0);
+  --color-surface-default-brand-primary: var(--color-brand-primary-500);
+  --color-surface-default-brand-secondary: var(--color-brand-primary-50);
+  --color-surface-default-gray: var(--color-gray-50);
+  --color-surface-default-disabled: var(--color-gray-100);
+  --color-surface-default-hover: var(--color-gray-50);
+
+  --color-surface-inverse-background: var(--color-gray-900);
 
   /* Border */
-  --color-border-default: var(--color-gray-200);
-  --color-border-subtle: var(--color-gray-100);
-  --color-border-emphasis: var(--color-gray-300);
+  --color-border-default-default: var(--color-gray-100);
+  --color-border-default-primary: var(--color-gray-900);
+  --color-border-default-secondary: var(--color-gray-50);
+  --color-border-default-brand: var(--color-brand-primary-500);
+  --color-border-default-hover: var(--color-brand-primary-500);
+
+  /* Border - Inverse Theme */
+  --color-border-inverse-primary: var(--color-gray-100);
+  --color-border-inverse-secondary: var(--color-gray-700);
+  --color-border-inverse-brand: var(--color-brand-primary-50);
 
   /* Text */
   --color-text-primary: var(--color-gray-900);
@@ -811,15 +816,26 @@ export const parameters = {
   --color-icon-emphasis: var(--color-gray-900);
   --color-icon-inverse: #ffffff;
 
-  /* System State */
-  --color-system-success: #10b981;
-  --color-system-success-light: #d1fae5;
-  --color-system-warning: #f59e0b;
-  --color-system-warning-light: #fef3c7;
-  --color-system-error: #ef4444;
-  --color-system-error-light: #fee2e2;
-  --color-system-info: #3b82f6;
-  --color-system-info-light: #dbeafe;
+  /* System State - Success */
+  --color-system-success-content: var(--color-grass-600);
+  --color-system-success-surface: var(--color-grass-50);
+  --color-system-success-border-primary: var(--color-grass-200);
+  --color-system-success-border-secondary: var(--color-grass-600);
+  /* System State - Info */
+  --color-system-info-content: var(--color-sky-600);
+  --color-system-info-surface: var(--color-sky-50);
+  --color-system-info-border-primary: var(--color-sky-200);
+  --color-system-info-border-secondary: var(--color-sky-600);
+  /* System State - Warning */
+  --color-system-warning-content: var(--color-orange-500);
+  --color-system-warning-surface: var(--color-orange-50);
+  --color-system-warning-border-primary: var(--color-orange-200);
+  --color-system-warning-border-secondary: var(--color-orange-500);
+  /* System State - Error */
+  --color-system-error-content: var(--color-apple-600);
+  --color-system-error-surface: var(--color-apple-50);
+  --color-system-error-border-primary: var(--color-apple-200);
+  --color-system-error-border-secondary: var(--color-apple-600);
 
   /* Typography - Font Family */
   --font-family-kr: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;

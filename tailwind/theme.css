@@ -252,35 +252,71 @@
   /* ================================================================
      Semantic Colors
      ================================================================ */
-  --color-surface-default: var(--color-surface-default);
-  --color-surface-subtle: var(--color-surface-subtle);
-  --color-surface-muted: var(--color-surface-muted);
-  --color-surface-emphasis: var(--color-surface-emphasis);
+  --color-surface-default-background: var(--color-surface-default-background);
+  --color-surface-default-foreground: var(--color-surface-default-foreground);
+  --color-surface-default-brand-primary: var(--color-surface-default-brand-primary);
+  --color-surface-default-brand-secondary: var(--color-surface-default-brand-secondary);
+  --color-surface-default-gray: var(--color-surface-default-gray);
+  --color-surface-default-disabled: var(--color-surface-default-disabled);
+  --color-surface-default-hover: var(--color-surface-default-hover);
 
-  --color-border-default: var(--color-border-default);
-  --color-border-subtle: var(--color-border-subtle);
-  --color-border-emphasis: var(--color-border-emphasis);
+  --color-surface-inverse-background: var(--color-surface-inverse-background);
 
-  --color-text-primary: var(--color-text-primary);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-text-tertiary: var(--color-text-tertiary);
-  --color-text-inverse: var(--color-text-inverse);
-  --color-text-on-primary: var(--color-text-on-primary);
-  --color-text-on-secondary: var(--color-text-on-secondary);
+  --color-border-default-default: var(--color-border-default-default);
+  --color-border-default-primary: var(--color-border-default-primary);
+  --color-border-default-secondary: var(--color-border-default-secondary);
+  --color-border-default-brand: var(--color-border-default-brand);
+  --color-border-default-hover: var(--color-border-default-hover);
+  --color-border-inverse-primary: var(--color-border-inverse-primary);
+  --color-border-inverse-secondary: var(--color-border-inverse-secondary);
+  --color-border-inverse-brand: var(--color-border-inverse-brand);
 
-  --color-icon-default: var(--color-icon-default);
-  --color-icon-subtle: var(--color-icon-subtle);
-  --color-icon-emphasis: var(--color-icon-emphasis);
-  --color-icon-inverse: var(--color-icon-inverse);
+  --color-text-default-primary: var(--color-text-default-primary);
+  --color-text-default-secondary: var(--color-text-default-secondary);
+  --color-text-default-tertiary: var(--color-text-default-tertiary);
+  --color-text-default-quaternary: var(--color-text-default-quaternary);
+  --color-text-default-label: var(--color-text-default-label);
+  --color-text-default-placeholder: var(--color-text-default-placeholder);
+  --color-text-default-caption: var(--color-text-default-caption);
+  --color-text-default-disabled: var(--color-text-default-disabled);
+  --color-text-default-brand: var(--color-text-default-brand);
+  --color-text-default-discount: var(--color-text-default-discount);
+  --color-text-inverse-primary: var(--color-text-inverse-primary);
+  --color-text-inverse-secondary: var(--color-text-inverse-secondary);
+  --color-text-inverse-tertiary: var(--color-text-inverse-tertiary);
+  --color-text-inverse-caption: var(--color-text-inverse-caption);
+  --color-text-inverse-disabled: var(--color-text-inverse-disabled);
+  --color-text-inverse-brand: var(--color-text-inverse-brand);
 
-  --color-system-success: var(--color-system-success);
-  --color-system-success-light: var(--color-system-success-light);
-  --color-system-warning: var(--color-system-warning);
-  --color-system-warning-light: var(--color-system-warning-light);
-  --color-system-error: var(--color-system-error);
-  --color-system-error-light: var(--color-system-error-light);
-  --color-system-info: var(--color-system-info);
-  --color-system-info-light: var(--color-system-info-light);
+  --color-icon-default-primary: var(--color-icon-default-primary);
+  --color-icon-default-secondary: var(--color-icon-default-secondary);
+  --color-icon-default-tertiary: var(--color-icon-default-tertiary);
+  --color-icon-default-quaternary: var(--color-icon-default-quaternary);
+  --color-icon-default-brand: var(--color-icon-default-brand);
+  --color-icon-default-disabled: var(--color-icon-default-disabled);
+  --color-icon-default-selected: var(--color-icon-default-selected);
+  --color-icon-inverse-primary: var(--color-icon-inverse-primary);
+  --color-icon-inverse-secondary: var(--color-icon-inverse-secondary);
+  --color-icon-inverse-tertiary: var(--color-icon-inverse-tertiary);
+  --color-icon-inverse-quaternary: var(--color-icon-inverse-quaternary);
+  --color-icon-inverse-disabled: var(--color-icon-inverse-disabled);
+
+  --color-system-success-content: var(--color-system-success-content);
+  --color-system-success-surface: var(--color-system-success-surface);
+  --color-system-success-border-primary: var(--color-system-success-border-primary);
+  --color-system-success-border-secondary: var(--color-system-success-border-secondary);
+  --color-system-info-content: var(--color-system-info-content);
+  --color-system-info-surface: var(--color-system-info-surface);
+  --color-system-info-border-primary: var(--color-system-info-border-primary);
+  --color-system-info-border-secondary: var(--color-system-info-border-secondary);
+  --color-system-warning-content: var(--color-system-warning-content);
+  --color-system-warning-surface: var(--color-system-warning-surface);
+  --color-system-warning-border-primary: var(--color-system-warning-border-primary);
+  --color-system-warning-border-secondary: var(--color-system-warning-border-secondary);
+  --color-system-error-content: var(--color-system-error-content);
+  --color-system-error-surface: var(--color-system-error-surface);
+  --color-system-error-border-primary: var(--color-system-error-border-primary);
+  --color-system-error-border-secondary: var(--color-system-error-border-secondary);
 
   /* ================================================================
      Spacing
@@ -353,4 +389,12 @@
   --tracking-en-tight: var(--letter-spacing-en-tight);
   --tracking-en-normal: var(--letter-spacing-en-normal);
   --tracking-en-wide: var(--letter-spacing-en-wide);
+
+  /* ================================================================
+     Elevation - Box Shadow
+     ================================================================ */
+  --shadow-modal-depth: var(--shadow-modal-depth);
+  --shadow-icon: var(--shadow-icon);
+  --shadow-fa-button-white: var(--shadow-fa-button-white);
+  --shadow-fa-button-black: var(--shadow-fa-button-black);
 }

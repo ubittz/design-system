@@ -245,35 +245,87 @@
   /* ================================================================
      Semantic Colors
      ================================================================ */
-  --color-surface-default: #ffffff;
-  --color-surface-subtle: var(--color-gray-50);
-  --color-surface-muted: var(--color-gray-100);
-  --color-surface-emphasis: var(--color-gray-900);
+  --color-surface-default-background: var(--color-gray-50);
+  --color-surface-default-foreground: var(--color-gray-0);
+  --color-surface-default-brand-primary: var(--color-brand-primary-500);
+  --color-surface-default-brand-secondary: var(--color-brand-primary-50);
+  --color-surface-default-gray: var(--color-gray-50);
+  --color-surface-default-disabled: var(--color-gray-100);
+  --color-surface-default-hover: var(--color-gray-50);
 
-  --color-border-default: var(--color-gray-200);
-  --color-border-subtle: var(--color-gray-100);
-  --color-border-emphasis: var(--color-gray-300);
+  --color-surface-inverse-background: var(--color-gray-900);
 
-  --color-text-primary: var(--color-gray-900);
-  --color-text-secondary: var(--color-gray-700);
-  --color-text-tertiary: var(--color-gray-500);
-  --color-text-inverse: #ffffff;
-  --color-text-on-primary: #ffffff;
-  --color-text-on-secondary: #ffffff;
+  /* Border - Default Theme */
+  --color-border-default-default: var(--color-gray-100);
+  --color-border-default-primary: var(--color-gray-900);
+  --color-border-default-secondary: var(--color-gray-50);
+  --color-border-default-brand: var(--color-brand-primary-500);
+  --color-border-default-hover: var(--color-brand-primary-500);
 
-  --color-icon-default: var(--color-gray-600);
-  --color-icon-subtle: var(--color-gray-400);
-  --color-icon-emphasis: var(--color-gray-900);
-  --color-icon-inverse: #ffffff;
+  /* Border - Inverse Theme */
+  --color-border-inverse-primary: var(--color-gray-100);
+  --color-border-inverse-secondary: var(--color-gray-700);
+  --color-border-inverse-brand: var(--color-brand-primary-50);
 
-  --color-system-success: #68bc43;
-  --color-system-success-light: #e1f2d9;
-  --color-system-warning: #ffb200;
-  --color-system-warning-light: #fff0cc;
-  --color-system-error: #e51931;
-  --color-system-error-light: #fad2d7;
-  --color-system-info: #288ff6;
-  --color-system-info-light: #d8ebfd;
+  /* Text - Default Theme */
+  --color-text-default-primary: var(--color-gray-900);
+  --color-text-default-secondary: var(--color-gray-700);
+  --color-text-default-tertiary: var(--color-gray-600);
+  --color-text-default-quaternary: var(--color-gray-400);
+  --color-text-default-label: var(--color-gray-600);
+  --color-text-default-placeholder: var(--color-gray-300);
+  --color-text-default-caption: var(--color-gray-600);
+  --color-text-default-disabled: var(--color-gray-200);
+  --color-text-default-brand: var(--color-brand-primary-500);
+  --color-text-default-discount: var(--color-coral-600);
+
+  /* Text - Inverse Theme */
+  --color-text-inverse-primary: var(--color-gray-0);
+  --color-text-inverse-secondary: var(--color-gray-200);
+  --color-text-inverse-tertiary: var(--color-gray-300);
+  --color-text-inverse-caption: var(--color-gray-400);
+  --color-text-inverse-disabled: var(--color-gray-700);
+  --color-text-inverse-brand: var(--color-brand-primary-100);
+
+  /* Icon - Default Theme */
+  --color-icon-default-primary: var(--color-gray-800);
+  --color-icon-default-secondary: var(--color-gray-700);
+  --color-icon-default-tertiary: var(--color-gray-600);
+  --color-icon-default-quaternary: var(--color-gray-400);
+  --color-icon-default-brand: var(--color-brand-primary-500);
+  --color-icon-default-disabled: var(--color-gray-200);
+  --color-icon-default-selected: var(--color-brand-primary-500);
+
+  /* Icon - Inverse Theme */
+  --color-icon-inverse-primary: var(--color-gray-0);
+  --color-icon-inverse-secondary: var(--color-gray-200);
+  --color-icon-inverse-tertiary: var(--color-gray-300);
+  --color-icon-inverse-quaternary: var(--color-gray-500);
+  --color-icon-inverse-disabled: var(--color-gray-700);
+
+  /* System State - Success */
+  --color-system-success-content: var(--color-grass-600);
+  --color-system-success-surface: var(--color-grass-50);
+  --color-system-success-border-primary: var(--color-grass-200);
+  --color-system-success-border-secondary: var(--color-grass-600);
+
+  /* System State - Info */
+  --color-system-info-content: var(--color-sky-600);
+  --color-system-info-surface: var(--color-sky-50);
+  --color-system-info-border-primary: var(--color-sky-200);
+  --color-system-info-border-secondary: var(--color-sky-600);
+
+  /* System State - Warning */
+  --color-system-warning-content: var(--color-orange-500);
+  --color-system-warning-surface: var(--color-orange-50);
+  --color-system-warning-border-primary: var(--color-orange-200);
+  --color-system-warning-border-secondary: var(--color-orange-500);
+
+  /* System State - Error */
+  --color-system-error-content: var(--color-apple-600);
+  --color-system-error-surface: var(--color-apple-50);
+  --color-system-error-border-primary: var(--color-apple-200);
+  --color-system-error-border-secondary: var(--color-apple-600);
 
   /* ================================================================
      Spacing
@@ -346,4 +398,14 @@
   --letter-spacing-en-tight: -0.02em;
   --letter-spacing-en-normal: 0;
   --letter-spacing-en-wide: 0.05em;
+
+  /* ================================================================
+     Elevation - Box Shadow
+     ================================================================ */
+  --shadow-modal-depth: 0px 0px 10px 4px rgba(0, 0, 0, 0.05);
+  --shadow-icon: 0px 0px 10px 4px rgba(0, 0, 0, 0.05);
+  --shadow-fa-button-white:
+    1px 0px 8px 0px rgba(255, 255, 255, 0.14), -1px 0px 8px 0px rgba(255, 255, 255, 0.14), 0px 1px 8px 0px rgba(255, 255, 255, 0.14),
+    0px -1px 8px 0px rgba(255, 255, 255, 0.14);
+  --shadow-fa-button-black: 0px 3.93px 7.85px 0px rgba(0, 0, 0, 0.2);
 }

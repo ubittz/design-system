@@ -84,60 +84,26 @@ export const BrandColors: Story = {
 
 export const SemanticColors: Story = {
   render: () => {
-    // 참조를 실제 값으로 변환하기 위해 필터링
-    const getSurfaceColors = () => {
-      const colors: Record<string, string> = {};
-      Object.entries(defaultSemanticColors.surface.default).forEach(([key, value]) => {
-        if (typeof value === 'string' && !value.startsWith('{')) {
-          colors[key] = value;
-        }
-      });
-      return colors;
-    };
-
-    const getBorderColors = () => {
-      const colors: Record<string, string> = {};
-      Object.entries(defaultSemanticColors.border.default).forEach(([key, value]) => {
-        if (typeof value === 'string' && !value.startsWith('{')) {
-          colors[key] = value;
-        }
-      });
-      return colors;
-    };
-
-    const getTextColors = () => {
-      const colors: Record<string, string> = {};
-      Object.entries(defaultSemanticColors.text.default).forEach(([key, value]) => {
-        if (typeof value === 'string' && !value.startsWith('{')) {
-          colors[key] = value;
-        }
-      });
-      return colors;
-    };
-
-    const getIconColors = () => {
-      const colors: Record<string, string> = {};
-      Object.entries(defaultSemanticColors.icon.default).forEach(([key, value]) => {
-        if (typeof value === 'string' && !value.startsWith('{')) {
-          colors[key] = value;
-        }
-      });
-      return colors;
-    };
+    const resolved = resolveTokenReferences(defaultSemanticColors, defaultSemanticColors);
 
     return (
       <div style={{ padding: '24px' }}>
         <h1 style={{ fontSize: '32px', fontWeight: 700, marginBottom: '32px' }}>Semantic Colors</h1>
         <p style={{ fontSize: '16px', color: '#667085', marginBottom: '48px' }}>
-          의미가 부여된 컬러입니다. Surface, Border, Text, Icon 등으로 구성됩니다.
-          <br />
-          <small>(동적 참조는 표시되지 않습니다)</small>
+          의미가 부여된 컬러입니다. Surface, Border, Text, Icon 등으로 구성되며, Default와 Inverse 테마로 나뉩니다.
         </p>
 
-        <ColorScaleSection title='Surface Default' colors={getSurfaceColors()} />
-        <ColorScaleSection title='Border Default' colors={getBorderColors()} />
-        <ColorScaleSection title='Text Default' colors={getTextColors()} />
-        <ColorScaleSection title='Icon Default' colors={getIconColors()} />
+        <h2 style={{ fontSize: '24px', fontWeight: 700, marginTop: '48px', marginBottom: '24px' }}>Default Theme</h2>
+        <ColorScaleSection title='Surface / Default' colors={resolved.surface.default as Record<string, string>} />
+        <ColorScaleSection title='Border / Default' colors={resolved.border.default as Record<string, string>} />
+        <ColorScaleSection title='Text / Default' colors={resolved.text.default as Record<string, string>} />
+        <ColorScaleSection title='Icon / Default' colors={resolved.icon.default as Record<string, string>} />
+
+        <h2 style={{ fontSize: '24px', fontWeight: 700, marginTop: '48px', marginBottom: '24px' }}>Inverse Theme</h2>
+        <ColorScaleSection title='Surface / Inverse' colors={resolved.surface.inverse as Record<string, string>} />
+        <ColorScaleSection title='Border / Inverse' colors={resolved.border.inverse as Record<string, string>} />
+        <ColorScaleSection title='Text / Inverse' colors={resolved.text.inverse as Record<string, string>} />
+        <ColorScaleSection title='Icon / Inverse' colors={resolved.icon.inverse as Record<string, string>} />
       </div>
     );
   },

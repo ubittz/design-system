@@ -44,7 +44,7 @@ export function Pagination({ current, total, onChange, maxVisible = 5, className
         onClick={() => current > 1 && onChange?.(current - 1)}
         disabled={current <= 1}
         className={cn(
-          'flex items-center justify-center w-6 h-6 border-0 bg-transparent p-0 text-[var(--component-navigation-default-iconDefault)]',
+          'flex items-center justify-center w-6 h-6 border-0 bg-transparent p-0 text-[var(--component-navigation-default-icon-default)]',
           current <= 1 ? 'opacity-30 cursor-default' : 'cursor-pointer'
         )}
         aria-label='Previous page'
@@ -63,7 +63,7 @@ export function Pagination({ current, total, onChange, maxVisible = 5, className
               className={cn(
                 'flex items-center justify-center w-9 h-7 rounded border-0 cursor-pointer text-sm font-normal p-0',
                 isActive
-                  ? 'text-[var(--component-navigation-selected-inverseText)] bg-[var(--component-navigation-selected-background)]'
+                  ? 'text-[var(--component-navigation-selected-inverse-text)] bg-[var(--component-navigation-selected-background)]'
                   : 'text-[var(--component-navigation-default-text)] bg-transparent'
               )}
               aria-current={isActive ? 'page' : undefined}
@@ -79,7 +79,7 @@ export function Pagination({ current, total, onChange, maxVisible = 5, className
         onClick={() => current < total && onChange?.(current + 1)}
         disabled={current >= total}
         className={cn(
-          'flex items-center justify-center w-6 h-6 border-0 bg-transparent p-0 text-[var(--component-navigation-default-iconDefault)]',
+          'flex items-center justify-center w-6 h-6 border-0 bg-transparent p-0 text-[var(--component-navigation-default-icon-default)]',
           current >= total ? 'opacity-30 cursor-default' : 'cursor-pointer'
         )}
         aria-label='Next page'

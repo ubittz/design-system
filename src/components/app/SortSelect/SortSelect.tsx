@@ -8,7 +8,6 @@ import { SortSelectProps } from './types';
 import { RoundSolid } from '../../../icons';
 import { cn } from '../../../utils/cn';
 
-
 const PANEL_GAP = 4;
 
 export function SortSelect(props: SortSelectProps): React.JSX.Element {
@@ -94,10 +93,8 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
         onClick={handleToggle}
         className='flex items-center gap-1 py-1 px-0 border-0 bg-transparent cursor-pointer'
       >
-        <span className='text-sm font-normal leading-[22px] tracking-[-0.28px] text-[var(--semantic-text-default-tertiary)] whitespace-nowrap'>
-          {displayLabel}
-        </span>
-        <span className='inline-flex items-center justify-center shrink-0 text-[var(--semantic-text-default-tertiary)]'>
+        <span className='text-sm font-normal leading-[22px] tracking-[-0.28px] text-text-default-tertiary whitespace-nowrap'>{displayLabel}</span>
+        <span className='inline-flex items-center justify-center shrink-0 text-text-default-tertiary'>
           <RoundSolid.Bottom size={16} />
         </span>
       </button>
@@ -107,7 +104,7 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
         createPortal(
           <div
             ref={panelRef}
-            className='bg-white rounded-lg shadow-[0px_0px_10px_4px_rgba(0,0,0,0.05)] border border-[var(--semantic-border-default,#F2F4F7)] overflow-hidden'
+            className='bg-surface-default rounded-lg shadow-modal-depth border border-border-default-default overflow-hidden'
             style={panelStyle}
           >
             {options.map((option) => {
@@ -118,14 +115,14 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
                   type='button'
                   onClick={() => handleSelect(option.value)}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.background = 'var(--semantic-background-default, #F9FAFB)';
+                    (e.currentTarget as HTMLButtonElement).style.background = 'var(--color-surface-default-hover)';
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.background = '#FFFFFF';
+                    (e.currentTarget as HTMLButtonElement).style.background = 'var(--color-surface-default-foreground)';
                   }}
-                  className='flex items-center w-full px-4 py-3 border-0 bg-white cursor-pointer text-sm font-normal leading-[22px] tracking-[-0.28px] text-left'
+                  className='flex items-center w-full px-4 py-3 border-0 bg-surface-default cursor-pointer text-sm font-normal leading-[22px] tracking-[-0.28px] text-left'
                   style={{
-                    color: isSelected ? 'var(--component-input-selected-text)' : 'var(--semantic-text-default-tertiary)',
+                    color: isSelected ? 'var(--component-input-selected-text)' : 'var(--color-text-default-tertiary)',
                   }}
                 >
                   {option.label}

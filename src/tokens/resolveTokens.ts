@@ -114,6 +114,14 @@ function deepMerge<T extends Record<string, any>>(target: T, source: DeepPartial
 }
 
 /**
+ * camelCase를 kebab-case로 변환
+ * 예: brandPrimary → brand-primary, borderSecondary → border-secondary
+ */
+function camelToKebab(str: string): string {
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+/**
  * 토큰 객체를 CSS Variables로 변환
  * @param tokens - 토큰 객체
  * @param prefix - CSS Variable 접두사 (기본: 'color')
@@ -126,12 +134,13 @@ export function tokensToCSSVariables(tokens: Record<string, unknown> | undefined
 
   function traverse(obj: Record<string, unknown>, path: string[] = []) {
     for (const [key, value] of Object.entries(obj)) {
+      const kebabKey = camelToKebab(key);
       if (typeof value === 'string') {
         // CSS Variable 이름 생성: --color-brand-primary-500
-        const varName = `--${prefix}-${[...path, key].join('-')}`;
+        const varName = `--${prefix}-${[...path, kebabKey].join('-')}`;
         variables.push(`${varName}: ${value};`);
       } else if (typeof value === 'object' && value !== null) {
-        traverse(value as Record<string, unknown>, [...path, key]);
+        traverse(value as Record<string, unknown>, [...path, kebabKey]);
       }
     }
   }
