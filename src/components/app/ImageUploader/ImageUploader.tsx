@@ -76,7 +76,7 @@ export function ImageUploader({
         <span className='inline-flex text-[var(--component-input-default-icon)]'>
           <RoundSolid.Camera size={24} />
         </span>
-        <span className='text-[10px] font-normal leading-4 text-[#aeb1b7] text-center'>
+        <span className='text-[10px] font-normal leading-4 text-text-default-quaternary text-center'>
           ({value.length}/{maxCount})
         </span>
       </button>
@@ -84,16 +84,16 @@ export function ImageUploader({
       {value.map((image) => (
         <div key={image.id} className='flex flex-col items-start gap-1 shrink-0'>
           <div className='relative w-[76px] h-[76px] rounded overflow-hidden shrink-0'>
-            <img src={image.url} alt={image.name} className='w-full h-full object-cover block bg-[var(--color-gray-50,#f1f2f3)]' />
+            <img src={image.url} alt={image.name} className='w-full h-full object-cover block bg-surface-default-background' />
             <button
               type='button'
               onClick={() => handleRemove(image.id)}
-              className='absolute top-1 right-1 w-5 h-5 p-0 border-0 bg-transparent cursor-pointer inline-flex items-center justify-center text-[#cbcfd7]'
+              className='absolute top-1 right-1 w-5 h-5 p-0 border-0 bg-transparent cursor-pointer inline-flex items-center justify-center text-text-default-disabled'
             >
               <RoundSolid.CircleCancel size={20} />
             </button>
           </div>
-          <span className='text-[10px] font-normal leading-4 text-[#aeb1b7] w-[76px] overflow-hidden text-ellipsis whitespace-nowrap'>
+          <span className='text-[10px] font-normal leading-4 text-text-default-quaternary w-[76px] overflow-hidden text-ellipsis whitespace-nowrap'>
             {image.name}
           </span>
         </div>
