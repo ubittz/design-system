@@ -50,10 +50,19 @@ module.exports = {
 
         // Semantic - Surface
         surface: {
-          DEFAULT: 'var(--color-surface-default)',
-          subtle: 'var(--color-surface-subtle)',
-          muted: 'var(--color-surface-muted)',
-          emphasis: 'var(--color-surface-emphasis)',
+          default: {
+            DEFAULT: 'var(--color-surface-default-foreground)',
+            foreground: 'var(--color-surface-default-foreground)',
+            background: 'var(--color-surface-default-background)',
+            'brand-primary': 'var(--color-surface-default-brand-primary)',
+            'brand-secondary': 'var(--color-surface-default-brand-secondary)',
+            gray: 'var(--color-surface-default-gray)',
+            disabled: 'var(--color-surface-default-disabled)',
+            hover: 'var(--color-surface-default-hover)',
+          },
+          inverse: {
+            background: 'var(--color-surface-inverse-background)',
+          },
         },
 
         // Semantic - Border

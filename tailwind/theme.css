@@ -252,14 +252,15 @@
   /* ================================================================
      Semantic Colors
      ================================================================ */
-  --color-surface-default: var(--color-surface-default);
-  --color-surface-subtle: var(--color-surface-subtle);
-  --color-surface-muted: var(--color-surface-muted);
-  --color-surface-emphasis: var(--color-surface-emphasis);
+  --color-surface-default-background: var(--color-surface-default-background);
+  --color-surface-default-foreground: var(--color-surface-default-foreground);
+  --color-surface-default-brand-primary: var(--color-surface-default-brand-primary);
+  --color-surface-default-brand-secondary: var(--color-surface-default-brand-secondary);
+  --color-surface-default-gray: var(--color-surface-default-gray);
+  --color-surface-default-disabled: var(--color-surface-default-disabled);
+  --color-surface-default-hover: var(--color-surface-default-hover);
 
-  --color-border-default: var(--color-border-default);
-  --color-border-subtle: var(--color-border-subtle);
-  --color-border-emphasis: var(--color-border-emphasis);
+  --color-surface-inverse-background: var(--color-surface-inverse-background);
 
   --color-text-primary: var(--color-text-primary);
   --color-text-secondary: var(--color-text-secondary);

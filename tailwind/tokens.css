@@ -245,10 +245,15 @@
   /* ================================================================
      Semantic Colors
      ================================================================ */
-  --color-surface-default: #ffffff;
-  --color-surface-subtle: var(--color-gray-50);
-  --color-surface-muted: var(--color-gray-100);
-  --color-surface-emphasis: var(--color-gray-900);
+  --color-surface-default-background: var(--color-gray-50);
+  --color-surface-default-foreground: var(--color-gray-0);
+  --color-surface-default-brand-primary: var(--color-brand-primary-500);
+  --color-surface-default-brand-secondary: var(--color-brand-primary-50);
+  --color-surface-default-gray: var(--color-gray-50);
+  --color-surface-default-disabled: var(--color-gray-100);
+  --color-surface-default-hover: var(--color-gray-50);
+
+  --color-surface-inverse-background: var(--color-gray-900);
 
   --color-border-default: var(--color-gray-200);
   --color-border-subtle: var(--color-gray-100);
