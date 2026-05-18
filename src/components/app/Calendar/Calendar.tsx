@@ -401,7 +401,7 @@ export function Calendar(props: CalendarProps): React.JSX.Element {
   return (
     <div
       className={cn(
-        'w-[328px] p-6 rounded shadow-[0_0_10px_rgba(0,0,0,0.05)] bg-[var(--component-calendar-default-background)] flex flex-col gap-5',
+        'w-[328px] p-6 rounded shadow-modal-depth bg-[var(--component-calendar-default-background)] flex flex-col gap-5',
         className
       )}
       style={style}

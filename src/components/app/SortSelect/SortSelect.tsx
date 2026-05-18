@@ -104,7 +104,7 @@ export function SortSelect(props: SortSelectProps): React.JSX.Element {
         createPortal(
           <div
             ref={panelRef}
-            className='bg-surface-default rounded-lg shadow-[0px_0px_10px_4px_rgba(0,0,0,0.05)] border border-border-default-default overflow-hidden'
+            className='bg-surface-default rounded-lg shadow-modal-depth border border-border-default-default overflow-hidden'
             style={panelStyle}
           >
             {options.map((option) => {

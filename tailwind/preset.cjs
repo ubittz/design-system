@@ -220,6 +220,13 @@ module.exports = {
         'en-normal': 'var(--letter-spacing-en-normal)',
         'en-wide': 'var(--letter-spacing-en-wide)',
       },
+
+      boxShadow: {
+        'modal-depth': 'var(--shadow-modal-depth)',
+        'icon': 'var(--shadow-icon)',
+        'fa-button-white': 'var(--shadow-fa-button-white)',
+        'fa-button-black': 'var(--shadow-fa-button-black)',
+      },
     },
   },
 };

@@ -398,4 +398,14 @@
   --letter-spacing-en-tight: -0.02em;
   --letter-spacing-en-normal: 0;
   --letter-spacing-en-wide: 0.05em;
+
+  /* ================================================================
+     Elevation - Box Shadow
+     ================================================================ */
+  --shadow-modal-depth: 0px 0px 10px 4px rgba(0, 0, 0, 0.05);
+  --shadow-icon: 0px 0px 10px 4px rgba(0, 0, 0, 0.05);
+  --shadow-fa-button-white:
+    1px 0px 8px 0px rgba(255, 255, 255, 0.14), -1px 0px 8px 0px rgba(255, 255, 255, 0.14), 0px 1px 8px 0px rgba(255, 255, 255, 0.14),
+    0px -1px 8px 0px rgba(255, 255, 255, 0.14);
+  --shadow-fa-button-black: 0px 3.93px 7.85px 0px rgba(0, 0, 0, 0.2);
 }
