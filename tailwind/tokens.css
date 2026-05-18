@@ -303,14 +303,29 @@
   --color-icon-inverse-quaternary: var(--color-gray-500);
   --color-icon-inverse-disabled: var(--color-gray-700);
 
-  --color-system-success: #68bc43;
-  --color-system-success-light: #e1f2d9;
-  --color-system-warning: #ffb200;
-  --color-system-warning-light: #fff0cc;
-  --color-system-error: #e51931;
-  --color-system-error-light: #fad2d7;
-  --color-system-info: #288ff6;
-  --color-system-info-light: #d8ebfd;
+  /* System State - Success */
+  --color-system-success-content: var(--color-grass-600);
+  --color-system-success-surface: var(--color-grass-50);
+  --color-system-success-border-primary: var(--color-grass-200);
+  --color-system-success-border-secondary: var(--color-grass-600);
+
+  /* System State - Info */
+  --color-system-info-content: var(--color-sky-600);
+  --color-system-info-surface: var(--color-sky-50);
+  --color-system-info-border-primary: var(--color-sky-200);
+  --color-system-info-border-secondary: var(--color-sky-600);
+
+  /* System State - Warning */
+  --color-system-warning-content: var(--color-orange-500);
+  --color-system-warning-surface: var(--color-orange-50);
+  --color-system-warning-border-primary: var(--color-orange-200);
+  --color-system-warning-border-secondary: var(--color-orange-500);
+
+  /* System State - Error */
+  --color-system-error-content: var(--color-apple-600);
+  --color-system-error-surface: var(--color-apple-50);
+  --color-system-error-border-primary: var(--color-apple-200);
+  --color-system-error-border-secondary: var(--color-apple-600);
 
   /* ================================================================
      Spacing

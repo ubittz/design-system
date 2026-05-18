@@ -816,15 +816,26 @@ export const parameters = {
   --color-icon-emphasis: var(--color-gray-900);
   --color-icon-inverse: #ffffff;
 
-  /* System State */
-  --color-system-success: #10b981;
-  --color-system-success-light: #d1fae5;
-  --color-system-warning: #f59e0b;
-  --color-system-warning-light: #fef3c7;
-  --color-system-error: #ef4444;
-  --color-system-error-light: #fee2e2;
-  --color-system-info: #3b82f6;
-  --color-system-info-light: #dbeafe;
+  /* System State - Success */
+  --color-system-success-content: var(--color-grass-600);
+  --color-system-success-surface: var(--color-grass-50);
+  --color-system-success-border-primary: var(--color-grass-200);
+  --color-system-success-border-secondary: var(--color-grass-600);
+  /* System State - Info */
+  --color-system-info-content: var(--color-sky-600);
+  --color-system-info-surface: var(--color-sky-50);
+  --color-system-info-border-primary: var(--color-sky-200);
+  --color-system-info-border-secondary: var(--color-sky-600);
+  /* System State - Warning */
+  --color-system-warning-content: var(--color-orange-500);
+  --color-system-warning-surface: var(--color-orange-50);
+  --color-system-warning-border-primary: var(--color-orange-200);
+  --color-system-warning-border-secondary: var(--color-orange-500);
+  /* System State - Error */
+  --color-system-error-content: var(--color-apple-600);
+  --color-system-error-surface: var(--color-apple-50);
+  --color-system-error-border-primary: var(--color-apple-200);
+  --color-system-error-border-secondary: var(--color-apple-600);
 
   /* Typography - Font Family */
   --font-family-kr: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;

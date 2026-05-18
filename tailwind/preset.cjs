@@ -129,14 +129,30 @@ module.exports = {
 
         // System
         system: {
-          success: 'var(--color-system-success)',
-          'success-light': 'var(--color-system-success-light)',
-          warning: 'var(--color-system-warning)',
-          'warning-light': 'var(--color-system-warning-light)',
-          error: 'var(--color-system-error)',
-          'error-light': 'var(--color-system-error-light)',
-          info: 'var(--color-system-info)',
-          'info-light': 'var(--color-system-info-light)',
+          success: {
+            content: 'var(--color-system-success-content)',
+            surface: 'var(--color-system-success-surface)',
+            'border-primary': 'var(--color-system-success-border-primary)',
+            'border-secondary': 'var(--color-system-success-border-secondary)',
+          },
+          info: {
+            content: 'var(--color-system-info-content)',
+            surface: 'var(--color-system-info-surface)',
+            'border-primary': 'var(--color-system-info-border-primary)',
+            'border-secondary': 'var(--color-system-info-border-secondary)',
+          },
+          warning: {
+            content: 'var(--color-system-warning-content)',
+            surface: 'var(--color-system-warning-surface)',
+            'border-primary': 'var(--color-system-warning-border-primary)',
+            'border-secondary': 'var(--color-system-warning-border-secondary)',
+          },
+          error: {
+            content: 'var(--color-system-error-content)',
+            surface: 'var(--color-system-error-surface)',
+            'border-primary': 'var(--color-system-error-border-primary)',
+            'border-secondary': 'var(--color-system-error-border-secondary)',
+          },
         },
       },
 
