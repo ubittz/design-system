@@ -791,9 +791,16 @@ export const parameters = {
   --color-surface-inverse-background: var(--color-gray-900);
 
   /* Border */
-  --color-border-default: var(--color-gray-200);
-  --color-border-subtle: var(--color-gray-100);
-  --color-border-emphasis: var(--color-gray-300);
+  --color-border-default-default: var(--color-gray-100);
+  --color-border-default-primary: var(--color-gray-900);
+  --color-border-default-secondary: var(--color-gray-50);
+  --color-border-default-brand: var(--color-brand-primary-500);
+  --color-border-default-hover: var(--color-brand-primary-500);
+
+  /* Border - Inverse Theme */
+  --color-border-inverse-primary: var(--color-gray-100);
+  --color-border-inverse-secondary: var(--color-gray-700);
+  --color-border-inverse-brand: var(--color-brand-primary-50);
 
   /* Text */
   --color-text-primary: var(--color-gray-900);

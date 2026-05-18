@@ -60,9 +60,18 @@ export default {
 
         // Semantic - Border
         border: {
-          DEFAULT: 'var(--color-border-default)',
-          subtle: 'var(--color-border-subtle)',
-          emphasis: 'var(--color-border-emphasis)',
+          default: {
+            DEFAULT: 'var(--color-border-default-default)',
+            primary: 'var(--color-border-default-primary)',
+            secondary: 'var(--color-border-default-secondary)',
+            brand: 'var(--color-border-default-brand)',
+            hover: 'var(--color-border-default-hover)',
+          },
+          inverse: {
+            primary: 'var(--color-border-inverse-primary)',
+            secondary: 'var(--color-border-inverse-secondary)',
+            brand: 'var(--color-border-inverse-brand)',
+          },
         },
 
         // Semantic - Text
