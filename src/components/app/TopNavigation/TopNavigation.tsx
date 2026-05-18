@@ -16,7 +16,7 @@ export function TopNavigation({ left, title, right, className, style }: TopNavig
   return (
     <header
       className={cn(
-        'flex items-center justify-between relative h-14 px-4 bg-(--component-navigation-default-background) border-b border-b-(--component-navigation-default-borderPrimary)',
+        'flex items-center justify-between relative h-14 px-4 bg-(--component-navigation-default-background) border-b border-b-(--component-navigation-default-border-primary)',
         className
       )}
       style={style}

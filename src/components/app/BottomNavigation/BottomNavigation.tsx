@@ -23,7 +23,7 @@ export function BottomNavigation({ items, value, onChange, className, style }: B
   return (
     <nav
       className={cn(
-        'flex items-stretch bg-[var(--component-navigation-default-background)] border-t border-t-[var(--component-navigation-default-borderPrimary)]',
+        'flex items-stretch bg-[var(--component-navigation-default-background)] border-t border-t-[var(--component-navigation-default-border-primary)]',
         className
       )}
       style={style}

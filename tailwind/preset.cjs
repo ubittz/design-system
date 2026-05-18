@@ -108,10 +108,23 @@ module.exports = {
 
         // Semantic - Icon
         icon: {
-          DEFAULT: 'var(--color-icon-default)',
-          subtle: 'var(--color-icon-subtle)',
-          emphasis: 'var(--color-icon-emphasis)',
-          inverse: 'var(--color-icon-inverse)',
+          default: {
+            DEFAULT: 'var(--color-icon-default-primary)',
+            primary: 'var(--color-icon-default-primary)',
+            secondary: 'var(--color-icon-default-secondary)',
+            tertiary: 'var(--color-icon-default-tertiary)',
+            quaternary: 'var(--color-icon-default-quaternary)',
+            brand: 'var(--color-icon-default-brand)',
+            disabled: 'var(--color-icon-default-disabled)',
+            selected: 'var(--color-icon-default-selected)',
+          },
+          inverse: {
+            primary: 'var(--color-icon-inverse-primary)',
+            secondary: 'var(--color-icon-inverse-secondary)',
+            tertiary: 'var(--color-icon-inverse-tertiary)',
+            quaternary: 'var(--color-icon-inverse-quaternary)',
+            disabled: 'var(--color-icon-inverse-disabled)',
+          },
         },
 
         // System

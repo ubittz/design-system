@@ -85,7 +85,7 @@ export function Checkbox({
           <span
             className={cn('flex flex-row items-center gap-1 flex-1 min-w-0 font-normal', config.fontSize, config.lineHeight, config.letterSpacing)}
           >
-            {caption && <span className='text-(--text-default-brandPrimary) shrink-0'>[{caption}]</span>}
+            {caption && <span className='text-(--color-text-default-brand) shrink-0'>[{caption}]</span>}
             {label && <span className='text-(--component-input-default-text)'>{label}</span>}
           </span>
         )}

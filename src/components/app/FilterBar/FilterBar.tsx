@@ -10,7 +10,7 @@ export function FilterBar({ options, value, onChange, className, style }: Filter
   return (
     <div
       className={cn(
-        'flex items-center gap-3 h-14 px-4 border-b border-b-[var(--component-navigation-default-borderPrimary)] overflow-x-auto',
+        'flex items-center gap-3 h-14 px-4 border-b border-b-[var(--component-navigation-default-border-primary)] overflow-x-auto',
         className
       )}
       style={style}

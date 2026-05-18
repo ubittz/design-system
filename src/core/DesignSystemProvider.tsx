@@ -37,9 +37,9 @@ export function DesignSystemProvider({ platform = 'web', defaultLang = 'kr', the
     };
   }, [platform, defaultLang, theme]);
 
-  // CSS Variables 생성
+  // CSS Variables 생성 (tokens.css의 --color-* 변수를 오버라이드)
   const cssVariables = useMemo(() => {
-    const semanticVars = tokensToCSSVariables(contextValue.resolvedSemanticColors, 'semantic');
+    const semanticVars = tokensToCSSVariables(contextValue.resolvedSemanticColors, 'color');
     const componentVars = tokensToCSSVariables(contextValue.resolvedComponentTokens, 'component');
 
     return `:root {\n          ${semanticVars}\n\n          ${componentVars}\n        }`;

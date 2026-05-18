@@ -18,7 +18,7 @@ export function TabMenu({ items, activeIndex, onChange, variant = 'line', classN
     return (
       <div
         className={cn(
-          'flex items-center h-[52px] bg-[var(--component-navigation-default-background)] border-b border-b-[var(--component-navigation-default-borderPrimary)]',
+          'flex items-center h-[52px] bg-[var(--component-navigation-default-background)] border-b border-b-[var(--component-navigation-default-border-primary)]',
           className
         )}
         style={style}
@@ -33,7 +33,7 @@ export function TabMenu({ items, activeIndex, onChange, variant = 'line', classN
               className={cn(
                 'flex-1 flex items-center justify-center h-full border-0 cursor-pointer text-sm',
                 isActive
-                  ? 'font-semibold text-[var(--component-navigation-selected-inverseText)] bg-[var(--component-navigation-selected-background)]'
+                  ? 'font-semibold text-[var(--component-navigation-selected-inverse-text)] bg-[var(--component-navigation-selected-background)]'
                   : 'font-normal text-[var(--component-navigation-default-text)] bg-[var(--component-navigation-default-background)]'
               )}
             >
@@ -48,7 +48,7 @@ export function TabMenu({ items, activeIndex, onChange, variant = 'line', classN
   return (
     <div
       className={cn(
-        'flex items-stretch h-[52px] bg-[var(--component-navigation-default-background)] border-b border-b-[var(--component-navigation-default-borderSecondary)]',
+        'flex items-stretch h-[52px] bg-[var(--component-navigation-default-background)] border-b border-b-[var(--component-navigation-default-border-secondary)]',
         className
       )}
       style={style}

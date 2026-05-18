@@ -43,7 +43,7 @@ export interface SemanticColors {
     default: {
       background: string;
       foreground: string;
-      primary: string;
+      brandPrimary: string;
       brandSecondary: string;
       gray: string;
       disabled: string;
@@ -77,7 +77,7 @@ export interface SemanticColors {
       placeholder: string;
       caption: string;
       disabled: string;
-      brandPrimary: string;
+      brand: string;
       discount: string;
     };
     inverse: {

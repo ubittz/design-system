@@ -287,10 +287,21 @@
   --color-text-inverse-disabled: var(--color-gray-700);
   --color-text-inverse-brand: var(--color-brand-primary-100);
 
-  --color-icon-default: var(--color-gray-600);
-  --color-icon-subtle: var(--color-gray-400);
-  --color-icon-emphasis: var(--color-gray-900);
-  --color-icon-inverse: #ffffff;
+  /* Icon - Default Theme */
+  --color-icon-default-primary: var(--color-gray-800);
+  --color-icon-default-secondary: var(--color-gray-700);
+  --color-icon-default-tertiary: var(--color-gray-600);
+  --color-icon-default-quaternary: var(--color-gray-400);
+  --color-icon-default-brand: var(--color-brand-primary-500);
+  --color-icon-default-disabled: var(--color-gray-200);
+  --color-icon-default-selected: var(--color-brand-primary-500);
+
+  /* Icon - Inverse Theme */
+  --color-icon-inverse-primary: var(--color-gray-0);
+  --color-icon-inverse-secondary: var(--color-gray-200);
+  --color-icon-inverse-tertiary: var(--color-gray-300);
+  --color-icon-inverse-quaternary: var(--color-gray-500);
+  --color-icon-inverse-disabled: var(--color-gray-700);
 
   --color-system-success: #68bc43;
   --color-system-success-light: #e1f2d9;

@@ -269,7 +269,7 @@ export const defaultSemanticColors = {
     default: {
       background: baseColors.gray[50], // Surface/Default/Background
       foreground: baseColors.gray[0], // Surface/Default/Foreground
-      primary: '{brand.primary.500}', // 동적 참조
+      brandPrimary: '{brand.primary.500}', // 동적 참조
       brandSecondary: '{brand.primary.50}', // 동적 참조
       gray: baseColors.gray[50],
       disabled: baseColors.gray[100],
@@ -305,7 +305,7 @@ export const defaultSemanticColors = {
       placeholder: baseColors.gray[300],
       caption: baseColors.gray[600],
       disabled: baseColors.gray[200],
-      brandPrimary: '{brand.primary.500}', // 동적 참조
+      brand: '{brand.primary.500}', // 동적 참조
       discount: baseColors.coral[600],
     },
     inverse: {
@@ -371,18 +371,18 @@ export const defaultSemanticColors = {
 export const componentTokens = {
   button: {
     primary: {
-      background: '{surface.default.primary}', // -> Brand.Primary.500
+      background: '{surface.default.brandPrimary}', // -> Brand.Primary.500
       label: '{text.inverse.primary}', // -> White
       icon: '{icon.inverse.primary}', // -> White
     },
     secondary: {
       background: '{surface.default.brandSecondary}', // -> Brand.Primary.50
-      label: '{text.default.brandPrimary}', // -> Brand.Primary.500
+      label: '{text.default.brand}', // -> Brand.Primary.500
       icon: '{icon.default.brand}', // -> Brand.Primary.500
     },
     ghost: {
       border: '{border.default.brand}', // -> Brand.Primary.500
-      label: '{text.default.brandPrimary}', // -> Brand.Primary.500
+      label: '{text.default.brand}', // -> Brand.Primary.500
       icon: '{icon.default.brand}', // -> Brand.Primary.500
     },
     gray: {
@@ -436,9 +436,9 @@ export const componentTokens = {
       iconPrimary: '{icon.default.primary}', // -> Gray.800
     },
     selected: {
-      background: '{surface.default.primary}', // -> Brand.Primary.500
+      background: '{surface.default.brandPrimary}', // -> Brand.Primary.500
       border: '{border.default.brand}', // -> Brand.Primary.500
-      text: '{text.default.brandPrimary}', // -> Brand.Primary.500
+      text: '{text.default.brand}', // -> Brand.Primary.500
       inverseText: '{text.inverse.primary}', // -> White
       icon: '{icon.default.brand}', // -> Brand.Primary.500
       inverseIcon: '{icon.inverse.primary}', // -> White
@@ -457,11 +457,11 @@ export const componentTokens = {
     },
     focused: {
       border: '{border.default.brand}', // -> Brand.Primary.500
-      cursor: '{surface.default.primary}', // -> Brand.Primary.500
+      cursor: '{surface.default.brandPrimary}', // -> Brand.Primary.500
     },
     selected: {
       background: '{surface.default.brandSecondary}', // -> Brand.Primary.50
-      text: '{text.default.brandPrimary}', // -> Brand.Primary.500
+      text: '{text.default.brand}', // -> Brand.Primary.500
       icon: '{icon.default.brand}', // -> Brand.Primary.500
     },
     disabled: {
@@ -487,13 +487,13 @@ export const componentTokens = {
     },
     today: {
       border: '{border.default.brand}', // -> Brand.Primary.500
-      text: '{text.default.brandPrimary}', // -> Brand.Primary.500
+      text: '{text.default.brand}', // -> Brand.Primary.500
     },
     hover: {
       background: '{surface.default.hover}', // -> Gray.50
     },
     selected: {
-      background: '{surface.default.primary}', // -> Brand.Primary.500
+      background: '{surface.default.brandPrimary}', // -> Brand.Primary.500
       range: '{surface.default.brandSecondary}', // -> Brand.Primary.50
       text: '{text.inverse.primary}', // -> White
     },
@@ -536,7 +536,7 @@ export const componentTokens = {
         background: '{surface.default.foreground}', // -> White
         border: '{border.default.default}', // -> Gray.100
         label: '{text.default.secondary}', // -> Gray.700
-        selectedLabel: '{text.default.brandPrimary}', // -> Brand.Primary.500
+        selectedLabel: '{text.default.brand}', // -> Brand.Primary.500
         icon: '{icon.default.quaternary}', // -> Gray.400
         arrow: '{icon.default.secondary}', // -> Gray.700
       },
@@ -560,7 +560,7 @@ export const componentTokens = {
       text: '{text.default.label}', // -> Gray.600
     },
     selected: {
-      background: '{surface.default.primary}', // -> Brand.Primary.500
+      background: '{surface.default.brandPrimary}', // -> Brand.Primary.500
       border: '{border.default.brand}', // -> Brand.Primary.500
       text: '{text.inverse.primary}', // -> White
     },
@@ -573,7 +573,7 @@ export const componentTokens = {
     },
     selected: {
       background: '{surface.default.foreground}', // -> White
-      label: '{text.default.brandPrimary}', // -> Brand.Primary.500
+      label: '{text.default.brand}', // -> Brand.Primary.500
     },
   },
 } as const;
