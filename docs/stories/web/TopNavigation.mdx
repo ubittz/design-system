@@ -3,17 +3,32 @@ import * as TopNavigationStories from './TopNavigation.stories';
 
 <Meta of={TopNavigationStories} />
 
-# TopNavigation (App)
+# TopNavigation (Web)
 
-모바일 앱 상단에 위치하는 56px 높이의 네비게이션 바입니다.
+웹 페이지 상단에 위치하는 56px 높이의 네비게이션 바입니다.
 왼쪽(뒤로가기, 메뉴), 중앙(타이틀), 오른쪽(액션 버튼) 3개 슬롯으로 구성됩니다.
 
 ## 주요 특징
 
-- **56px 고정 높이**: 모바일 앱 표준 네비게이션 바 높이
+- **56px 고정 높이**: 웹 표준 네비게이션 바 높이
 - **3-슬롯 레이아웃**: `left`, `title`, `right`로 자유로운 구성
 - **Absolute 중앙 타이틀**: 좌우 슬롯 크기에 관계없이 항상 정중앙에 위치
 - **디자인 토큰 연동**: `--component-navigation-*` CSS 변수로 테마 자동 반영
+- **반응형 대응**: 전체 너비를 사용하여 웹 환경에 최적화
+
+## App 버전과의 차이
+
+`DesignSystemProvider`의 `platform` 값에 따라 자동으로 Web 또는 App 버전이 선택됩니다.
+직접 import도 가능합니다:
+
+```tsx
+// Platform-aware (자동 선택)
+import { TopNavigation } from '@ubittz/design-system';
+
+// Web 전용 직접 import
+import { WebComponents } from '@ubittz/design-system';
+const { TopNavigation } = WebComponents;
+```
 
 ## 사용법
 
@@ -23,7 +38,7 @@ import * as TopNavigationStories from './TopNavigation.stories';
 import { TopNavigation } from '@ubittz/design-system';
 import { RoundStroke } from '@ubittz/design-system';
 
-function DetailPage() {
+function Header() {
   return (
     <TopNavigation
       left={
@@ -31,7 +46,7 @@ function DetailPage() {
           <RoundStroke.Left size={24} />
         </button>
       }
-      title="상품 상세"
+      title="페이지 타이틀"
     />
   );
 }
@@ -72,7 +87,7 @@ function DetailPage() {
 />
 ```
 
-### 모달/바텀시트 닫기
+### 모달 닫기
 
 ```tsx
 <TopNavigation
