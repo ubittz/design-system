@@ -17,7 +17,7 @@ export function TopNavigation({ left, title, right, className, style, maxWidth =
       <div className='mx-auto w-full flex relative justify-between' style={{ maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth }}>
         <div className='flex items-center z-1'>{left}</div>
         {title && (
-          <span className='absolute left-1/2 -translate-x-1/2 text-base font-medium text-(--component-navigation-default-title) whitespace-nowrap overflow-hidden text-ellipsis max-w-[calc(100%-120px)]'>
+          <span className='absolute left-1/2 -translate-x-1/2 top-1/2 transform-[translateY(-50%)] text-base font-medium text-(--component-navigation-default-title) whitespace-nowrap overflow-hidden text-ellipsis max-w-[calc(100%-120px)]'>
             {title}
           </span>
         )}
