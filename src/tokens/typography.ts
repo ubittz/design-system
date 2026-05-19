@@ -443,6 +443,40 @@ export const webTypography = {
 // ============================================================================
 // 타입 정의
 // ============================================================================
+export type WebTypographyVariant =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'subtitle1'
+  | 'subtitle2'
+  | 'body1'
+  | 'body3'
+  | 'body4'
+  | 'caption'
+  | 'button1'
+  | 'button2'
+  | 'button3';
+
+export type MobileTypographyVariant =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'subtitle1'
+  | 'subtitle2'
+  | 'subtitle3'
+  | 'body1'
+  | 'body2'
+  | 'body3'
+  | 'caption1'
+  | 'caption2'
+  | 'button1'
+  | 'button2'
+  | 'button3';
+
+export type TypographyVariant = WebTypographyVariant | MobileTypographyVariant;
+
 export type MobileTypographyKR = typeof mobileTypography.kr;
 export type MobileTypographyEN = typeof mobileTypography.en;
 export type WebTypographyKR = typeof webTypography.kr;

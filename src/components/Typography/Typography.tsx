@@ -3,28 +3,17 @@
 import React from 'react';
 
 import { useDesignSystem } from '../../core/DesignSystemProvider';
-import { mobileTypography, webTypography, type TypographyStyle } from '../../tokens/typography';
+import {
+  mobileTypography,
+  webTypography,
+  type TypographyStyle,
+  type TypographyVariant,
+  type WebTypographyVariant,
+  type MobileTypographyVariant,
+} from '../../tokens/typography';
 import { cn } from '../../utils/cn';
 
-export interface TypographyProps {
-  variant:
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'subtitle1'
-    | 'subtitle2'
-    | 'subtitle3'
-    | 'body1'
-    | 'body2'
-    | 'body3'
-    | 'body4'
-    | 'caption'
-    | 'caption1'
-    | 'caption2'
-    | 'button1'
-    | 'button2'
-    | 'button3';
+interface TypographyPropsBase {
   children: React.ReactNode;
   lang?: 'kr' | 'en';
   color?: string;
@@ -34,7 +23,19 @@ export interface TypographyProps {
   style?: React.CSSProperties;
 }
 
-const getTypographyStyle = (variant: TypographyProps['variant'], lang: 'kr' | 'en', platform: 'web' | 'mobile'): TypographyStyle => {
+export interface WebTypographyProps extends TypographyPropsBase {
+  variant: WebTypographyVariant;
+}
+
+export interface MobileTypographyProps extends TypographyPropsBase {
+  variant: MobileTypographyVariant;
+}
+
+export type TypographyProps = {
+  variant: TypographyVariant;
+} & TypographyPropsBase;
+
+const getTypographyStyle = (variant: TypographyVariant, lang: 'kr' | 'en', platform: 'web' | 'mobile'): TypographyStyle => {
   const typography = platform === 'web' ? webTypography : mobileTypography;
   const langTypography = typography[lang];
 
@@ -42,18 +43,20 @@ const getTypographyStyle = (variant: TypographyProps['variant'], lang: 'kr' | 'e
   const bodyVariants = ['body1', 'body2', 'body3', 'body4', 'caption', 'caption1', 'caption2'];
   const buttonVariants = ['button1', 'button2', 'button3'];
 
+  let style: TypographyStyle | undefined;
+
   if (titleVariants.includes(variant)) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (langTypography.title as any)[variant];
+    style = (langTypography.title as any)[variant];
   } else if (bodyVariants.includes(variant)) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (langTypography.body as any)[variant];
+    style = (langTypography.body as any)[variant];
   } else if (buttonVariants.includes(variant)) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (langTypography.button as any)[variant];
+    style = (langTypography.button as any)[variant];
   }
 
-  return langTypography.body.body3 || langTypography.body.body1;
+  return style || langTypography.body.body3 || langTypography.body.body1;
 };
 
 const ALIGN_CLASSES = {
@@ -63,7 +66,7 @@ const ALIGN_CLASSES = {
   justify: 'text-justify',
 } as const;
 
-const getDefaultTag = (variant: TypographyProps['variant']): React.ElementType => {
+const getDefaultTag = (variant: TypographyVariant): React.ElementType => {
   if (variant.startsWith('h')) return variant as 'h1' | 'h2' | 'h3' | 'h4';
   if (variant.startsWith('subtitle')) return 'h5';
   if (variant.startsWith('button')) return 'span';
