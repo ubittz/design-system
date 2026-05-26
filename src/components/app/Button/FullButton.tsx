@@ -10,6 +10,7 @@ export interface FullButtonProps {
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
+  type?: 'button' | 'reset' | 'submit';
   style?: React.CSSProperties;
 }
 
@@ -40,10 +41,10 @@ function getVariantClasses(variant: NonNullable<FullButtonProps['variant']>, dis
   }
 }
 
-function FullButtonBase({ children, variant = 'primary', disabled = false, onClick, className, style }: FullButtonProps): React.JSX.Element {
+function FullButtonBase({ children, variant = 'primary', disabled = false, onClick, className, style, type }: FullButtonProps): React.JSX.Element {
   return (
     <button
-      type='button'
+      type={type || 'button'}
       disabled={disabled}
       onClick={disabled ? undefined : onClick}
       className={cn(

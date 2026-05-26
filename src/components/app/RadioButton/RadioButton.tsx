@@ -6,7 +6,6 @@ import { RadioButtonProps } from './types';
 import { RoundStroke, RoundSolid } from '../../../icons';
 import { cn } from '../../../utils/cn';
 
-
 const SIZE_MAP = {
   S: { iconSize: 20, fontSize: 'text-sm', lineHeight: 'leading-[22px]', letterSpacing: 'tracking-[-0.28px]' },
   M: { iconSize: 24, fontSize: 'text-base', lineHeight: 'leading-6', letterSpacing: 'tracking-[-0.32px]' },

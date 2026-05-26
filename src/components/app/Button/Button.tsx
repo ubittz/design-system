@@ -16,6 +16,7 @@ export interface ButtonProps {
   onClick?: () => void;
   className?: string;
   style?: React.CSSProperties;
+  type?: 'button' | 'reset' | 'submit';
 }
 
 const SIZE_CLASSES = {
@@ -89,12 +90,13 @@ export function Button({
   onClick,
   className,
   style,
+  type,
 }: ButtonProps): React.JSX.Element {
   const iconColor = getIconColor(variant, disabled);
 
   return (
     <button
-      type='button'
+      type={type || 'button'}
       disabled={disabled}
       onClick={disabled ? undefined : onClick}
       className={cn(

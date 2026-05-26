@@ -13,6 +13,7 @@ export interface SNSButtonProps {
   onClick?: () => void;
   className?: string;
   style?: React.CSSProperties;
+  type?: 'button' | 'reset' | 'submit';
 }
 
 const PROVIDER_STYLES: Record<SNSProvider, { background: string; color: string; border?: string }> = {
@@ -84,14 +85,14 @@ const PROVIDER_LOGOS: Record<SNSProvider, () => React.JSX.Element> = {
   apple: AppleLogo,
 };
 
-export function SNSButton({ provider, shape = 'circle', label, onClick, className, style }: SNSButtonProps): React.JSX.Element {
+export function SNSButton({ provider, shape = 'circle', label, onClick, className, style, type }: SNSButtonProps): React.JSX.Element {
   const providerStyle = PROVIDER_STYLES[provider];
   const Logo = PROVIDER_LOGOS[provider];
 
   if (shape === 'circle') {
     return (
       <button
-        type='button'
+        type={type || 'button'}
         onClick={onClick}
         className={cn('inline-flex items-center justify-center w-[52px] h-[52px] rounded-full p-0 cursor-pointer', className)}
         style={{
