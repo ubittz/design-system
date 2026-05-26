@@ -13,6 +13,7 @@ export interface IconButtonProps {
   'aria-label': string;
   className?: string;
   style?: React.CSSProperties;
+  type?: 'button' | 'reset' | 'submit';
 }
 
 const SIZE_CLASSES = {
@@ -59,10 +60,11 @@ export function IconButton({
   'aria-label': ariaLabel,
   className,
   style,
+  type,
 }: IconButtonProps): React.JSX.Element {
   return (
     <button
-      type='button'
+      type={type || 'button'}
       disabled={disabled}
       onClick={disabled ? undefined : onClick}
       aria-label={ariaLabel}

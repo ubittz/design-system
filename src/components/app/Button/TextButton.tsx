@@ -12,6 +12,7 @@ export interface TextButtonProps {
   onClick?: () => void;
   className?: string;
   style?: React.CSSProperties;
+  type?: 'button' | 'reset' | 'submit';
 }
 
 const SIZE_CLASSES = {
@@ -32,10 +33,10 @@ const ICON_SIZE_CLASSES = {
   l: 'w-4 h-4',
 } as const;
 
-export function TextButton({ children, size = 'm', showArrow = false, onClick, className, style }: TextButtonProps): React.JSX.Element {
+export function TextButton({ children, size = 'm', showArrow = false, onClick, className, style, type }: TextButtonProps): React.JSX.Element {
   return (
     <button
-      type='button'
+      type={type || 'button'}
       onClick={onClick}
       className={cn(
         'inline-flex items-center gap-1 p-0 border-0 bg-transparent text-[var(--component-button-text-label)] cursor-pointer',
