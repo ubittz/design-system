@@ -400,6 +400,154 @@
   --letter-spacing-en-wide: 0.05em;
 
   /* ================================================================
+     Component Tokens - Button
+     ================================================================ */
+  --component-button-primary-background: var(--color-surface-default-brand-primary);
+  --component-button-primary-label: var(--color-text-inverse-primary);
+  --component-button-primary-icon: var(--color-icon-inverse-primary);
+
+  --component-button-secondary-background: var(--color-surface-default-brand-secondary);
+  --component-button-secondary-label: var(--color-text-default-brand);
+  --component-button-secondary-icon: var(--color-icon-default-brand);
+
+  --component-button-ghost-border: var(--color-border-default-brand);
+  --component-button-ghost-label: var(--color-text-default-brand);
+  --component-button-ghost-icon: var(--color-icon-default-brand);
+
+  --component-button-gray-background: var(--color-surface-default-gray);
+  --component-button-gray-label: var(--color-text-default-label);
+  --component-button-gray-icon: var(--color-icon-default-tertiary);
+
+  --component-button-outline-border: var(--color-border-default-default);
+  --component-button-outline-label: var(--color-text-default-label);
+  --component-button-outline-icon: var(--color-icon-default-tertiary);
+
+  --component-button-disabled-background: var(--color-surface-default-disabled);
+  --component-button-disabled-label: var(--color-text-default-disabled);
+  --component-button-disabled-icon: var(--color-icon-default-disabled);
+
+  --component-button-text-label: var(--color-text-default-label);
+  --component-button-text-icon: var(--color-icon-default-tertiary);
+
+  /* Component Tokens - System Button */
+  --component-system-button-success-background: var(--color-system-success-content);
+  --component-system-button-success-label: var(--color-text-inverse-primary);
+  --component-system-button-info-background: var(--color-system-info-content);
+  --component-system-button-info-label: var(--color-text-inverse-primary);
+  --component-system-button-warning-background: var(--color-system-warning-content);
+  --component-system-button-warning-label: var(--color-text-inverse-primary);
+  --component-system-button-error-background: var(--color-system-error-content);
+  --component-system-button-error-label: var(--color-text-inverse-primary);
+
+  /* Component Tokens - Navigation */
+  --component-navigation-default-background: var(--color-surface-default-foreground);
+  --component-navigation-default-border-primary: var(--color-border-default-default);
+  --component-navigation-default-border-secondary: var(--color-border-default-secondary);
+  --component-navigation-default-text: var(--color-text-default-label);
+  --component-navigation-default-title: var(--color-text-default-primary);
+  --component-navigation-default-icon-default: var(--color-icon-default-quaternary);
+  --component-navigation-default-icon-primary: var(--color-icon-default-primary);
+
+  --component-navigation-selected-background: var(--color-surface-default-brand-primary);
+  --component-navigation-selected-border: var(--color-border-default-brand);
+  --component-navigation-selected-text: var(--color-text-default-brand);
+  --component-navigation-selected-inverse-text: var(--color-text-inverse-primary);
+  --component-navigation-selected-icon: var(--color-icon-default-brand);
+  --component-navigation-selected-inverse-icon: var(--color-icon-inverse-primary);
+
+  /* Component Tokens - Input */
+  --component-input-default-background: var(--color-surface-default-foreground);
+  --component-input-default-border: var(--color-border-default-default);
+  --component-input-default-icon: var(--color-icon-default-quaternary);
+  --component-input-default-label: var(--color-text-default-label);
+  --component-input-default-placeholder: var(--color-text-default-placeholder);
+  --component-input-default-text: var(--color-text-default-secondary);
+  --component-input-default-caption: var(--color-text-default-caption);
+
+  --component-input-focused-border: var(--color-border-default-brand);
+  --component-input-focused-cursor: var(--color-surface-default-brand-primary);
+
+  --component-input-selected-background: var(--color-surface-default-brand-secondary);
+  --component-input-selected-text: var(--color-text-default-brand);
+  --component-input-selected-icon: var(--color-icon-default-brand);
+
+  --component-input-disabled-background: var(--color-surface-default-disabled);
+  --component-input-disabled-text: var(--color-text-default-disabled);
+  --component-input-disabled-icon: var(--color-icon-default-disabled);
+
+  --component-input-hover-background: var(--color-surface-default-hover);
+
+  --component-input-error-caption: var(--color-system-error-content);
+  --component-input-error-border: var(--color-system-error-content);
+
+  /* Component Tokens - Calendar */
+  --component-calendar-default-background: var(--color-surface-default-foreground);
+  --component-calendar-default-border: var(--color-border-default-default);
+  --component-calendar-default-text: var(--color-text-default-secondary);
+  --component-calendar-default-icon: var(--color-icon-default-secondary);
+
+  --component-calendar-today-border: var(--color-border-default-brand);
+  --component-calendar-today-text: var(--color-text-default-brand);
+
+  --component-calendar-hover-background: var(--color-surface-default-hover);
+
+  --component-calendar-selected-background: var(--color-surface-default-brand-primary);
+  --component-calendar-selected-range: var(--color-surface-default-brand-secondary);
+  --component-calendar-selected-text: var(--color-text-inverse-primary);
+
+  --component-calendar-disabled-text: var(--color-text-default-disabled);
+
+  /* Component Tokens - Modal */
+  --component-modal-background: var(--color-surface-default-foreground);
+  --component-modal-title: var(--color-text-default-primary);
+  --component-modal-body: var(--color-text-default-secondary);
+
+  /* Component Tokens - List */
+  --component-list-product-name: var(--color-text-default-primary);
+  --component-list-product-description: var(--color-text-default-label);
+  --component-list-product-brand: var(--color-text-default-label);
+  --component-list-product-price: var(--color-text-default-primary);
+  --component-list-product-original-price: var(--color-text-default-disabled);
+  --component-list-product-discount-rate: var(--color-text-default-discount);
+  --component-list-product-heart: var(--color-text-inverse-primary);
+  --component-list-product-meta-data: var(--color-text-default-quaternary);
+
+  --component-list-table-header-background: var(--color-surface-default-gray);
+  --component-list-table-header-border: var(--color-border-default-default);
+  --component-list-table-header-text: var(--color-text-default-label);
+  --component-list-table-header-required: var(--color-system-error-content);
+  --component-list-table-body-border: var(--color-border-default-default);
+  --component-list-table-body-text: var(--color-text-default-secondary);
+
+  --component-list-menu-default-background: var(--color-surface-default-foreground);
+  --component-list-menu-default-border: var(--color-border-default-default);
+  --component-list-menu-default-label: var(--color-text-default-secondary);
+  --component-list-menu-default-selected-label: var(--color-text-default-brand);
+  --component-list-menu-default-icon: var(--color-icon-default-quaternary);
+  --component-list-menu-default-arrow: var(--color-icon-default-secondary);
+  --component-list-menu-depth-background: var(--color-surface-default-gray);
+  --component-list-menu-depth-label: var(--color-text-default-label);
+
+  --component-list-card-background: var(--color-surface-default-foreground);
+  --component-list-card-border: var(--color-border-default-default);
+  --component-list-card-title: var(--color-text-default-primary);
+  --component-list-card-body: var(--color-text-default-label);
+
+  /* Component Tokens - Filter */
+  --component-filter-default-background: var(--color-surface-default-foreground);
+  --component-filter-default-border: var(--color-border-default-default);
+  --component-filter-default-text: var(--color-text-default-label);
+  --component-filter-selected-background: var(--color-surface-default-brand-primary);
+  --component-filter-selected-border: var(--color-border-default-brand);
+  --component-filter-selected-text: var(--color-text-inverse-primary);
+
+  /* Component Tokens - Toggle */
+  --component-toggle-default-background: var(--color-surface-default-gray);
+  --component-toggle-default-label: var(--color-text-default-label);
+  --component-toggle-selected-background: var(--color-surface-default-foreground);
+  --component-toggle-selected-label: var(--color-text-default-brand);
+
+  /* ================================================================
      Elevation - Box Shadow
      ================================================================ */
   --shadow-modal-depth: 0px 0px 10px 4px rgba(0, 0, 0, 0.05);

@@ -43,28 +43,18 @@ export function DesignSystemProvider({ platform = 'web', defaultLang = 'kr', bas
     };
   }, [platform, defaultLang, baseColorLevel, theme]);
 
-  // CSS Variables 생성 (tokens.css의 --color-* 변수를 오버라이드)
-  const cssVariablesStyle = useMemo(() => {
+  // CSS Variables 생성 ([data-ds-provider]에 스코프하여 tokens.css :root보다 우선)
+  const cssVariables = useMemo(() => {
     const semanticVars = tokensToCSSVariables(contextValue.resolvedSemanticColors, 'color');
     const componentVars = tokensToCSSVariables(contextValue.resolvedComponentTokens, 'component');
 
-    const vars = [semanticVars, componentVars].filter(Boolean).join('\n');
-    const result: Record<string, string> = {};
-    for (const line of vars.split('\n')) {
-      const trimmed = line.trim();
-      if (!trimmed) continue;
-      const colonIdx = trimmed.indexOf(':');
-      if (colonIdx === -1) continue;
-      const key = trimmed.slice(0, colonIdx).trim();
-      const value = trimmed.slice(colonIdx + 1).trim().replace(/;$/, '');
-      result[key] = value;
-    }
-    return result as React.CSSProperties;
+    return `[data-ds-provider] {\n          ${semanticVars}\n\n          ${componentVars}\n        }`;
   }, [contextValue.resolvedSemanticColors, contextValue.resolvedComponentTokens]);
 
   return (
     <DesignSystemContext.Provider value={contextValue}>
-      <div style={{ display: 'contents', ...cssVariablesStyle }}>
+      <div data-ds-provider style={{ display: 'contents' }}>
+        <style>{cssVariables}</style>
         {children}
       </div>
     </DesignSystemContext.Provider>
