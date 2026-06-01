@@ -2,6 +2,12 @@ export type Platform = 'app' | 'web';
 export type Lang = 'kr' | 'en';
 
 /**
+ * Brand Primary 500 슬롯에 적용할 색상 레벨
+ * 예: 600이면 brand.primary.500에 baseColors.sky[600] 값이 적용됨
+ */
+export type BaseColorLevel = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+
+/**
  * 깊은 부분 타입 (Deep Partial)
  */
 export type DeepPartial<T> = T extends object
@@ -152,6 +158,12 @@ export interface ThemeConfig {
 export interface DesignSystemConfig {
   platform: Platform;
   defaultLang: Lang;
+  /**
+   * Brand Primary 색상의 base color 팔레트를 선택합니다.
+   * 예: 'coral' → baseColors.coral 팔레트가 brand.primary로 적용
+   * 기본값: 'sky'
+   */
+  baseColorLevel?: BaseColorLevel;
   theme?: ThemeConfig;
 }
 
